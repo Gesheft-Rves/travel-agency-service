@@ -9,4 +9,5 @@ public interface CustomerRepository extends CrudRepository<Customer> {
     List<Customer> getCustomersByDepartmentId(int departmentId);
 
     List<Customer> getCustomersByDepartmentName(String departmentName);
+
 }
