@@ -16,7 +16,7 @@ public class CustomerRepositoryTest extends AbstractTest implements CrudTest {
     private JdbcTemplate jdbcTemplate;
 
     @Autowired
-    private CustomerRepository repository;
+    private CustomerRepository customerRepository;
 
     @Autowired
     private DepartmentRepository departmentRepository;
@@ -25,7 +25,7 @@ public class CustomerRepositoryTest extends AbstractTest implements CrudTest {
     @Override
     public void createTest() {
         Customer customer = Customer.builder().name("CustomerTest").build();
-        repository.create(customer);
+        customerRepository.create(customer);
 
         @Language("MySQL")
         String sql = "SELECT name from customer where customer_id = (select max(customer_id)from customer)";
@@ -36,11 +36,11 @@ public class CustomerRepositoryTest extends AbstractTest implements CrudTest {
     @Test
     @Override
     public void readTest() {
-        Customer customer = repository.read(1);
+        Customer customer = customerRepository.read(1);
         String fromDb = customer.getName();
-        String s = "Test";
+        String expected = "Test";
 
-        Assert.assertEquals(fromDb,s);
+        Assert.assertEquals(expected, fromDb);
     }
 
     @Test
@@ -50,10 +50,10 @@ public class CustomerRepositoryTest extends AbstractTest implements CrudTest {
         String query = "UPDATE customer SET name = ? WHERE customer_id = ?";
         jdbcTemplate.update(query, "NewNameCustomer", 1);
 
-        String fromDb = repository.read(1).getName();
-        String s = "NewNameCustomer";
+        String fromDb = customerRepository.read(1).getName();
+        String expected = "NewNameCustomer";
 
-        Assert.assertEquals(fromDb,s);
+        Assert.assertEquals(expected, fromDb);
     }
 
     @Test
@@ -63,23 +63,23 @@ public class CustomerRepositoryTest extends AbstractTest implements CrudTest {
         String query = "DELETE FROM customer WHERE customer_id = ?";
         jdbcTemplate.update(query, 1);
 
-        Assert.assertNull(repository.read(1));
+        Assert.assertNull(customerRepository.read(1));
     }
 
     @Test
     public void getCustomersByDepartmentIdTest(){
-        List<Customer> customers = repository.getCustomersByDepartmentId(1);
+        List<Customer> customers = customerRepository.getCustomersByDepartmentId(1);
         Assert.assertNotNull(customers);
         Assert.assertEquals(2,customers.size());
         for (Customer current :customers) {
-            int k = current.getDepartmentId();
-            Assert.assertEquals(1, k);
+           Integer expected = 1;
+           Assert.assertEquals(expected, current.getDepartmentId());
         }
     }
 
     @Test
     public void getCustomersByDepartmentNameTest(){
-        List<Customer> customers = repository.getCustomersByDepartmentName("East");
+        List<Customer> customers = customerRepository.getCustomersByDepartmentName("East");
         Assert.assertNotNull(customers);
         Assert.assertEquals(2,customers.size());
         for (Customer current :customers) {
