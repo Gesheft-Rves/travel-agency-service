@@ -8,6 +8,8 @@ import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 
+import java.util.List;
+
 public class CustomerRepositoryImplTest extends AbstractTest implements CrudTest {
 
     @Autowired
@@ -41,7 +43,7 @@ public class CustomerRepositoryImplTest extends AbstractTest implements CrudTest
     public void readTest() {
         Customer byName = repository.read(1);
 
-        String name = "West";
+        String name = "Jack";
 
         Assert.assertNotNull(byName);
         Assert.assertEquals(name, byName.getName());
@@ -51,26 +53,60 @@ public class CustomerRepositoryImplTest extends AbstractTest implements CrudTest
     @Test
     @Override
     public void updateTest() {
-        Customer west = repository.read(2);
+        Customer customerOld = repository.read(2);
+        Customer customer = repository.read(2);
 
-        west.setName("West New");
+        Assert.assertEquals("Piter", customer.getName());
 
-        repository.update(west);
+        customer.setName("Piter New");
 
-        Customer westNew = repository.read(2);
+        repository.update(customer);
 
-        Assert.assertNotNull(westNew);
-        Assert.assertEquals(west.getId(), westNew.getId());
+        Assert.assertNotNull(customer);
+        Assert.assertEquals(customerOld.getId(), customer.getId());
+        Assert.assertNotEquals(customer.getName(), customerOld.getName());
     }
 
 
     @Test
     @Override
     public void deleteTest() {
-        Customer south = repository.read(3);
+        @Language("MySQL")
+        String sql = "select max(customer_id) from customer";
+        int maxId = jdbcTemplate.queryForObject(sql, Integer.class);
 
-        repository.delete(3);
+        repository.delete(maxId);
 
-        Assert.assertNull(repository.read(3));
+        Assert.assertNull(repository.read(maxId));
+    }
+
+
+    @Test
+    public void getCustomersByDepartmentIdTest() {
+
+        Customer customer = repository.read(2);
+
+        int depart = customer.getDepartmentId();
+
+        @Language("MySQL")
+        String sql = "SELECT COUNT(*) FROM   customer WHERE department_id = 2";
+
+        int in = jdbcTemplate.queryForObject(sql, Integer.class);
+
+        List list = repository.getCustomersByDepartmentId(2);
+
+        Assert.assertEquals(in, list.size());
+    }
+
+    @Test
+    public void getCustomersByDepartmentName(){
+        @Language("MySQL")
+        String sql = "SELECT COUNT(*) FROM   customer WHERE department_id = 2";
+
+        int in = jdbcTemplate.queryForObject(sql, Integer.class);
+
+        List list = repository.getCustomersByDepartmentName("East");
+
+        Assert.assertEquals(in, list.size());
     }
 }
