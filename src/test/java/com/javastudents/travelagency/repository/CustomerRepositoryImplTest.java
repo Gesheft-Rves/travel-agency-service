@@ -18,7 +18,8 @@ public class CustomerRepositoryImplTest extends AbstractTest implements CrudTest
     @Autowired
     private CustomerRepository repository;
 
-
+    @Autowired
+    private DepartmentRepository departmentRepository;
 
     @Test
     @Override
@@ -56,7 +57,7 @@ public class CustomerRepositoryImplTest extends AbstractTest implements CrudTest
         Customer customerOld = repository.read(2);
         Customer customer = repository.read(2);
 
-        Assert.assertEquals("Piter", customer.getName());
+        Assert.assertEquals("Piter1", customer.getName());
 
         customer.setName("Piter New");
 
@@ -84,18 +85,18 @@ public class CustomerRepositoryImplTest extends AbstractTest implements CrudTest
     @Test
     public void getCustomersByDepartmentIdTest() {
 
-        Customer customer = repository.read(2);
-
-        int depart = customer.getDepartmentId();
-
         @Language("MySQL")
         String sql = "SELECT COUNT(*) FROM   customer WHERE department_id = 2";
 
         int in = jdbcTemplate.queryForObject(sql, Integer.class);
 
-        List list = repository.getCustomersByDepartmentId(2);
-
+        List<Customer> list = repository.getCustomersByDepartmentId(2);
+        Assert.assertNotNull(list);
         Assert.assertEquals(in, list.size());
+        for (Customer cust: list) {
+            Assert.assertEquals("East", departmentRepository.read(cust.getDepartmentId()).getName());
+        }
+
     }
 
     @Test
@@ -105,8 +106,11 @@ public class CustomerRepositoryImplTest extends AbstractTest implements CrudTest
 
         int in = jdbcTemplate.queryForObject(sql, Integer.class);
 
-        List list = repository.getCustomersByDepartmentName("East");
-
+        List<Customer> list = repository.getCustomersByDepartmentName("East");
+        Assert.assertNotNull(list);
         Assert.assertEquals(in, list.size());
+        for (Customer cust: list) {
+            Assert.assertEquals("East", departmentRepository.read(cust.getDepartmentId()).getName());
+        }
     }
 }
