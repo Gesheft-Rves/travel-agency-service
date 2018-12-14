@@ -101,6 +101,7 @@ public class CustomerRepositoryImplTest extends AbstractTest implements CrudTest
 
     @Test
     public void getCustomersByDepartmentName(){
+
         @Language("MySQL")
         String sql = "SELECT COUNT(*) FROM   customer WHERE department_id = 2";
 
