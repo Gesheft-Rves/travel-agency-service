@@ -30,7 +30,7 @@ public class CustomerRepositoryTest extends AbstractTest implements CrudTest {
         @Language("MySQL")
         String sql = "SELECT name from customer where customer_id = (select max(customer_id)from customer)";
         String nameFromDb = jdbcTemplate.queryForObject(sql,String.class);
-        Assert.assertEquals(customer.getName(),nameFromDb);
+        Assert.assertEquals(nameFromDb,customer.getName());
     }
 
     @Test
@@ -38,7 +38,7 @@ public class CustomerRepositoryTest extends AbstractTest implements CrudTest {
     public void readTest() {
         Customer customer = customerRepository.read(1);
         String fromDb = customer.getName();
-        String expected = "Test";
+        String expected = "Test4";
 
         Assert.assertEquals(expected, fromDb);
     }
@@ -46,9 +46,9 @@ public class CustomerRepositoryTest extends AbstractTest implements CrudTest {
     @Test
     @Override
     public void updateTest() {
-        @Language("MySQL")
-        String query = "UPDATE customer SET name = ? WHERE customer_id = ?";
-        jdbcTemplate.update(query, "NewNameCustomer", 1);
+        Customer customer = customerRepository.read(1);
+        customer.setName("NewNameCustomer");
+        customerRepository.update(customer);
 
         String fromDb = customerRepository.read(1).getName();
         String expected = "NewNameCustomer";
@@ -59,11 +59,8 @@ public class CustomerRepositoryTest extends AbstractTest implements CrudTest {
     @Test
     @Override
     public void deleteTest() {
-        @Language("MySQL")
-        String query = "DELETE FROM customer WHERE customer_id = ?";
-        jdbcTemplate.update(query, 1);
-
-        Assert.assertNull(customerRepository.read(1));
+        customerRepository.delete(4);
+        Assert.assertNull(customerRepository.read(4));
     }
 
     @Test
