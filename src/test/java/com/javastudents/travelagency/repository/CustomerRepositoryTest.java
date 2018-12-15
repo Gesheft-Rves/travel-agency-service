@@ -67,7 +67,6 @@ public class CustomerRepositoryTest extends AbstractTest implements CrudTest {
     public void getCustomersByDepartmentIdTest(){
         List<Customer> customers = customerRepository.getCustomersByDepartmentId(1);
         Assert.assertNotNull(customers);
-        Assert.assertEquals(2,customers.size());
         for (Customer current :customers) {
            Integer expected = 1;
            Assert.assertEquals(expected, current.getDepartmentId());
@@ -78,7 +77,6 @@ public class CustomerRepositoryTest extends AbstractTest implements CrudTest {
     public void getCustomersByDepartmentNameTest(){
         List<Customer> customers = customerRepository.getCustomersByDepartmentName("East");
         Assert.assertNotNull(customers);
-        Assert.assertEquals(2,customers.size());
         for (Customer current :customers) {
             Assert.assertEquals("East", departmentRepository.read(current.getDepartmentId()).getName());
         }
