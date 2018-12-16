@@ -1,9 +1,19 @@
 package com.javastudents.travelagency.service.impl;
 
 import com.javastudents.travelagency.entity.TravelAgentLedger;
+import com.javastudents.travelagency.repository.TravelAgentLedgerRepository;
 import com.javastudents.travelagency.service.TravelAgentLedgerService;
+import org.springframework.beans.factory.annotation.Autowired;
 
 public class TravelAgentLedgerImpl implements TravelAgentLedgerService {
+
+    private final TravelAgentLedgerRepository repository;
+
+    @Autowired
+    public TravelAgentLedgerImpl(TravelAgentLedgerRepository repository) {
+        this.repository = repository;
+    }
+
     @Override
     public void create(TravelAgentLedger entity) {
 
