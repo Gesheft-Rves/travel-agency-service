@@ -8,6 +8,6 @@ import lombok.*;
 @EqualsAndHashCode
 public class Department implements Entity {
 
-    Integer id;
-    String name;
+    private Integer id;
+    private String name;
 }
