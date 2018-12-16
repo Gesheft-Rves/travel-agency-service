@@ -44,10 +44,10 @@ public class CustomerRepositoryImplTest extends AbstractTest implements CrudTest
     public void readTest() {
         Customer byName = repository.read(1);
 
-        String name = "Jack";
+        String expected = "Jack";
 
         Assert.assertNotNull(byName);
-        Assert.assertEquals(name, byName.getName());
+        Assert.assertEquals(expected, byName.getName());
 
     }
 
@@ -55,14 +55,12 @@ public class CustomerRepositoryImplTest extends AbstractTest implements CrudTest
     @Override
     public void updateTest() {
         Customer customerOld = repository.read(2);
+        Assert.assertEquals("Piter1", customerOld.getName());
+
         Customer customer = repository.read(2);
-
-        Assert.assertEquals("Piter1", customer.getName());
-
         customer.setName("Piter New");
-
         repository.update(customer);
-
+        customer = repository.read(2);
         Assert.assertNotNull(customer);
         Assert.assertEquals(customerOld.getId(), customer.getId());
         Assert.assertNotEquals(customer.getName(), customerOld.getName());
@@ -88,11 +86,11 @@ public class CustomerRepositoryImplTest extends AbstractTest implements CrudTest
         @Language("MySQL")
         String sql = "SELECT COUNT(*) FROM   customer WHERE department_id = 2";
 
-        int in = jdbcTemplate.queryForObject(sql, Integer.class);
+        int count = jdbcTemplate.queryForObject(sql, Integer.class);
 
         List<Customer> list = repository.getCustomersByDepartmentId(2);
         Assert.assertNotNull(list);
-        Assert.assertEquals(in, list.size());
+        Assert.assertEquals(count, list.size());
         for (Customer cust: list) {
             Assert.assertEquals("East", departmentRepository.read(cust.getDepartmentId()).getName());
         }
@@ -105,11 +103,11 @@ public class CustomerRepositoryImplTest extends AbstractTest implements CrudTest
         @Language("MySQL")
         String sql = "SELECT COUNT(*) FROM   customer WHERE department_id = 2";
 
-        int in = jdbcTemplate.queryForObject(sql, Integer.class);
+        int count = jdbcTemplate.queryForObject(sql, Integer.class);
 
         List<Customer> list = repository.getCustomersByDepartmentName("East");
         Assert.assertNotNull(list);
-        Assert.assertEquals(in, list.size());
+        Assert.assertEquals(count, list.size());
         for (Customer cust: list) {
             Assert.assertEquals("East", departmentRepository.read(cust.getDepartmentId()).getName());
         }
