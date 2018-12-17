@@ -5,12 +5,12 @@ import com.javastudents.travelagency.repository.TravelAgentLedgerRepository;
 import com.javastudents.travelagency.service.TravelAgentLedgerService;
 import org.springframework.beans.factory.annotation.Autowired;
 
-public class TravelAgentLedgerImpl implements TravelAgentLedgerService {
+public class TravelAgentLedgerServiceImpl implements TravelAgentLedgerService {
 
     private final TravelAgentLedgerRepository repository;
 
     @Autowired
-    public TravelAgentLedgerImpl(TravelAgentLedgerRepository repository) {
+    public TravelAgentLedgerServiceImpl(TravelAgentLedgerRepository repository) {
         this.repository = repository;
     }
 

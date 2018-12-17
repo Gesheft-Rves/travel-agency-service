@@ -6,13 +6,13 @@ import org.intellij.lang.annotations.Language;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 
-public class TravelAgentLedgerImpl implements TravelAgentLedgerRepository {
+public class TravelAgentLedgerRepositoryImpl implements TravelAgentLedgerRepository {
 
 
     private final JdbcTemplate jdbcTemplate;
 
     @Autowired
-    public TravelAgentLedgerImpl(JdbcTemplate jdbcTemplate) {
+    public TravelAgentLedgerRepositoryImpl(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
     }
 

@@ -4,12 +4,12 @@ import com.javastudents.travelagency.repository.TravelAgentRepository;
 import com.javastudents.travelagency.service.TravelAgentService;
 import org.springframework.beans.factory.annotation.Autowired;
 
-public class TravelAgentImpl implements TravelAgentService {
+public class TravelAgentServiceImpl implements TravelAgentService {
 
     private final TravelAgentRepository repository;
 
     @Autowired
-    public TravelAgentImpl(TravelAgentRepository repository) {
+    public TravelAgentServiceImpl(TravelAgentRepository repository) {
         this.repository = repository;
     }
 

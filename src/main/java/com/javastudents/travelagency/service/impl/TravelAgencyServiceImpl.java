@@ -1,17 +1,15 @@
-package com.javastudents.travelagency.repository.impl;
+package com.javastudents.travelagency.service.impl;
 
 import com.javastudents.travelagency.entity.TravelAgency;
 import com.javastudents.travelagency.repository.TravelAgencyRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.JdbcTemplate;
+import com.javastudents.travelagency.service.TravelAgencyService;
 
-public class TravelAgencyImpl implements TravelAgencyRepository {
+public class TravelAgencyServiceImpl implements TravelAgencyService {
 
-    private final JdbcTemplate jdbcTemplate;
+    private final TravelAgencyRepository repository;
 
-    @Autowired
-    public TravelAgencyImpl(JdbcTemplate jdbcTemplate) {
-        this.jdbcTemplate = jdbcTemplate;
+    public TravelAgencyServiceImpl(TravelAgencyRepository repository) {
+        this.repository = repository;
     }
 
 
