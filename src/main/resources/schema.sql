@@ -55,7 +55,7 @@ create table if not exists travel_agency(
   travel_agency_id serial not null primary key,
   abbreviated_name varchar(50) not null,
   address varchar(50) not null,
-  phone_number int not null,
+  phone_number varchar not null,
   site varchar(50),
   email_address varchar(50) not null
 );
@@ -67,7 +67,7 @@ create table if not exists travel_agent (
   surname varchar (50),
   patronymic varchar (50),
   enabled boolean,
-  phone_number int not null,
+  phone_number varchar not null,
   limit_amount DECIMAL,
   foreign key (travel_agency_id) references travel_agency(travel_agency_id)
 );
@@ -106,7 +106,7 @@ create table if not exists client (
   surname varchar(50) not null,
   patronymic varchar(50) not null,
   address  varchar(100) not null,
-  phone_number int not null,
+  phone_number varchar not null,
   foreign key (document_type_id) references document_type(document_type_id),
   UNIQUE (document_type_id, document_series_number)
 );
@@ -122,7 +122,6 @@ create table if not exists tour_category(
   tour_category_id serial not null primary key,
   name varchar(45) not null
 );
-
 
 create table if not exists tour(
   tour_id serial not null primary key,
