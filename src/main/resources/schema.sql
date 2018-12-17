@@ -123,7 +123,6 @@ create table if not exists tour_category(
   name varchar(45) not null
 );
 
-
 create table if not exists tour(
   tour_id serial not null primary key,
   name varchar(45) not null,
