@@ -6,8 +6,7 @@ import lombok.*;
 @ToString
 @Getter @Setter
 @EqualsAndHashCode
-public class Department implements Entity {
-
+public class TourCategory implements Entity {
     private Integer id;
     private String name;
 }
