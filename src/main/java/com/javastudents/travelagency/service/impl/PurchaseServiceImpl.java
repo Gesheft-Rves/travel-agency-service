@@ -1,9 +1,19 @@
 package com.javastudents.travelagency.service.impl;
 
 import com.javastudents.travelagency.entity.Purchase;
+import com.javastudents.travelagency.repository.PurchaseRepository;
 import com.javastudents.travelagency.service.PurchaseService;
+import org.springframework.beans.factory.annotation.Autowired;
 
-public class PurchaseSeviceImpl implements PurchaseService {
+public class PurchaseServiceImpl implements PurchaseService {
+
+    private final PurchaseRepository repository;
+
+    @Autowired
+    public PurchaseServiceImpl(PurchaseRepository repository) {
+        this.repository = repository;
+    }
+
     @Override
     public void create(Purchase entity) {
 

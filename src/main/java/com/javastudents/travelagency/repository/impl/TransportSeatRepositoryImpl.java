@@ -1,17 +1,17 @@
-package com.javastudents.travelagency.service.impl;
+package com.javastudents.travelagency.repository.impl;
 
 import com.javastudents.travelagency.entity.TransportSeat;
 import com.javastudents.travelagency.repository.TransportSeatRepository;
-import com.javastudents.travelagency.service.TransportSeatService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
 
-public class TransportSeatImpl implements TransportSeatService {
+public class TransportSeatRepositoryImpl implements TransportSeatRepository {
 
-    private final TransportSeatRepository repository;
+    private final JdbcTemplate jdbcTemplate;
 
     @Autowired
-    public TransportSeatImpl(TransportSeatRepository repository) {
-        this.repository = repository;
+    public TransportSeatRepositoryImpl(JdbcTemplate jdbcTemplate) {
+        this.jdbcTemplate = jdbcTemplate;
     }
 
     @Override

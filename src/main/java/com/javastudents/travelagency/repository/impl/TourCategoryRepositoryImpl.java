@@ -1,31 +1,31 @@
 package com.javastudents.travelagency.repository.impl;
 
-import com.javastudents.travelagency.entity.Purchase;
-import com.javastudents.travelagency.repository.PurchaseRepository;
+import com.javastudents.travelagency.entity.TourCategory;
+import com.javastudents.travelagency.repository.TourCategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 
-public class PurchaseRepositoryImpl implements PurchaseRepository {
+public class TourCategoryRepositoryImpl implements TourCategoryRepository {
 
     private final JdbcTemplate jdbcTemplate;
 
     @Autowired
-    public PurchaseRepositoryImpl(JdbcTemplate jdbcTemplate) {
+    public TourCategoryRepositoryImpl(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
     }
 
     @Override
-    public void create(Purchase entity) {
+    public void create(TourCategory entity) {
 
     }
 
     @Override
-    public Purchase read(int id) {
+    public TourCategory read(int id) {
         return null;
     }
 
     @Override
-    public void update(Purchase entity) {
+    public void update(TourCategory entity) {
 
     }
 
