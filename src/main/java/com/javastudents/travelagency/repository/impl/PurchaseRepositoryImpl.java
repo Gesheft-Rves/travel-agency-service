@@ -15,22 +15,22 @@ public class PurchaseRepositoryImpl implements PurchaseRepository {
     }
 
     @Override
-    public void create(Purchase entity) {
+    public void create(Purchase purchase) {
 
     }
 
     @Override
-    public Purchase read(int id) {
+    public Purchase read(int purchaseId) {
         return null;
     }
 
     @Override
-    public void update(Purchase entity) {
+    public void update(Purchase purchase) {
 
     }
 
     @Override
-    public void delete(int id) {
+    public void delete(int purchaseId) {
 
     }
 }

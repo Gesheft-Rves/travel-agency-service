@@ -15,22 +15,22 @@ public class PurchaseServiceImpl implements PurchaseService {
     }
 
     @Override
-    public void create(Purchase entity) {
-
+    public void create(Purchase purchase) {
+        repository.create(purchase);
     }
 
     @Override
-    public Purchase read(int id) {
-        return null;
+    public Purchase read(int purchaseId) {
+        return repository.read(purchaseId);
     }
 
     @Override
-    public void update(Purchase entity) {
-
+    public void update(Purchase purchase) {
+        repository.update(purchase);
     }
 
     @Override
-    public void delete(int id) {
-
+    public void delete(int purchaseId) {
+        repository.delete(purchaseId);
     }
 }

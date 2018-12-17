@@ -15,22 +15,22 @@ public class TransportSeatRepositoryImpl implements TransportSeatRepository {
     }
 
     @Override
-    public void create(TransportSeat entity) {
+    public void create(TransportSeat transportSeat) {
 
     }
 
     @Override
-    public TransportSeat read(int id) {
+    public TransportSeat read(int transportSeatId) {
         return null;
     }
 
     @Override
-    public void update(TransportSeat entity) {
+    public void update(TransportSeat transportSeat) {
 
     }
 
     @Override
-    public void delete(int id) {
+    public void delete(int transportSeatId) {
 
     }
 }

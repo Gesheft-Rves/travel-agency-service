@@ -16,22 +16,22 @@ public class TravelAgencyRepositoryImpl implements TravelAgencyRepository {
 
 
     @Override
-    public void create(TravelAgency entity) {
+    public void create(TravelAgency travelAgency) {
 
     }
 
     @Override
-    public TravelAgency read(int id) {
+    public TravelAgency read(int travelAgencyId) {
         return null;
     }
 
     @Override
-    public void update(TravelAgency entity) {
+    public void update(TravelAgency travelAgency) {
 
     }
 
     @Override
-    public void delete(int id) {
+    public void delete(int travelAgencyId) {
 
     }
 }

@@ -15,22 +15,22 @@ public class TourScheduleRepositoryImpl implements TourScheduleRepository {
     }
 
     @Override
-    public void create(TourSchedule entity) {
+    public void create(TourSchedule tourSchedule) {
 
     }
 
     @Override
-    public TourSchedule read(int id) {
+    public TourSchedule read(int tourScheduleId) {
         return null;
     }
 
     @Override
-    public void update(TourSchedule entity) {
+    public void update(TourSchedule tourSchedule) {
 
     }
 
     @Override
-    public void delete(int id) {
+    public void delete(int tourScheduleId) {
 
     }
 }

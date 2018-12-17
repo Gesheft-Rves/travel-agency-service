@@ -26,17 +26,17 @@ public class TravelAgentLedgerRepositoryImpl implements TravelAgentLedgerReposit
     }
 
     @Override
-    public TravelAgentLedger read(int id) {
+    public TravelAgentLedger read(int travelAgentLedgerId) {
         return null;
     }
 
     @Override
-    public void update(TravelAgentLedger entity) {
+    public void update(TravelAgentLedger travelAgentLedger) {
 
     }
 
     @Override
-    public void delete(int id) {
+    public void delete(int travelAgentLedgerId) {
 
     }
 }

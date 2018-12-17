@@ -1,4 +1,6 @@
 package com.javastudents.travelagency.repository;
 
-public interface TransportRepository {
+import com.javastudents.travelagency.entity.Transport;
+
+public interface TransportRepository extends CrudRepository<Transport> {
 }

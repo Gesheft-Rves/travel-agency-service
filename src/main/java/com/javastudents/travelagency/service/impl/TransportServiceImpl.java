@@ -15,22 +15,22 @@ public class TransportServiceImpl implements TransportService {
     }
 
     @Override
-    public void create(Transport entity) {
-
+    public void create(Transport transport) {
+        repository.create(transport);
     }
 
     @Override
-    public Transport read(int id) {
-        return null;
+    public Transport read(int transportId) {
+        return repository.read(transportId);
     }
 
     @Override
-    public void update(Transport entity) {
-
+    public void update(Transport transport) {
+        repository.update(transport);
     }
 
     @Override
-    public void delete(int id) {
-
+    public void delete(int transportId) {
+        repository.delete(transportId);
     }
 }

@@ -15,22 +15,22 @@ public class TransportRepositoryImpl implements CrudRepository<Transport> {
     }
 
     @Override
-    public void create(Transport entity) {
+    public void create(Transport transport) {
 
     }
 
     @Override
-    public Transport read(int id) {
+    public Transport read(int transportId) {
         return null;
     }
 
     @Override
-    public void update(Transport entity) {
+    public void update(Transport transport) {
 
     }
 
     @Override
-    public void delete(int id) {
+    public void delete(int transportId) {
 
     }
 }

@@ -15,22 +15,22 @@ public class TourCategoryRepositoryImpl implements TourCategoryRepository {
     }
 
     @Override
-    public void create(TourCategory entity) {
+    public void create(TourCategory tourCategory) {
 
     }
 
     @Override
-    public TourCategory read(int id) {
+    public TourCategory read(int tourCategoryId) {
         return null;
     }
 
     @Override
-    public void update(TourCategory entity) {
+    public void update(TourCategory tourCategory) {
 
     }
 
     @Override
-    public void delete(int id) {
+    public void delete(int tourCategoryId) {
 
     }
 }

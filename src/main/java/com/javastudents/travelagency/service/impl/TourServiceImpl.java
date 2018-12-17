@@ -1,36 +1,36 @@
 package com.javastudents.travelagency.service.impl;
 
 import com.javastudents.travelagency.entity.Tour;
-import com.javastudents.travelagency.repository.TourScheduleRepository;
+import com.javastudents.travelagency.repository.TourRepository;
 import com.javastudents.travelagency.service.TourService;
 import org.springframework.beans.factory.annotation.Autowired;
 
 public class TourServiceImpl implements TourService {
 
-    private final TourScheduleRepository repository;
+    private final TourRepository repository;
 
     @Autowired
-    public TourServiceImpl(TourScheduleRepository repository) {
+    public TourServiceImpl(TourRepository repository) {
         this.repository = repository;
     }
 
     @Override
-    public void create(Tour entity) {
-
+    public void create(Tour tour) {
+        repository.create(tour);
     }
 
     @Override
-    public Tour read(int id) {
-        return null;
+    public Tour read(int tourId) {
+        return repository.read(tourId);
     }
 
     @Override
-    public void update(Tour entity) {
-
+    public void update(Tour tour) {
+        repository.update(tour);
     }
 
     @Override
-    public void delete(int id) {
-
+    public void delete(int tourId) {
+        repository.delete(tourId);
     }
 }

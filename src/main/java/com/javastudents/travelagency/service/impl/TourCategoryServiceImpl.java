@@ -15,22 +15,22 @@ public class TourCategoryServiceImpl implements TourCategoryService {
     }
 
     @Override
-    public void create(TourCategory entity) {
-
+    public void create(TourCategory tourCategory) {
+        repository.create(tourCategory);
     }
 
     @Override
-    public TourCategory read(int id) {
-        return null;
+    public TourCategory read(int tourCategoryId) {
+        return repository.read(tourCategoryId);
     }
 
     @Override
-    public void update(TourCategory entity) {
-
+    public void update(TourCategory tourCategory) {
+        repository.update(tourCategory);
     }
 
     @Override
-    public void delete(int id) {
-
+    public void delete(int tourCategoryId) {
+        repository.delete(tourCategoryId);
     }
 }

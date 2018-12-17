@@ -1,5 +1,6 @@
 package com.javastudents.travelagency.service.impl;
 
+import com.javastudents.travelagency.entity.TravelAgent;
 import com.javastudents.travelagency.repository.TravelAgentRepository;
 import com.javastudents.travelagency.service.TravelAgentService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,22 +15,22 @@ public class TravelAgentServiceImpl implements TravelAgentService {
     }
 
     @Override
-    public void create(com.javastudents.travelagency.entity.TravelAgent entity) {
+    public void create(TravelAgent travelAgent) {
 
     }
 
     @Override
-    public com.javastudents.travelagency.entity.TravelAgent read(int id) {
+    public TravelAgent read(int travelAgentId) {
         return null;
     }
 
     @Override
-    public void update(com.javastudents.travelagency.entity.TravelAgent entity) {
+    public void update(TravelAgent travelAgent) {
 
     }
 
     @Override
-    public void delete(int id) {
+    public void delete(int travelAgentId) {
 
     }
 }

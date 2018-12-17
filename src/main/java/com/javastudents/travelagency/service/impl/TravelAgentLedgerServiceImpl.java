@@ -15,22 +15,22 @@ public class TravelAgentLedgerServiceImpl implements TravelAgentLedgerService {
     }
 
     @Override
-    public void create(TravelAgentLedger entity) {
-
+    public void create(TravelAgentLedger travelAgentLedger) {
+        repository.create(travelAgentLedger);
     }
 
     @Override
-    public TravelAgentLedger read(int id) {
-        return null;
+    public TravelAgentLedger read(int travelAgentLedgerId) {
+        return repository.read(travelAgentLedgerId);
     }
 
     @Override
-    public void update(TravelAgentLedger entity) {
-
+    public void update(TravelAgentLedger travelAgentLedger) {
+        repository.update(travelAgentLedger);
     }
 
     @Override
-    public void delete(int id) {
-
+    public void delete(int travelAgentLedgerId) {
+        repository.delete(travelAgentLedgerId);
     }
 }
