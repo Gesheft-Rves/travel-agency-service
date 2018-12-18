@@ -2,6 +2,7 @@ package com.javastudents.travelagency.repository.impl;
 
 import com.javastudents.travelagency.entity.TourCategory;
 import com.javastudents.travelagency.repository.TourCategoryRepository;
+import org.intellij.lang.annotations.Language;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 

@@ -17,7 +17,7 @@ public class TravelAgent implements Entity {
     private String surname;
     private String patronymic;
     private boolean enabled;
-    private Integer phoneNumber;
+    private String phoneNumber;
     private BigDecimal limitAmount;
 
 }

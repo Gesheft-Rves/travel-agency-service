@@ -1,7 +1,10 @@
-package com.javastudents.travelagency.repository;
+package com.javastudents.travelagency.repository.impl;
 
 import com.javastudents.travelagency.AbstractTest;
 import com.javastudents.travelagency.entity.Customer;
+import com.javastudents.travelagency.repository.CrudTest;
+import com.javastudents.travelagency.repository.CustomerRepository;
+import com.javastudents.travelagency.repository.DepartmentRepository;
 import org.intellij.lang.annotations.Language;
 import org.junit.Assert;
 import org.junit.Test;
