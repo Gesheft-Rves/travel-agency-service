@@ -4,7 +4,9 @@ import com.javastudents.travelagency.entity.Transport;
 import com.javastudents.travelagency.repository.CrudRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public class TransportRepositoryImpl implements CrudRepository<Transport> {
 
     private final JdbcTemplate jdbcTemplate;

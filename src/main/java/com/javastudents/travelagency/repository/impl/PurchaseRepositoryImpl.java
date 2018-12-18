@@ -4,8 +4,11 @@ import com.javastudents.travelagency.entity.Purchase;
 import com.javastudents.travelagency.repository.PurchaseRepository;
 import org.intellij.lang.annotations.Language;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public class PurchaseRepositoryImpl implements PurchaseRepository {
 
     private final JdbcTemplate jdbcTemplate;
@@ -33,7 +36,26 @@ public class PurchaseRepositoryImpl implements PurchaseRepository {
 
     @Override
     public Purchase read(int purchaseId) {
-        return null;
+        @Language("MySQL")
+        String query = "SELECT * FROM purchase WHERE purchase_id=?";
+
+        try {
+            return jdbcTemplate.queryForObject(
+                    query,
+                    new Object[]{purchaseId},
+
+                    (rs, rowNum) -> Purchase.builder()
+                            .tourScheduleId(rs.getInt("tour_schedule_id"))
+                            .travelAgentId(rs.getInt("travel_agent_id"))
+                            .clientId(rs.getInt("client_id"))
+                            .transportId(rs.getInt("transport_id"))
+                            .transportSeatId(rs.getInt("transport_seat_id"))
+                            .operationData(rs.getTimestamp("operation_data"))
+                            .build()
+            );
+        } catch (EmptyResultDataAccessException e) {
+            return null;
+        }
     }
 
     @Override

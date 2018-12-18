@@ -4,7 +4,9 @@ import com.javastudents.travelagency.entity.Purchase;
 import com.javastudents.travelagency.repository.PurchaseRepository;
 import com.javastudents.travelagency.service.PurchaseService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class PurchaseServiceImpl implements PurchaseService {
 
     private final PurchaseRepository repository;

@@ -4,7 +4,9 @@ import com.javastudents.travelagency.entity.TravelAgentLedger;
 import com.javastudents.travelagency.repository.TravelAgentLedgerRepository;
 import com.javastudents.travelagency.service.TravelAgentLedgerService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class TravelAgentLedgerServiceImpl implements TravelAgentLedgerService {
 
     private final TravelAgentLedgerRepository repository;

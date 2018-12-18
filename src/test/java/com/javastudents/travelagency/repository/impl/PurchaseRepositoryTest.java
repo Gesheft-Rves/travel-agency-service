@@ -1,24 +1,39 @@
 package com.javastudents.travelagency.repository.impl;
 
+import com.javastudents.travelagency.AbstractTest;
+import com.javastudents.travelagency.repository.CrudTest;
+import com.javastudents.travelagency.repository.PurchaseRepository;
 import org.junit.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
 
 import static org.junit.Assert.*;
 
-public class PurchaseRepositoryTest {
+public class PurchaseRepositoryTest extends AbstractTest implements CrudTest {
+
+    @Autowired
+    private JdbcTemplate jdbcTemplate;
+
+    @Autowired
+    private PurchaseRepository repository;
 
     @Test
-    public void create() {
+    @Override
+    public void createTest() {
     }
 
     @Test
-    public void read() {
+    @Override
+    public void readTest() {
     }
 
     @Test
-    public void update() {
+    @Override
+    public void updateTest() {
     }
 
     @Test
-    public void delete() {
+    @Override
+    public void deleteTest() {
     }
 }

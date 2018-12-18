@@ -4,7 +4,9 @@ import com.javastudents.travelagency.entity.TourCategory;
 import com.javastudents.travelagency.repository.TourCategoryRepository;
 import com.javastudents.travelagency.service.TourCategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class TourCategoryServiceImpl implements TourCategoryService {
 
     private final TourCategoryRepository repository;

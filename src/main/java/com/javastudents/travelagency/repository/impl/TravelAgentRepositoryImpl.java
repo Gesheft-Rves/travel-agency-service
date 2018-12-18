@@ -5,7 +5,9 @@ import com.javastudents.travelagency.repository.TravelAgentRepository;
 import org.intellij.lang.annotations.Language;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public class TravelAgentRepositoryImpl implements TravelAgentRepository {
 
     private final JdbcTemplate jdbcTemplate;

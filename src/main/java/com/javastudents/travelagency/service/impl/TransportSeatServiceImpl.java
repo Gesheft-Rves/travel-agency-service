@@ -4,7 +4,9 @@ import com.javastudents.travelagency.entity.TransportSeat;
 import com.javastudents.travelagency.repository.TransportSeatRepository;
 import com.javastudents.travelagency.service.TransportSeatService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class TransportSeatServiceImpl implements TransportSeatService {
 
     private final TransportSeatRepository repository;

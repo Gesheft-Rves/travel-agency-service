@@ -4,7 +4,9 @@ import com.javastudents.travelagency.entity.Tour;
 import com.javastudents.travelagency.repository.TourRepository;
 import com.javastudents.travelagency.service.TourService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class TourServiceImpl implements TourService {
 
     private final TourRepository repository;

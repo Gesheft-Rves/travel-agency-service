@@ -4,7 +4,9 @@ import com.javastudents.travelagency.entity.TourSchedule;
 import com.javastudents.travelagency.repository.TourScheduleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public class TourScheduleRepositoryImpl implements TourScheduleRepository {
 
     private final JdbcTemplate jdbcTemplate;

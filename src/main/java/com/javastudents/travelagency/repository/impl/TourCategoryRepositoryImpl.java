@@ -4,8 +4,11 @@ import com.javastudents.travelagency.entity.TourCategory;
 import com.javastudents.travelagency.repository.TourCategoryRepository;
 import org.intellij.lang.annotations.Language;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public class TourCategoryRepositoryImpl implements TourCategoryRepository {
 
     private final JdbcTemplate jdbcTemplate;
@@ -17,21 +20,47 @@ public class TourCategoryRepositoryImpl implements TourCategoryRepository {
 
     @Override
     public void create(TourCategory tourCategory) {
+        @Language("MySQL")
+        String query = "INSERT INTO purchase (name) VALUES (?)";
 
+        jdbcTemplate.update(
+                query,
+                tourCategory.getName()
+        );
     }
 
     @Override
     public TourCategory read(int tourCategoryId) {
-        return null;
+        @Language("MySQL")
+        String query = "SELECT * FROM tour_category WHERE tour_category_id=?";
+
+        try {
+            return jdbcTemplate.queryForObject(
+                    query,
+                    new Object[]{tourCategoryId},
+
+                    (rs, rowNum) -> TourCategory.builder()
+                            .name(rs.getString("name"))
+                            .build()
+            );
+        } catch (EmptyResultDataAccessException e) {
+            return null;
+        }
     }
 
     @Override
     public void update(TourCategory tourCategory) {
+        @Language("MySQL")
+        String query = "UPDATE tour_category SET name = ? WHERE tour_category_id = ?";
 
+        jdbcTemplate.update(query, tourCategory.getName(), tourCategory.getId());
     }
 
     @Override
     public void delete(int tourCategoryId) {
+        @Language("MySQL")
+        String query = "DELETE FROM department WHERE tour_category_id = ?";
 
+        jdbcTemplate.update(query, tourCategoryId);
     }
 }
