@@ -2,6 +2,7 @@ package com.javastudents.travelagency.repository.impl;
 
 import com.javastudents.travelagency.entity.Transport;
 import com.javastudents.travelagency.repository.CrudRepository;
+import com.javastudents.travelagency.repository.TransportRepository;
 import org.intellij.lang.annotations.Language;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -9,7 +10,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class TransportRepositoryImpl implements CrudRepository<Transport> {
+public class TransportRepositoryImpl implements TransportRepository {
 
     private final JdbcTemplate jdbcTemplate;
 
