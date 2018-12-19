@@ -25,7 +25,13 @@ public class TravelAgentLedgerRepositoryImpl implements TravelAgentLedgerReposit
         @Language("MySQL")
         String query = "INSERT INTO travel_agent_ledger (travel_agent_id, operation_date, purchase_id, amount) VALUES (?, ?, ?)";
 
-        jdbcTemplate.update(query, travelAgentLedger.getTravelAgentId(), travelAgentLedger.getOperationDate(), travelAgentLedger.getPurchaseId(), travelAgentLedger.getAmount());
+        jdbcTemplate.update(
+                query,
+                travelAgentLedger.getTravelAgentId(),
+                travelAgentLedger.getOperationDate(),
+                travelAgentLedger.getPurchaseId(),
+                travelAgentLedger.getAmount()
+        );
     }
 
     @Override
@@ -55,7 +61,14 @@ public class TravelAgentLedgerRepositoryImpl implements TravelAgentLedgerReposit
         @Language("MySQL")
         String query = "UPDATE travel_agent_ledger SET travel_agent_id = ?, operation_date = ?, purchase_id = ?, amount = ? WHERE travel_agent_ledger_id = ?";
 
-        jdbcTemplate.update(query, travelAgentLedger.getTravelAgentId(), travelAgentLedger.getOperationDate(), travelAgentLedger.getPurchaseId(), travelAgentLedger.getAmount(), travelAgentLedger.getId());
+        jdbcTemplate.update(
+                query,
+                travelAgentLedger.getTravelAgentId(),
+                travelAgentLedger.getOperationDate(),
+                travelAgentLedger.getPurchaseId(),
+                travelAgentLedger.getAmount(),
+                travelAgentLedger.getId()
+        );
     }
 
     @Override

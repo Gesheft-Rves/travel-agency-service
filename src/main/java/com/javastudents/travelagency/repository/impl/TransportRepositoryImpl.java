@@ -55,7 +55,13 @@ public class TransportRepositoryImpl implements CrudRepository<Transport> {
         @Language("MySQL")
         String query = "UPDATE transport SET name = ?, description = ?, passenger_seat_qty = ? WHERE tour_category_id = ?";
 
-        jdbcTemplate.update(query, transport.getName(), transport.getDescription(), transport.getPassengerSeatQty(), transport.getId());
+        jdbcTemplate.update(
+                query,
+                transport.getName(),
+                transport.getDescription(),
+                transport.getPassengerSeatQty(),
+                transport.getId()
+        );
     }
 
     @Override

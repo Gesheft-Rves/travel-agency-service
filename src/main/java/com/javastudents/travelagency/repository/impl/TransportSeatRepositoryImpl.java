@@ -58,7 +58,13 @@ public class TransportSeatRepositoryImpl implements TransportSeatRepository {
         @Language("MySQL")
         String query = "UPDATE transport_seat SET transport_id = ?, seat_no = ?, comment = ? WHERE transport_seat_id = ?";
 
-        jdbcTemplate.update(query, transportSeat.getTransportId(), transportSeat.getSeatNo(), transportSeat.getComment(), transportSeat.getId());
+        jdbcTemplate.update(
+                query,
+                transportSeat.getTransportId(),
+                transportSeat.getSeatNo(),
+                transportSeat.getComment(),
+                transportSeat.getId()
+        );
     }
 
     @Override

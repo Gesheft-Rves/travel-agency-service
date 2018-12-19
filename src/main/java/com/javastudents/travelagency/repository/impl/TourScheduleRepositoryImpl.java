@@ -59,7 +59,14 @@ public class TourScheduleRepositoryImpl implements TourScheduleRepository {
         @Language("MySQL")
         String query = "UPDATE tour_schedule SET tour_id = ?, starting_data_time = ?, ending_data_time = ?, transport_id = ? WHERE tour_id = ?";
 
-        jdbcTemplate.update(query, tourSchedule.getTourId(),tourSchedule.getStartingDataTime(), tourSchedule.getEndingDataTime(), tourSchedule.getTransportId(), tourSchedule.getId());
+        jdbcTemplate.update(
+                query,
+                tourSchedule.getTourId(),
+                tourSchedule.getStartingDataTime(),
+                tourSchedule.getEndingDataTime(),
+                tourSchedule.getTransportId(),
+                tourSchedule.getId()
+        );
     }
 
     @Override
