@@ -21,7 +21,7 @@ public class TourCategoryRepositoryImpl implements TourCategoryRepository {
     @Override
     public void create(TourCategory tourCategory) {
         @Language("MySQL")
-        String query = "INSERT INTO purchase (name) VALUES (?)";
+        String query = "INSERT INTO tour_category (name) VALUES (?)";
 
         jdbcTemplate.update(
                 query,
@@ -59,7 +59,7 @@ public class TourCategoryRepositoryImpl implements TourCategoryRepository {
     @Override
     public void delete(int tourCategoryId) {
         @Language("MySQL")
-        String query = "DELETE FROM department WHERE tour_category_id = ?";
+        String query = "DELETE FROM tour_category WHERE tour_category_id = ?";
 
         jdbcTemplate.update(query, tourCategoryId);
     }
