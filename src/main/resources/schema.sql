@@ -8,8 +8,6 @@ drop table if exists purchase;
 drop table if exists travel_agent;
 drop table if exists travel_agency;
 drop table if exists client;
-drop table if exists client_document;
-drop table if exists client_personal_data;
 drop table if exists tour_schedule;
 drop table if exists tour;
 drop table if exists tour_category;
