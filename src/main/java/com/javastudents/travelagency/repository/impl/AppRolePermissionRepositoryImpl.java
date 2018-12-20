@@ -48,13 +48,12 @@ public class AppRolePermissionRepositoryImpl implements AppRolePermissionReposit
         }
     }
 
-    // TODO: только udate roleId
     @Override
     public void update(AppRolePermission appRolePermission) {
         @Language("MySQL")
-        String query = "UPDATE app_role_permission SET  app_role_id = ?  WHERE app_role_permission_id = ?";
+        String query = "UPDATE app_role_permission SET app_role_id = ?, app_permission_id = ?  WHERE app_role_permission_id = ?";
 
-        jdbcTemplate.update(query, appRolePermission.getAppRoleId(), appRolePermission.getAppRolePermissionId());
+        jdbcTemplate.update(query, appRolePermission.getAppRoleId(),appRolePermission.getAppPermissionId(), appRolePermission.getAppRolePermissionId());
     }
 
     @Override
