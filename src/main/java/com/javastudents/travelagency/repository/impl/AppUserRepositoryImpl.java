@@ -71,7 +71,8 @@ public class AppUserRepositoryImpl implements AppUserRepository {
                 appUser.getEmail(),
                 appUser.getLogin(),
                 appUser.getPassword(),
-                appUser.getTravelAgentId()
+                appUser.getTravelAgentId(),
+                appUser.getAppUserId()
 
         );
     }
