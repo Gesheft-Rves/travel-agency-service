@@ -64,7 +64,7 @@ public class AppUserRepositoryTest extends AbstractTest implements CrudTest{
         AppUser newAppUser = appUserRepository.read(2);
 
         Assert.assertNotNull(newAppUser);
-        Assert.assertEquals(newAppUser.getAppUserId(), newAppUser.getAppUserId());
+        Assert.assertEquals(appUser.getAppUserId(), newAppUser.getAppUserId());
         Assert.assertEquals(expectedValue, newAppUser.getName());
     }
 
