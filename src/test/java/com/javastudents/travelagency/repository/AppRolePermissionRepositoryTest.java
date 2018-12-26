@@ -5,12 +5,9 @@ import com.javastudents.travelagency.entity.AppRolePermission;
 import org.junit.Assert;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.JdbcTemplate;
+
 
 public class AppRolePermissionRepositoryTest extends AbstractTest implements CrudTest {
-
-    @Autowired
-    private JdbcTemplate jdbcTemplate;
 
     @Autowired
     private AppRolePermissionRepository appRolePermissionRepository;
@@ -63,7 +60,7 @@ public class AppRolePermissionRepositoryTest extends AbstractTest implements Cru
     @Test
     @Override
     public void deleteTest() {
-        AppRolePermission appRolePermission = appRolePermissionRepository.read(4);
+
         appRolePermissionRepository.delete(4);
 
         Assert.assertNull(appRolePermissionRepository.read(4));

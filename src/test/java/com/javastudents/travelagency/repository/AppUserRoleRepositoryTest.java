@@ -5,12 +5,9 @@ import com.javastudents.travelagency.entity.AppUserRole;
 import org.junit.Assert;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.JdbcTemplate;
+
 
 public class AppUserRoleRepositoryTest extends AbstractTest implements CrudTest{
-
-    @Autowired
-    private JdbcTemplate jdbcTemplate;
 
     @Autowired
     private AppUserRoleRepository repository;
@@ -65,7 +62,9 @@ public class AppUserRoleRepositoryTest extends AbstractTest implements CrudTest{
     @Test
     @Override
     public void deleteTest() {
+
         repository.delete(4);
+
         Assert.assertNull(repository.read(4));
     }
 }

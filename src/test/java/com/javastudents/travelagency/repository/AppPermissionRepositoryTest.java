@@ -61,7 +61,7 @@ public class AppPermissionRepositoryTest extends AbstractTest implements CrudTes
     @Test
     @Override
     public void deleteTest() {
-        AppPermission appPermission = repository.read(4);
+
         repository.delete(4);
 
         Assert.assertNull(repository.read(4));

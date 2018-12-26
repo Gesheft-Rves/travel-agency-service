@@ -63,7 +63,9 @@ public class DocumentTypeRepositoryTest extends AbstractTest implements CrudTest
     @Test
     @Override
     public void deleteTest() {
+
         repository.delete(5);
+
         Assert.assertNull(repository.read(5));
     }
 }

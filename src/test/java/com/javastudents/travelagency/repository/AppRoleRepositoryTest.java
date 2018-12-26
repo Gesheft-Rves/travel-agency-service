@@ -64,7 +64,7 @@ public class AppRoleRepositoryTest extends AbstractTest implements CrudTest {
     @Test
     @Override
     public void deleteTest() {
-        AppRole appRole = repository.read(5);
+
         repository.delete(5);
 
         Assert.assertNull(repository.read(5));
