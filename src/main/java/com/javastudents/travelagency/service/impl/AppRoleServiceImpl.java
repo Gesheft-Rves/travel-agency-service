@@ -4,7 +4,9 @@ import com.javastudents.travelagency.entity.AppRole;
 import com.javastudents.travelagency.repository.AppRoleRepository;
 import com.javastudents.travelagency.service.AppRoleService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class AppRoleServiceImpl implements AppRoleService {
 
     private final AppRoleRepository repository;

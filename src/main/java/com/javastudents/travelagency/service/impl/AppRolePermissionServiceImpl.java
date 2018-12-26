@@ -4,7 +4,9 @@ import com.javastudents.travelagency.entity.AppRolePermission;
 import com.javastudents.travelagency.repository.AppRolePermissionRepository;
 import com.javastudents.travelagency.service.AppRolePermissionService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class AppRolePermissionServiceImpl implements AppRolePermissionService {
 
     private final AppRolePermissionRepository repository;
