@@ -41,5 +41,10 @@ public class TourRepositoryImplTest extends AbstractTest implements CrudTest {
     @Test
     @Override
     public void deleteTest() {
+        Tour tour = tourRepository.read(1);
+
+        tourRepository.delete(tour.getId());
+
+        Assert.assertNull(tourRepository.read(1));
     }
 }

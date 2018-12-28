@@ -30,7 +30,6 @@ public class PurchaseRepositoryTest extends AbstractTest implements CrudTest {
         String departmentName = "Test";
         Timestamp timestamp = new Timestamp(System.currentTimeMillis());
 
-        //просто мысли. Ты вставляешь 1 везде. Это значит что записи такие в других таблицах должны быть
         Purchase purchase = Purchase.builder()
                 .tourScheduleId(1)
                 .travelAgentId(1)

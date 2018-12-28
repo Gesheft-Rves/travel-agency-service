@@ -53,7 +53,7 @@ public class TravelAgentRepositoryImpl implements TravelAgentRepository {
                             .patronymic(rs.getString("patronymic"))
                             .enabled(rs.getBoolean("enabled"))
                             .phoneNumber(rs.getString("phone_number"))
-                            .limitAmount(rs.getBigDecimal("limitAmount"))
+                            .limitAmount(rs.getBigDecimal("limit_amount"))
                             .build()
             );
         } catch (EmptyResultDataAccessException e) {
