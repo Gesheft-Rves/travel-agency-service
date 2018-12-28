@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class DepartmentRepositoryImpl implements DepartmentRepository {
 
+    @Autowired
     private final JdbcTemplate jdbcTemplate;
 
     @Autowired

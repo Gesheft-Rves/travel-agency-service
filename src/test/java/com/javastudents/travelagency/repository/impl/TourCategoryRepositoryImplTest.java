@@ -66,7 +66,7 @@ public class TourCategoryRepositoryImplTest extends AbstractTest implements Crud
     public void deleteTest() {
         TourCategory tourCategory = tourCategoryRepository.read(2);
 
-        System.out.println(tourCategory.toString());
+        System.out.println(tourCategory.getId());
 
         //tourCategoryRepository.delete(tourCategory.getName());
 

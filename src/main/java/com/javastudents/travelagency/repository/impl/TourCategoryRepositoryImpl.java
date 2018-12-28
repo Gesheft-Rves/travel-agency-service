@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class TourCategoryRepositoryImpl implements TourCategoryRepository {
 
+    @Autowired
     private final JdbcTemplate jdbcTemplate;
 
     @Autowired

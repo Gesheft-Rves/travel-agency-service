@@ -25,6 +25,9 @@ INSERT INTO transport_seat (transport_id, seat_no, comment) VALUES (1, 1, '');
 INSERT INTO travel_agency (abbreviated_name, address, phone_number, email_address) values ('asd', 'asd', '654', 'asd');
 INSERT INTO travel_agent (travel_agency_id, name, phone_number) VALUES (1, 'test', '123456');
 
--- tour_schedule_id, travel_agent_id, client_id, transport_id, transport_seat_id
--- А в базе на момент вставки нет ничего из полей выше
--- Ладно, дальше лень) В общем если ты тут делаешь инсерт и в нем есть ссылка на другую таблицу, надо чтоб и в другой таблице эта запись была
+INSERT INTO tour_schedule () VALUES ();
+INSERT INTO client_id () VALUES ();
+INSERT INTO transport () VALUES ();
+
+INSERT INTO tour (name, description, price, tour_category_id) VALUES ('test', 't',3233,1);
+INSERT INTO tour (name, description, price, tour_category_id) VALUES ('test2', '33',32323,3);

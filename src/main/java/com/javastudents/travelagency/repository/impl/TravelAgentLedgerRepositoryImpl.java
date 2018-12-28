@@ -11,7 +11,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class TravelAgentLedgerRepositoryImpl implements TravelAgentLedgerRepository {
 
-
+    @Autowired
     private final JdbcTemplate jdbcTemplate;
 
     @Autowired
