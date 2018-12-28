@@ -43,6 +43,7 @@ public class TransportSeatRepositoryImpl implements TransportSeatRepository {
                     new Object[]{transportSeatId},
 
                     (rs, rowNum) -> TransportSeat.builder()
+                            .id(rs.getInt("transport_seat_id"))
                             .transportId(rs.getInt("transport_id"))
                             .seatNo(rs.getInt("seat_no"))
                             .comment(rs.getString("comment"))

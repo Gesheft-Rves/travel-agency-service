@@ -46,6 +46,7 @@ public class TravelAgencyRepositoryImpl implements TravelAgencyRepository {
                     new Object[]{travelAgencyId},
 
                     (rs, rowNum) -> TravelAgency.builder()
+                            .id(rs.getInt("travel_agency_id"))
                             .abbreviatedName(rs.getString("abbreviated_name"))
                             .address(rs.getString("address"))
                             .phoneNumber(rs.getString("phone_number"))

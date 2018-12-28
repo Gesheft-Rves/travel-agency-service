@@ -29,7 +29,7 @@ public class TravelAgentRepositoryImplTest extends AbstractTest implements CrudT
     public void readTest() {
         TravelAgent byId = travelAgentRepository.read(1);
         Assert.assertNotNull(byId);
-        Assert.assertEquals(byId, byId);
+        Assert.assertEquals(1, byId);
     }
 
     @Test

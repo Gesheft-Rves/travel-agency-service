@@ -46,6 +46,7 @@ public class PurchaseRepositoryImpl implements PurchaseRepository {
                     new Object[]{purchaseId},
 
                     (rs, rowNum) -> Purchase.builder()
+                            .id(rs.getInt("purchase_id"))
                             .tourScheduleId(rs.getInt("tour_schedule_id"))
                             .travelAgentId(rs.getInt("travel_agent_id"))
                             .clientId(rs.getInt("client_id"))

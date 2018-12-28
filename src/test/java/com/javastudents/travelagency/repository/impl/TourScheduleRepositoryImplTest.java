@@ -30,7 +30,7 @@ public class TourScheduleRepositoryImplTest extends AbstractTest implements Crud
     public void readTest() {
         TourSchedule byId = tourScheduleRepository.read(1);
         Assert.assertNotNull(byId);
-        Assert.assertEquals(byId, byId);
+        Assert.assertEquals(1, byId);
     }
 
     @Test

@@ -41,6 +41,7 @@ public class TourCategoryRepositoryImpl implements TourCategoryRepository {
                     new Object[]{tourCategoryId},
 
                     (rs, rowNum) -> TourCategory.builder()
+                            .id(rs.getInt("tour_category_id"))
                             .name(rs.getString("name"))
                             .build()
             );

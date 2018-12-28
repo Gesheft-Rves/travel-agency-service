@@ -43,6 +43,7 @@ public class TransportRepositoryImpl implements TransportRepository {
                     new Object[]{transportId},
 
                     (rs, rowNum) -> Transport.builder()
+                            .id(rs.getInt("transport_id"))
                             .name(rs.getString("name"))
                             .build()
             );

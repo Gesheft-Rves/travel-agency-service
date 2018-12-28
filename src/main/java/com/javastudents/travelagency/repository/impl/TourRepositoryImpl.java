@@ -43,6 +43,7 @@ public class TourRepositoryImpl implements TourRepository {
                     new Object[]{turId},
 
                     (rs, rowNum) -> Tour.builder()
+                            .id(rs.getInt("tour_id"))
                             .name(rs.getString("name"))
                             .description(rs.getString("description"))
                             .price(rs.getBigDecimal("price"))

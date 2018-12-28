@@ -44,6 +44,7 @@ public class TourScheduleRepositoryImpl implements TourScheduleRepository {
                     new Object[]{tourScheduleId},
 
                     (rs, rowNum) -> TourSchedule.builder()
+                            .id(rs.getInt("tour_schedule_id"))
                             .tourId(rs.getInt("tour_id"))
                             .startingDataTime(rs.getTimestamp("starting_data_time"))
                             .endingDataTime(rs.getTimestamp("ending_data_time"))

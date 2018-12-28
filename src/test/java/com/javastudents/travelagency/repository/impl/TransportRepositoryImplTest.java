@@ -29,7 +29,7 @@ public class TransportRepositoryImplTest extends AbstractTest implements CrudTes
     public void readTest() {
         Transport byId = transportRepository.read(1);
         Assert.assertNotNull(byId);
-        Assert.assertEquals(byId, byId);
+        Assert.assertEquals(1, byId);
     }
 
     @Test

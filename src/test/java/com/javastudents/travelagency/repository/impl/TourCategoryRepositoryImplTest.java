@@ -43,7 +43,7 @@ public class TourCategoryRepositoryImplTest extends AbstractTest implements Crud
     public void readTest() {
         TourCategory byId = tourCategoryRepository.read(1);
         Assert.assertNotNull(byId);
-        Assert.assertEquals(byId, byId);
+        Assert.assertEquals(1, byId);
     }
 
     @Test
