@@ -21,7 +21,7 @@ public class PurchaseRepositoryImpl implements PurchaseRepository {
     @Override
     public void create(Purchase purchase) {
         @Language("MySQL")
-        String query = "INSERT INTO purchase (tour_schedule_id, travel_agent_id, client_id, transport_id, transport_seat_id, operation_data) VALUES (?, ? , ?, ?, ?, ?)";
+        String query = "INSERT INTO purchase (tour_schedule_id, travel_agent_id, client_id, transport_id, transport_seat_id, operation_date) VALUES (?, ? , ?, ?, ?, ?)";
 
         jdbcTemplate.update(
                 query,
@@ -30,7 +30,7 @@ public class PurchaseRepositoryImpl implements PurchaseRepository {
                 purchase.getClientId(),
                 purchase.getTransportId(),
                 purchase.getTransportSeatId(),
-                purchase.getOperationData()
+                purchase.getOperationDate()
         );
     }
 
@@ -50,7 +50,7 @@ public class PurchaseRepositoryImpl implements PurchaseRepository {
                             .clientId(rs.getInt("client_id"))
                             .transportId(rs.getInt("transport_id"))
                             .transportSeatId(rs.getInt("transport_seat_id"))
-                            .operationData(rs.getTimestamp("operation_data"))
+                            .operationDate(rs.getTimestamp("operation_date"))
                             .build()
             );
         } catch (EmptyResultDataAccessException e) {
@@ -61,7 +61,7 @@ public class PurchaseRepositoryImpl implements PurchaseRepository {
     @Override
     public void update(Purchase purchase) {
         @Language("MySQL")
-        String query = "UPDATE purchase SET tour_schedule_id = ?, travel_agent_id = ?, client_id = ?, transport_id = ?, transport_seat_id = ?, operation_data = ? WHERE purchase_id = ?";
+        String query = "UPDATE purchase SET tour_schedule_id = ?, travel_agent_id = ?, client_id = ?, transport_id = ?, transport_seat_id = ?, operation_date = ? WHERE purchase_id = ?";
 
         jdbcTemplate.update(
                 query,
@@ -70,7 +70,7 @@ public class PurchaseRepositoryImpl implements PurchaseRepository {
                 purchase.getClientId(),
                 purchase.getTransportId(),
                 purchase.getTransportSeatId(),
-                purchase.getOperationData()
+                purchase.getOperationDate()
         );
     }
 

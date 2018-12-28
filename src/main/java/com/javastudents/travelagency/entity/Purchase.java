@@ -15,5 +15,5 @@ public class Purchase implements Entity {
     private Integer clientId;
     private Integer transportId;
     private Integer transportSeatId;
-    private Timestamp operationData;
+    private Timestamp operationDate;
 }
