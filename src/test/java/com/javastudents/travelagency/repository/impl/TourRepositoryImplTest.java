@@ -62,7 +62,7 @@ public class TourRepositoryImplTest extends AbstractTest implements CrudTest {
         Tour tourNew = tourRepository.read(1);
 
         Assert.assertNotNull(tourNew.getId());
-        Assert.assertEquals(tour.getId(), tourNew.getId());
+        Assert.assertEquals("tor New", tourNew.getName());
     }
 
     @Test
@@ -86,7 +86,7 @@ public class TourRepositoryImplTest extends AbstractTest implements CrudTest {
 
         Assert.assertNotNull(tour);
 
-        tourRepository.delete(tour.getId());
+        tourRepository.delete(id);
 
         Assert.assertNull(tourRepository.read(id));
     }

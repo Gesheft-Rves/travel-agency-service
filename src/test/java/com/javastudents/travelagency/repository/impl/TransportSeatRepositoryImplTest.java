@@ -24,14 +24,14 @@ public class TransportSeatRepositoryImplTest extends AbstractTest implements Cru
     public void createTest() {
         String comment = "testComment";
         TransportSeat transportSeat = TransportSeat.builder()
-                .transportId(1)
+                .transportId(2)
                 .seatNo(1)
                 .comment(comment)
                 .build();
         transportSeatRepository.create(transportSeat);
 
         @Language("MySQL")
-        String sql = "SELECT comment from transport_seat where transport_seat_id = (select max(transport_seat_id) from ttransport_seat)";
+        String sql = "SELECT comment from transport_seat where transport_seat_id = (select max(transport_seat_id) from transport_seat)";
         String commentDB = jdbcTemplate.queryForObject(sql, String.class);
 
         Assert.assertEquals(comment, commentDB);
@@ -42,7 +42,7 @@ public class TransportSeatRepositoryImplTest extends AbstractTest implements Cru
     public void readTest() {
         TransportSeat byId = transportSeatRepository.read(1);
         Assert.assertNotNull(byId);
-        Assert.assertEquals(1, byId);
+        Assert.assertEquals((Integer) 1, byId.getSeatNo());
     }
 
     @Test
@@ -63,10 +63,23 @@ public class TransportSeatRepositoryImplTest extends AbstractTest implements Cru
     @Test
     @Override
     public void deleteTest() {
-        TransportSeat transportSeat = transportSeatRepository.read(1);
+        TransportSeat transportSeat = TransportSeat.builder()
+                .transportId(2)
+                .seatNo(2)
+                .comment("comment")
+                .build();
+        transportSeatRepository.create(transportSeat);
 
-        transportSeatRepository.delete(transportSeat.getId());
+        @Language("MySQL")
+        String sql = "select max(transport_seat_id) from transport_seat";
+        int id = jdbcTemplate.queryForObject(sql, int.class);
 
-        Assert.assertNull(transportSeatRepository.read(1));
+        TransportSeat transportSeat1 = transportSeatRepository.read(id);
+
+        Assert.assertNotNull(transportSeat1);
+
+        transportSeatRepository.delete(id);
+
+        Assert.assertNull(transportSeatRepository.read(id));
     }
 }

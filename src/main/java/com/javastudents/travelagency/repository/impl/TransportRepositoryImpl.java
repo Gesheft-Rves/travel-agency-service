@@ -55,14 +55,13 @@ public class TransportRepositoryImpl implements TransportRepository {
     @Override
     public void update(Transport transport) {
         @Language("MySQL")
-        String query = "UPDATE transport SET name = ?, description = ?, passenger_seat_qty = ? WHERE tour_category_id = ?";
+        String query = "UPDATE transport SET name = ?, description = ?, passenger_seat_qty = ? WHERE transport_id = ?";
 
         jdbcTemplate.update(
                 query,
                 transport.getName(),
                 transport.getDescription(),
-                transport.getPassengerSeatQty(),
-                transport.getId()
+                transport.getPassengerSeatQty()
         );
     }
 

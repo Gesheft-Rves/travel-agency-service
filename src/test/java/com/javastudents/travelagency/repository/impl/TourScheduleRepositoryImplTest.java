@@ -47,12 +47,21 @@ public class TourScheduleRepositoryImplTest extends AbstractTest implements Crud
     public void readTest() {
         TourSchedule byId = tourScheduleRepository.read(1);
         Assert.assertNotNull(byId);
-        Assert.assertEquals(1, byId);
+        Assert.assertEquals("1", byId.getId());
     }
 
     @Test
     @Override
     public void updateTest() {
+        TourSchedule tourSchedule = tourScheduleRepository.read(1);
+
+        Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+
+        tourSchedule.setStartingDateTime(timestamp);
+
+        tourScheduleRepository.update(tourSchedule);
+
+        Assert.assertEquals(timestamp, tourSchedule.getStartingDateTime());
     }
 
     @Test
@@ -74,7 +83,7 @@ public class TourScheduleRepositoryImplTest extends AbstractTest implements Crud
 
         Assert.assertNotNull(tourSchedule);
 
-        tourScheduleRepository.delete(tourSchedule.getId());
+        tourScheduleRepository.delete(id);
 
         Assert.assertNull(tourScheduleRepository.read(id));
     }

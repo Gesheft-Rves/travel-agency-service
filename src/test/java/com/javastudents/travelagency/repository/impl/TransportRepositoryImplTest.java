@@ -62,10 +62,23 @@ public class TransportRepositoryImplTest extends AbstractTest implements CrudTes
     @Test
     @Override
     public void deleteTest() {
-        Transport transport = transportRepository.read(1);
+        Transport transport = Transport.builder()
+                .name("test delete")
+                .description("dded")
+                .passengerSeatQty(5)
+                .build();
+        transportRepository.create(transport);
 
-        transportRepository.delete(transport.getId());
+        @Language("MySQL")
+        String sql = "select max(transport_id) from transport";
+        int id = jdbcTemplate.queryForObject(sql, int.class);
 
-        Assert.assertNull(transportRepository.read(1));
+        Transport transport1 = transportRepository.read(id);
+
+        Assert.assertNotNull(transport1);
+
+        transportRepository.delete(id);
+
+        Assert.assertNull(transportRepository.read(id));
     }
 }
