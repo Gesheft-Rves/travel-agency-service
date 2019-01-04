@@ -55,7 +55,7 @@ public class TravelAgentLedgerRepositoryImplTest extends AbstractTest implements
     public void updateTest() {
         TravelAgentLedger travelAgentLedger = travelAgentLedgerRepository.read(1);
 
-        travelAgentLedger.setAmount(new BigDecimal(212.2));
+        travelAgentLedger.setAmount(new BigDecimal(12.22));
 
         travelAgentLedgerRepository.update(travelAgentLedger);
 

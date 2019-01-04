@@ -59,7 +59,7 @@ public class TourScheduleRepositoryImpl implements TourScheduleRepository {
     @Override
     public void update(TourSchedule tourSchedule) {
         @Language("MySQL")
-        String query = "UPDATE tour_schedule SET tour_id = ?, starting_data_time = ?, ending_data_time = ?, transport_id = ? WHERE tour_id = ?";
+        String query = "UPDATE tour_schedule SET tour_id = ?, starting_date_time = ?, ending_date_time = ?, transport_id = ? WHERE tour_id = ?";
 
         jdbcTemplate.update(
                 query,

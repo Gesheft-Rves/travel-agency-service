@@ -23,26 +23,25 @@ public class PurchaseRepositoryImplTest extends AbstractTest implements CrudTest
     @Test
     @Override
     public void createTest() {
-        String purchaseName = "Test";
         Timestamp timestamp = new Timestamp(System.currentTimeMillis());
 
         Purchase purchase = Purchase.builder()
                 .tourScheduleId(1)
-                .travelAgentId(1)
-                .clientId(1)
-                .transportId(1)
-                .transportSeatId(1)
+                .travelAgentId(2)
+                .clientId(2)
+                .transportId(2)
+                .transportSeatId(2)
                 .operationDate(timestamp)
                 .build();
 
         purchaseRepository.create(purchase);
 
         @Language("MySQL")
-        String sql = "SELECT name from purchase where purchase_id = (select max(purchase_id) from purchase)";
+        String sql = "SELECT operation_date from purchase where purchase_id = (select max(purchase_id) from purchase)";
 
-        String nameFromDb = jdbcTemplate.queryForObject(sql, String.class);
+        Timestamp operationDate = jdbcTemplate.queryForObject(sql, Timestamp.class);
 
-        Assert.assertEquals(purchaseName, nameFromDb);
+        Assert.assertEquals(timestamp, operationDate);
     }
 
     @Test

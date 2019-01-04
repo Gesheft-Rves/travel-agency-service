@@ -45,6 +45,8 @@ public class TransportRepositoryImpl implements TransportRepository {
                     (rs, rowNum) -> Transport.builder()
                             .id(rs.getInt("transport_id"))
                             .name(rs.getString("name"))
+                            .description(rs.getString("description"))
+                            .passengerSeatQty(rs.getInt("passenger_seat_qty"))
                             .build()
             );
         } catch (EmptyResultDataAccessException e) {
@@ -61,7 +63,8 @@ public class TransportRepositoryImpl implements TransportRepository {
                 query,
                 transport.getName(),
                 transport.getDescription(),
-                transport.getPassengerSeatQty()
+                transport.getPassengerSeatQty(),
+                transport.getId()
         );
     }
 
