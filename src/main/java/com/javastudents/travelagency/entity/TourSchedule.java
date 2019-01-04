@@ -11,7 +11,7 @@ import java.sql.Timestamp;
 public class TourSchedule implements Entity {
     private Integer id;
     private Integer tourId;
-    private Timestamp startingDataTime;
-    private Timestamp endingDataTime;
+    private Timestamp startingDateTime;
+    private Timestamp endingDateTime;
     private Integer transportId;
 }

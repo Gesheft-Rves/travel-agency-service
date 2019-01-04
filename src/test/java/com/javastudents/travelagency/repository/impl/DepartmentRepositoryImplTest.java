@@ -10,7 +10,7 @@ import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 
-public class DepartmentRepositoryTest extends AbstractTest implements CrudTest {
+public class DepartmentRepositoryImplTest extends AbstractTest implements CrudTest {
 
 
     @Autowired

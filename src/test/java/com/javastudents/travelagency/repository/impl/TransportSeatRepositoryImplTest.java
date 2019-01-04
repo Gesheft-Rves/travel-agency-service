@@ -4,6 +4,7 @@ import com.javastudents.travelagency.AbstractTest;
 import com.javastudents.travelagency.entity.TransportSeat;
 import com.javastudents.travelagency.repository.CrudTest;
 import com.javastudents.travelagency.repository.TransportSeatRepository;
+import org.intellij.lang.annotations.Language;
 import org.junit.Assert;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +22,19 @@ public class TransportSeatRepositoryImplTest extends AbstractTest implements Cru
     @Test
     @Override
     public void createTest() {
+        String comment = "testComment";
+        TransportSeat transportSeat = TransportSeat.builder()
+                .transportId(1)
+                .seatNo(1)
+                .comment(comment)
+                .build();
+        transportSeatRepository.create(transportSeat);
+
+        @Language("MySQL")
+        String sql = "SELECT comment from transport_seat where transport_seat_id = (select max(transport_seat_id) from ttransport_seat)";
+        String commentDB = jdbcTemplate.queryForObject(sql, String.class);
+
+        Assert.assertEquals(comment, commentDB);
     }
 
     @Test
@@ -34,6 +48,16 @@ public class TransportSeatRepositoryImplTest extends AbstractTest implements Cru
     @Test
     @Override
     public void updateTest() {
+        TransportSeat transportSeat = transportSeatRepository.read(1);
+
+        transportSeat.setComment("transportSeat New");
+
+        transportSeatRepository.update(transportSeat);
+
+        TransportSeat transportSeatNew = transportSeatRepository.read(1);
+
+        Assert.assertNotNull(transportSeatNew.getId());
+        Assert.assertEquals(transportSeat.getId(), transportSeatNew.getId());
     }
 
     @Test

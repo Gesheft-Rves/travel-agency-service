@@ -4,12 +4,11 @@ import com.javastudents.travelagency.AbstractTest;
 import com.javastudents.travelagency.entity.Transport;
 import com.javastudents.travelagency.repository.CrudTest;
 import com.javastudents.travelagency.repository.TransportRepository;
+import org.intellij.lang.annotations.Language;
 import org.junit.Assert;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
-
-import static org.junit.Assert.*;
 
 public class TransportRepositoryImplTest extends AbstractTest implements CrudTest {
     @Autowired
@@ -22,6 +21,19 @@ public class TransportRepositoryImplTest extends AbstractTest implements CrudTes
     @Test
     @Override
     public void createTest() {
+        String transportName = "Test transport";
+        Transport transport = Transport.builder()
+                .name(transportName)
+                .description("dded")
+                .passengerSeatQty(5)
+                .build();
+        transportRepository.create(transport);
+
+        @Language("MySQL")
+        String sql = "SELECT name from transport where transport_id = (select max(transport_id) from transport)";
+        String nameFromDb = jdbcTemplate.queryForObject(sql, String.class);
+
+        Assert.assertEquals(transportName, nameFromDb);
     }
 
     @Test
@@ -35,6 +47,16 @@ public class TransportRepositoryImplTest extends AbstractTest implements CrudTes
     @Test
     @Override
     public void updateTest() {
+        Transport transport = transportRepository.read(1);
+
+        transport.setName("transport New");
+
+        transportRepository.update(transport);
+
+        Transport transportNew = transportRepository.read(1);
+
+        Assert.assertNotNull(transportNew.getId());
+        Assert.assertEquals(transport.getId(), transportNew.getId());
     }
 
     @Test

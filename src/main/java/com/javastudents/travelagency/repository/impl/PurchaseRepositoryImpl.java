@@ -72,7 +72,8 @@ public class PurchaseRepositoryImpl implements PurchaseRepository {
                 purchase.getClientId(),
                 purchase.getTransportId(),
                 purchase.getTransportSeatId(),
-                purchase.getOperationDate()
+                purchase.getOperationDate(),
+                purchase.getId()
         );
     }
 

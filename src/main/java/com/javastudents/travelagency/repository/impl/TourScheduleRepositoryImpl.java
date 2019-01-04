@@ -22,13 +22,13 @@ public class TourScheduleRepositoryImpl implements TourScheduleRepository {
     @Override
     public void create(TourSchedule tourSchedule) {
         @Language("MySQL")
-        String query = "INSERT INTO tour_schedule (tour_id, starting_data_time, ending_data_time, transport_id) VALUES (?, ?, ?, ?)";
+        String query = "INSERT INTO tour_schedule (tour_id, starting_date_time, ending_date_time, transport_id) VALUES (?, ?, ?, ?)";
 
         jdbcTemplate.update(
                 query,
                 tourSchedule.getTourId(),
-                tourSchedule.getStartingDataTime(),
-                tourSchedule.getEndingDataTime(),
+                tourSchedule.getStartingDateTime(),
+                tourSchedule.getEndingDateTime(),
                 tourSchedule.getTransportId()
         );
     }
@@ -46,8 +46,8 @@ public class TourScheduleRepositoryImpl implements TourScheduleRepository {
                     (rs, rowNum) -> TourSchedule.builder()
                             .id(rs.getInt("tour_schedule_id"))
                             .tourId(rs.getInt("tour_id"))
-                            .startingDataTime(rs.getTimestamp("starting_data_time"))
-                            .endingDataTime(rs.getTimestamp("ending_data_time"))
+                            .startingDateTime(rs.getTimestamp("starting_date_time"))
+                            .endingDateTime(rs.getTimestamp("ending_date_time"))
                             .transportId(rs.getInt("transport_id"))
                             .build()
             );
@@ -64,8 +64,8 @@ public class TourScheduleRepositoryImpl implements TourScheduleRepository {
         jdbcTemplate.update(
                 query,
                 tourSchedule.getTourId(),
-                tourSchedule.getStartingDataTime(),
-                tourSchedule.getEndingDataTime(),
+                tourSchedule.getStartingDateTime(),
+                tourSchedule.getEndingDateTime(),
                 tourSchedule.getTransportId(),
                 tourSchedule.getId()
         );
@@ -74,7 +74,7 @@ public class TourScheduleRepositoryImpl implements TourScheduleRepository {
     @Override
     public void delete(int tourScheduleId) {
         @Language("MySQL")
-        String query = "DELETE FROM tour_schedule WHERE tour_shedule_id = ?";
+        String query = "DELETE FROM tour_schedule WHERE tour_schedule_id = ?";
 
         jdbcTemplate.update(query, tourScheduleId);
     }

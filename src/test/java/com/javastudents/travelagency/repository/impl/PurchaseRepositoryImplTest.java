@@ -11,23 +11,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 import java.sql.Timestamp;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
 
-import static org.junit.Assert.*;
-
-public class PurchaseRepositoryTest extends AbstractTest implements CrudTest {
+public class PurchaseRepositoryImplTest extends AbstractTest implements CrudTest {
 
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
     @Autowired
-    private PurchaseRepository repository;
+    private PurchaseRepository purchaseRepository;
 
     @Test
     @Override
     public void createTest() {
-        String departmentName = "Test";
+        String purchaseName = "Test";
         Timestamp timestamp = new Timestamp(System.currentTimeMillis());
 
         Purchase purchase = Purchase.builder()
@@ -39,25 +35,25 @@ public class PurchaseRepositoryTest extends AbstractTest implements CrudTest {
                 .operationDate(timestamp)
                 .build();
 
-        repository.create(purchase);
+        purchaseRepository.create(purchase);
 
         @Language("MySQL")
         String sql = "SELECT name from purchase where purchase_id = (select max(purchase_id) from purchase)";
 
         String nameFromDb = jdbcTemplate.queryForObject(sql, String.class);
 
-        Assert.assertEquals(departmentName, nameFromDb);
+        Assert.assertEquals(purchaseName, nameFromDb);
     }
 
     @Test
     @Override
     public void readTest() {
 
-        Purchase byName = repository.read(2);
+        Purchase byName = purchaseRepository.read(1);
 
         int id = byName.getId();
 
-        Purchase byId = repository.read(id);
+        Purchase byId = purchaseRepository.read(id);
 
 
         Assert.assertNotNull(byId);
@@ -68,10 +64,26 @@ public class PurchaseRepositoryTest extends AbstractTest implements CrudTest {
     @Test
     @Override
     public void updateTest() {
+        Purchase purchase = purchaseRepository.read(1);
+        Timestamp test = purchase.getOperationDate();
+        Integer id = purchase.getId();
+
+        purchase.setOperationDate(new Timestamp(System.currentTimeMillis()));
+
+        purchaseRepository.update(purchase);
+
+        Assert.assertNotNull(purchaseRepository.read(id));
+        Assert.assertEquals(id, purchaseRepository.read(id).getId());
+        Assert.assertNotEquals(test, purchaseRepository.read(1).getOperationDate());
     }
 
     @Test
     @Override
     public void deleteTest() {
+        Purchase tourCategory = purchaseRepository.read(1);
+
+        purchaseRepository.delete(tourCategory.getId());
+
+        Assert.assertNull(purchaseRepository.read(1));
     }
 }

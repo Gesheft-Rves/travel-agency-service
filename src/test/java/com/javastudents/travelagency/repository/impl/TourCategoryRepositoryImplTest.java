@@ -25,17 +25,17 @@ public class TourCategoryRepositoryImplTest extends AbstractTest implements Crud
     @Test
     @Override
     public void createTest() {
-        String customerName = "Test tourCategory";
-        TourCategory customer = TourCategory.builder()
-                .name(customerName)
+        String tourCategoryName = "Test tourCategory";
+        TourCategory tourCategory = TourCategory.builder()
+                .name(tourCategoryName)
                 .build();
-        tourCategoryRepository.create(customer);
+        tourCategoryRepository.create(tourCategory);
 
         @Language("MySQL")
         String sql = "SELECT name from tour_category where tour_category_id = (select max(tour_category_id) from tour_category)";
         String nameFromDb = jdbcTemplate.queryForObject(sql, String.class);
 
-        Assert.assertEquals(customerName, nameFromDb);
+        Assert.assertEquals(tourCategoryName, nameFromDb);
     }
 
     @Test
@@ -43,7 +43,7 @@ public class TourCategoryRepositoryImplTest extends AbstractTest implements Crud
     public void readTest() {
         TourCategory byId = tourCategoryRepository.read(1);
         Assert.assertNotNull(byId);
-        Assert.assertEquals(1, byId);
+        Assert.assertEquals("1", byId.getName());
     }
 
     @Test
@@ -65,8 +65,6 @@ public class TourCategoryRepositoryImplTest extends AbstractTest implements Crud
     @Override
     public void deleteTest() {
         TourCategory tourCategory = tourCategoryRepository.read(2);
-
-        System.out.println(tourCategory.getId());
 
         tourCategoryRepository.delete(tourCategory.getId());
 

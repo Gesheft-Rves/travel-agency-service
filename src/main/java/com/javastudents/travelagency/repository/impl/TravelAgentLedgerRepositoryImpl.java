@@ -23,7 +23,7 @@ public class TravelAgentLedgerRepositoryImpl implements TravelAgentLedgerReposit
     @Override
     public void create(TravelAgentLedger travelAgentLedger) {
         @Language("MySQL")
-        String query = "INSERT INTO travel_agent_ledger (travel_agent_id, operation_date, purchase_id, amount) VALUES (?, ?, ?)";
+        String query = "INSERT INTO travel_agent_ledger (travel_agent_id, operation_date, purchase_id, amount) VALUES (?, ?, ?, ?)";
 
         jdbcTemplate.update(
                 query,
@@ -37,7 +37,7 @@ public class TravelAgentLedgerRepositoryImpl implements TravelAgentLedgerReposit
     @Override
     public TravelAgentLedger read(int travelAgentLedgerId) {
         @Language("MySQL")
-        String query = "SELECT * FROM transport_seat WHERE transport_seat_id=?";
+        String query = "SELECT * FROM travel_agent_ledger WHERE travel_agent_ledger_id=?";
 
         try {
             return jdbcTemplate.queryForObject(
