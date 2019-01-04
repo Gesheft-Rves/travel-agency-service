@@ -47,7 +47,7 @@ public class TravelAgentLedgerRepositoryImplTest extends AbstractTest implements
     public void readTest() {
         TravelAgentLedger byId = travelAgentLedgerRepository.read(1);
         Assert.assertNotNull(byId);
-        Assert.assertEquals(1, byId);
+        Assert.assertEquals((Integer)1, byId.getId());
     }
 
     @Test

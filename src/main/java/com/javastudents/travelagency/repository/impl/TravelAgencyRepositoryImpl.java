@@ -62,7 +62,7 @@ public class TravelAgencyRepositoryImpl implements TravelAgencyRepository {
     @Override
     public void update(TravelAgency travelAgency) {
         @Language("MySQL")
-        String query = "UPDATE travel_agency SET abbreviated_name = ?, address = ?, phone_number = ?, site = ?, email_address = ? WHERE transport_seat_id = ?";
+        String query = "UPDATE travel_agency SET abbreviated_name = ?, address = ?, phone_number = ?, site = ?, email_address = ? WHERE travel_agency_id = ?";
 
         jdbcTemplate.update(
                 query,

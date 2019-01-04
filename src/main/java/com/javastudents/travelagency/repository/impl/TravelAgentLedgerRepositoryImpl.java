@@ -45,7 +45,7 @@ public class TravelAgentLedgerRepositoryImpl implements TravelAgentLedgerReposit
                     new Object[]{travelAgentLedgerId},
 
                     (rs, rowNum) -> TravelAgentLedger.builder()
-                            .id(rs.getInt("transport_seat_id"))
+                            .id(rs.getInt("travel_agent_ledger_id"))
                             .travelAgentId(rs.getInt("travel_agent_id"))
                             .operationDate(rs.getTimestamp("operation_date"))
                             .purchaseId(rs.getInt("purchase_id"))

@@ -45,7 +45,7 @@ public class TravelAgencyRepositoryImplTest extends AbstractTest implements Crud
     public void readTest() {
         TravelAgency byId = travelAgencyRepository.read(1);
         Assert.assertNotNull(byId);
-        Assert.assertEquals(1, byId);
+        Assert.assertEquals("asd", byId.getAbbreviatedName());
     }
 
     @Test
@@ -66,10 +66,25 @@ public class TravelAgencyRepositoryImplTest extends AbstractTest implements Crud
     @Test
     @Override
     public void deleteTest() {
-        TravelAgency travelAgency = travelAgencyRepository.read(1);
+        TravelAgency travelAgency = TravelAgency.builder()
+                .abbreviatedName("Test delete")
+                .address("dded")
+                .phoneNumber("54545")
+                .site("ttttyt")
+                .emailAddress("hg@mail.ru")
+                .build();
+        travelAgencyRepository.create(travelAgency);
 
-        travelAgencyRepository.delete(travelAgency.getId());
+        @Language("MySQL")
+        String sql = "select max(travel_agency_id) from travel_agency";
+        int id = jdbcTemplate.queryForObject(sql, int.class);
 
-        Assert.assertNull(travelAgencyRepository.read(1));
+        TravelAgency travelAgency1 = travelAgencyRepository.read(id);
+
+        Assert.assertNotNull(travelAgency1);
+
+        travelAgencyRepository.delete(id);
+
+        Assert.assertNull(travelAgencyRepository.read(id));
     }
 }
