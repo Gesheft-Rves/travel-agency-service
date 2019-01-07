@@ -45,9 +45,10 @@ public class TravelAgentLedgerRepositoryImplTest extends AbstractTest implements
     @Test
     @Override
     public void readTest() {
+        BigDecimal amountExpected = BigDecimal.valueOf(22222);
         TravelAgentLedger byId = travelAgentLedgerRepository.read(1);
         Assert.assertNotNull(byId);
-        Assert.assertEquals((Integer)1, byId.getId());
+        Assert.assertEquals(amountExpected, byId.getAmount());
     }
 
     @Test

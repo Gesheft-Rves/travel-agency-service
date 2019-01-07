@@ -45,9 +45,14 @@ public class TourScheduleRepositoryImplTest extends AbstractTest implements Crud
     @Test
     @Override
     public void readTest() {
+        Integer tourIdExpected = 1;
+        Integer transportIdExpected = 1;
+
         TourSchedule byId = tourScheduleRepository.read(1);
+
         Assert.assertNotNull(byId);
-        Assert.assertEquals((Integer)1, byId.getId());
+        Assert.assertEquals(tourIdExpected, byId.getTourId());
+        Assert.assertEquals(transportIdExpected, byId.getTransportId());
     }
 
     @Test

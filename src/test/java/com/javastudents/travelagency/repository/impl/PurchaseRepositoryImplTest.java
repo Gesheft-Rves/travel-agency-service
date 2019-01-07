@@ -48,16 +48,19 @@ public class PurchaseRepositoryImplTest extends AbstractTest implements CrudTest
     @Override
     public void readTest() {
 
-        Purchase byName = purchaseRepository.read(1);
+        Integer tourScheduleIdExpected = 1;
+        Integer travelAgentIdExpected = 1;
+        Integer clientIdExpected = 1;
+        Integer transportIdExpected = 1;
+        Integer transportSeatIdExpected = 1;
 
-        int id = byName.getId();
+        Purchase byId = purchaseRepository.read(1);
 
-        Purchase byId = purchaseRepository.read(id);
-
-
-        Assert.assertNotNull(byId);
-        Assert.assertNotNull(byName);
-        Assert.assertEquals(byName, byId);
+        Assert.assertEquals(tourScheduleIdExpected, byId.getTourScheduleId());
+        Assert.assertEquals(travelAgentIdExpected, byId.getTravelAgentId());
+        Assert.assertEquals(clientIdExpected, byId.getClientId());
+        Assert.assertEquals(transportIdExpected, byId.getClientId());
+        Assert.assertEquals(transportSeatIdExpected, byId.getTransportSeatId());
     }
 
     @Test

@@ -39,9 +39,10 @@ public class TransportRepositoryImplTest extends AbstractTest implements CrudTes
     @Test
     @Override
     public void readTest() {
+        String descriptionExpected = "2";
         Transport byId = transportRepository.read(1);
         Assert.assertNotNull(byId);
-        Assert.assertEquals((Integer)1, byId.getId());
+        Assert.assertEquals(descriptionExpected, byId.getDescription());
     }
 
     @Test
