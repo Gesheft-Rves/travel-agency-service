@@ -29,7 +29,6 @@ public class AppPermissionRepositoryTest extends AbstractTest implements CrudTes
 
         @Language("MySQL")
         String sql = "SELECT name from app_permission where app_permission_id = (select max(app_permission_id) from app_permission)";
-
         String nameFromDb = jdbcTemplate.queryForObject(sql, String.class);
 
         Assert.assertEquals(appPermissionName, nameFromDb);
@@ -41,21 +40,18 @@ public class AppPermissionRepositoryTest extends AbstractTest implements CrudTes
         String expected = "permission_1";
 
         AppPermission byId = repository.read(1);
-        Assert.assertNotNull(byId);
         Assert.assertEquals(expected, byId.getName());
     }
 
     @Test
     @Override
     public void updateTest() {
+        String expected = "NewPermission";
         AppPermission appPermission = repository.read(2);
-        appPermission.setName("NewPermission");
+        appPermission.setName(expected);
         repository.update(appPermission);
 
-        AppPermission newPermission = repository.read(2);
-
-        Assert.assertNotNull(newPermission);
-        Assert.assertEquals(appPermission.getAppPermissionId(), newPermission.getAppPermissionId());
+        Assert.assertEquals(expected, repository.read(2).getName());
     }
 
     @Test

@@ -29,7 +29,6 @@ public class AppRoleRepositoryTest extends AbstractTest implements CrudTest {
 
         @Language("MySQL")
         String sql = "SELECT name from app_role where app_role_id = (select max(app_role_id) from app_role)";
-
         String nameFromDb = jdbcTemplate.queryForObject(sql, String.class);
 
         Assert.assertEquals(appRoleName, nameFromDb);
@@ -41,7 +40,7 @@ public class AppRoleRepositoryTest extends AbstractTest implements CrudTest {
         String expected = "appRole_1";
 
         AppRole byId = repository.read(1);
-        Assert.assertNotNull(byId);
+
         Assert.assertEquals(expected, byId.getName());
     }
 
@@ -53,11 +52,7 @@ public class AppRoleRepositoryTest extends AbstractTest implements CrudTest {
         appRole.setName(expectedValue);
         repository.update(appRole);
 
-        AppRole newAppRole = repository.read(2);
-
-        Assert.assertNotNull(newAppRole);
-        Assert.assertEquals(appRole.getAppRoleId(), newAppRole.getAppRoleId());
-        Assert.assertEquals(expectedValue, newAppRole.getName());
+        Assert.assertEquals( expectedValue, repository.read(2).getName());
 
     }
 

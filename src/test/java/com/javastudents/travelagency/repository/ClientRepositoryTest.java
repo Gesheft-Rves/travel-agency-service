@@ -35,7 +35,6 @@ public class ClientRepositoryTest extends AbstractTest implements CrudTest {
 
         @Language("MySQL")
         String sql = "SELECT name from client where client_id = (select max(client_id) from client)";
-
         String nameFromDb = jdbcTemplate.queryForObject(sql, String.class);
 
         Assert.assertEquals(clientName, nameFromDb);
@@ -47,7 +46,6 @@ public class ClientRepositoryTest extends AbstractTest implements CrudTest {
         String expected = "client_name_1";
         Client byId = clientRepository.read(1);
 
-        Assert.assertNotNull(byId);
         Assert.assertEquals(expected, byId.getName());
     }
 
@@ -57,15 +55,9 @@ public class ClientRepositoryTest extends AbstractTest implements CrudTest {
         String expectedValue = "New clientName";
         Client client = clientRepository.read(1);
         client.setName(expectedValue);
-
         clientRepository.update(client);
 
-        Client newClient = clientRepository.read(1);
-
-        Assert.assertNotNull(newClient);
-        Assert.assertEquals(client.getClientId(), newClient.getClientId());
-
-        Assert.assertEquals(expectedValue, newClient.getName());
+        Assert.assertEquals(expectedValue, clientRepository.read(1).getName());
     }
 
     @Test

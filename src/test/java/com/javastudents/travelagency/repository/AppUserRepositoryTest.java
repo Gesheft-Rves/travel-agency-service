@@ -36,7 +36,6 @@ public class AppUserRepositoryTest extends AbstractTest implements CrudTest{
 
         @Language("MySQL")
         String sql = "SELECT name from app_user where app_user_id = (select max(app_user_id) from app_user)";
-
         String nameFromDb = jdbcTemplate.queryForObject(sql, String.class);
 
         Assert.assertEquals(appUserName, nameFromDb);
@@ -49,7 +48,6 @@ public class AppUserRepositoryTest extends AbstractTest implements CrudTest{
         String expected = "app_user_name_1";
         AppUser byId = appUserRepository.read(1);
 
-        Assert.assertNotNull(byId);
         Assert.assertEquals(expected, byId.getName());
     }
 
@@ -61,11 +59,7 @@ public class AppUserRepositoryTest extends AbstractTest implements CrudTest{
         appUser.setName(expectedValue);
         appUserRepository.update(appUser);
 
-        AppUser newAppUser = appUserRepository.read(2);
-
-        Assert.assertNotNull(newAppUser);
-        Assert.assertEquals(appUser.getAppUserId(), newAppUser.getAppUserId());
-        Assert.assertEquals(expectedValue, newAppUser.getName());
+        Assert.assertEquals(expectedValue, appUserRepository.read(2).getName());
     }
 
     @Test

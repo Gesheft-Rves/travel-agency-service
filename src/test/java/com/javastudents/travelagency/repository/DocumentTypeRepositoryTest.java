@@ -29,7 +29,6 @@ public class DocumentTypeRepositoryTest extends AbstractTest implements CrudTest
 
         @Language("MySQL")
         String sql = "SELECT name from document_type where document_type_id = (select max(document_type_id) from document_type)";
-
         String nameFromDb = jdbcTemplate.queryForObject(sql, String.class);
 
         Assert.assertEquals(docTypeName, nameFromDb);
@@ -39,9 +38,8 @@ public class DocumentTypeRepositoryTest extends AbstractTest implements CrudTest
     @Override
     public void readTest() {
         String expected = "document_type_1";
-
         DocumentType byId = repository.read(1);
-        Assert.assertNotNull(byId);
+
         Assert.assertEquals(expected, byId.getName());
     }
 
@@ -53,11 +51,7 @@ public class DocumentTypeRepositoryTest extends AbstractTest implements CrudTest
         documentType.setName(expectedValue);
         repository.update(documentType);
 
-        DocumentType newDocumentType = repository.read(2);
-
-        Assert.assertNotNull(newDocumentType);
-        Assert.assertEquals(documentType.getDocumentTypeId(), documentType.getDocumentTypeId());
-        Assert.assertEquals(expectedValue, newDocumentType.getName());
+        Assert.assertEquals(expectedValue, repository.read(2).getName());
     }
 
     @Test
