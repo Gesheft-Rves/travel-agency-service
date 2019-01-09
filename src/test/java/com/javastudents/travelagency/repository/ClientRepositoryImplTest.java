@@ -8,7 +8,7 @@ import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 
-public class ClientRepositoryTest extends AbstractTest implements CrudTest {
+public class ClientRepositoryImplTest extends AbstractTest implements CrudTest {
 
     @Autowired
     private JdbcTemplate jdbcTemplate;
@@ -19,12 +19,12 @@ public class ClientRepositoryTest extends AbstractTest implements CrudTest {
     @Test
     @Override
     public void createTest() {
-        String clientName = "New clientName";
+        String name = "New clientName";
 
         Client client = Client.builder()
                 .documentTypeId(1)
                 .documentSeriesNumber("")
-                .name(clientName)
+                .name(name)
                 .surname("")
                 .patronymic("")
                 .address("")
@@ -35,35 +35,34 @@ public class ClientRepositoryTest extends AbstractTest implements CrudTest {
 
         @Language("MySQL")
         String sql = "SELECT name from client where client_id = (select max(client_id) from client)";
-        String nameFromDb = jdbcTemplate.queryForObject(sql, String.class);
+        String nameDB = jdbcTemplate.queryForObject(sql, String.class);
 
-        Assert.assertEquals(clientName, nameFromDb);
+        Assert.assertEquals(name, nameDB);
     }
 
     @Test
     @Override
     public void readTest() {
-        String expected = "client_name_1";
+        String nameExpected = "client_name_1";
         Client byId = clientRepository.read(1);
 
-        Assert.assertEquals(expected, byId.getName());
+        Assert.assertEquals(nameExpected, byId.getName());
     }
 
     @Test
     @Override
     public void updateTest() {
-        String expectedValue = "New clientName";
+        String nameExpected = "New clientName";
         Client client = clientRepository.read(1);
-        client.setName(expectedValue);
+        client.setName(nameExpected);
         clientRepository.update(client);
 
-        Assert.assertEquals(expectedValue, clientRepository.read(1).getName());
+        Assert.assertEquals(nameExpected, clientRepository.read(1).getName());
     }
 
     @Test
     @Override
     public void deleteTest() {
-
         clientRepository.delete(5);
 
         Assert.assertNull(clientRepository.read(5));

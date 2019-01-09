@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 
-public class AppRolePermissionRepositoryTest extends AbstractTest implements CrudTest {
+public class AppRolePermissionRepositoryImplTest extends AbstractTest implements CrudTest {
 
     @Autowired
     private JdbcTemplate jdbcTemplate;
@@ -28,7 +28,7 @@ public class AppRolePermissionRepositoryTest extends AbstractTest implements Cru
 
         @Language("MySQL")
         String sqlOld = "SELECT MAX(app_role_permission_id) from app_role_permission ";
-        String oldMaxId = jdbcTemplate.queryForObject(sqlOld, String.class);
+        Integer oldMaxId = jdbcTemplate.queryForObject(sqlOld, Integer.class) ;
 
         AppRolePermission appRolePermission = AppRolePermission.builder()
                 .appRoleId(appRoleId)
@@ -39,18 +39,17 @@ public class AppRolePermissionRepositoryTest extends AbstractTest implements Cru
 
         @Language("MySQL")
         String sqlNew = "SELECT MAX(app_role_permission_id) from app_role_permission ";
-        String newMaxId = jdbcTemplate.queryForObject(sqlNew, String.class);
-
-        Assert.assertEquals(Integer.parseInt(oldMaxId)+1,Integer.parseInt(newMaxId));
+        Integer newMaxId = jdbcTemplate.queryForObject(sqlNew, Integer.class);
+        oldMaxId += 1;
+        Assert.assertEquals(oldMaxId, newMaxId);
     }
 
     @Test
     @Override
     public void readTest() {
-
         AppRolePermission byId = appRolePermissionRepository.read(1);
-        Integer expect = 1;
-        Assert.assertEquals(expect, byId.getAppRoleId());
+        Integer expected = 1;
+        Assert.assertEquals(expected, byId.getAppRoleId());
     }
 
     @Test
@@ -69,7 +68,6 @@ public class AppRolePermissionRepositoryTest extends AbstractTest implements Cru
     @Test
     @Override
     public void deleteTest() {
-
         appRolePermissionRepository.delete(4);
 
         Assert.assertNull(appRolePermissionRepository.read(4));

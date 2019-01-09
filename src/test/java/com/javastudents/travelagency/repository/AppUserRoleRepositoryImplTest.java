@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 
-public class AppUserRoleRepositoryTest extends AbstractTest implements CrudTest{
+public class AppUserRoleRepositoryImplTest extends AbstractTest implements CrudTest{
 
     @Autowired
     private JdbcTemplate jdbcTemplate;
@@ -28,7 +28,7 @@ public class AppUserRoleRepositoryTest extends AbstractTest implements CrudTest{
 
         @Language("MySQL")
         String sqlOld = "SELECT MAX(app_user_role_id) from app_user_role ";
-        String oldMaxId = jdbcTemplate.queryForObject(sqlOld, String.class);
+        Integer oldMaxId = jdbcTemplate.queryForObject(sqlOld, Integer.class);
 
         AppUserRole appUserRole = AppUserRole.builder()
                 .appUserId(appUserId)
@@ -39,20 +39,22 @@ public class AppUserRoleRepositoryTest extends AbstractTest implements CrudTest{
 
         @Language("MySQL")
         String sqlNew = "SELECT MAX(app_user_role_id) from app_user_role ";
-        String newMaxId = jdbcTemplate.queryForObject(sqlNew, String.class);
+        Integer newMaxId = jdbcTemplate.queryForObject(sqlNew, Integer.class);
 
-        Assert.assertEquals(Integer.parseInt(oldMaxId)+1,Integer.parseInt(newMaxId));
+        oldMaxId+=1;
+
+        Assert.assertEquals(oldMaxId,newMaxId);
     }
 
     @Test
     @Override
     public void readTest() {
-        String roleExpected = "appRole_2";
+        String nameRoleExpected = "appRole_2";
         AppUserRole byId = repository.read(1);
         Integer appRoleId = byId.getRoleId();
         String appRoleName = appRoleRepository.read(appRoleId).getName();
 
-        Assert.assertEquals(roleExpected, appRoleName);
+        Assert.assertEquals(nameRoleExpected, appRoleName);
     }
 
     @Test
@@ -68,7 +70,6 @@ public class AppUserRoleRepositoryTest extends AbstractTest implements CrudTest{
     @Test
     @Override
     public void deleteTest() {
-
         repository.delete(4);
 
         Assert.assertNull(repository.read(4));
