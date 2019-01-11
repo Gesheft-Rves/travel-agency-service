@@ -68,40 +68,19 @@ public class PurchaseRepositoryImplTest extends AbstractTest implements CrudTest
     public void updateTest() {
         Purchase purchase = purchaseRepository.read(1);
         Timestamp test = purchase.getOperationDate();
-        Integer id = purchase.getId();
 
         purchase.setOperationDate(new Timestamp(System.currentTimeMillis()));
 
         purchaseRepository.update(purchase);
 
-        Assert.assertNotNull(purchaseRepository.read(id));
-        Assert.assertEquals(id, purchaseRepository.read(id).getId());
         Assert.assertNotEquals(test, purchaseRepository.read(1).getOperationDate());
     }
 
     @Test
     @Override
     public void deleteTest() {
-        Purchase purchase = Purchase.builder()
-                .tourScheduleId(1)
-                .travelAgentId(2)
-                .clientId(2)
-                .transportId(2)
-                .transportSeatId(2)
-                .operationDate(new Timestamp(System.currentTimeMillis()))
-                .build();
-        purchaseRepository.create(purchase);
+        purchaseRepository.delete(5);
 
-        @Language("MySQL")
-        String sql = "select max(purchase_id) from purchase";
-        int id = jdbcTemplate.queryForObject(sql, int.class);
-
-        Purchase transportSeat1 = purchaseRepository.read(id);
-
-        Assert.assertNotNull(transportSeat1);
-
-        purchaseRepository.delete(id);
-
-        Assert.assertNull(purchaseRepository.read(id));
+        Assert.assertNull(purchaseRepository.read(5));
     }
 }

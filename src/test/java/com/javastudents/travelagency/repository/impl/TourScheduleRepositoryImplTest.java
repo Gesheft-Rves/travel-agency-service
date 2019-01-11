@@ -50,7 +50,6 @@ public class TourScheduleRepositoryImplTest extends AbstractTest implements Crud
 
         TourSchedule byId = tourScheduleRepository.read(1);
 
-        Assert.assertNotNull(byId);
         Assert.assertEquals(tourIdExpected, byId.getTourId());
         Assert.assertEquals(transportIdExpected, byId.getTransportId());
     }
@@ -72,24 +71,8 @@ public class TourScheduleRepositoryImplTest extends AbstractTest implements Crud
     @Test
     @Override
     public void deleteTest() {
-        TourSchedule tourScheduleNew = TourSchedule.builder()
-                .tourId(1)
-                .startingDateTime(new Timestamp(System.currentTimeMillis()))
-                .endingDateTime(new Timestamp(System.currentTimeMillis()))
-                .transportId(1)
-                .build();
-        tourScheduleRepository.create(tourScheduleNew);
+        tourScheduleRepository.delete(5);
 
-        @Language("MySQL")
-        String sql = "select max(tour_schedule_id) from tour_schedule";
-        int id = jdbcTemplate.queryForObject(sql, int.class);
-
-        TourSchedule tourSchedule = tourScheduleRepository.read(id);
-
-        Assert.assertNotNull(tourSchedule);
-
-        tourScheduleRepository.delete(id);
-
-        Assert.assertNull(tourScheduleRepository.read(id));
+        Assert.assertNull(tourScheduleRepository.read(5));
     }
 }

@@ -68,34 +68,14 @@ public class TravelAgentRepositoryImplTest extends AbstractTest implements CrudT
 
         TravelAgent travelAgentNew = travelAgentRepository.read(1);
 
-        Assert.assertNotNull(travelAgentNew.getId());
         Assert.assertEquals(travelAgent.getId(), travelAgentNew.getId());
     }
 
     @Test
     @Override
     public void deleteTest() {
-        TravelAgent travelAgent = TravelAgent.builder()
-                .travelAgencyId(1)
-                .name("test delete")
-                .surname("testT")
-                .patronymic("s")
-                .enabled(true)
-                .phoneNumber("4646546")
-                .limitAmount(new BigDecimal(455.8454))
-                .build();
-        travelAgentRepository.create(travelAgent);
+        travelAgentRepository.delete(5);
 
-        @Language("MySQL")
-        String sql = "select max(travel_agent_id) from travel_agent";
-        int id = jdbcTemplate.queryForObject(sql, int.class);
-
-        TravelAgent travelAgent1 = travelAgentRepository.read(id);
-
-        Assert.assertNotNull(travelAgent1);
-
-        travelAgentRepository.delete(id);
-
-        Assert.assertNull(travelAgentRepository.read(id));
+        Assert.assertNull(travelAgentRepository.read(5));
     }
 }

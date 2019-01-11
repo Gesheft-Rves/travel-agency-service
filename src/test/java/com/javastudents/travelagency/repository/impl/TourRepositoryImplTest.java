@@ -46,7 +46,7 @@ public class TourRepositoryImplTest extends AbstractTest implements CrudTest {
     @Override
     public void readTest() {
         Tour byId = tourRepository.read(1);
-        Assert.assertNotNull(byId);
+
         Assert.assertEquals("test", byId.getName());
     }
 
@@ -61,33 +61,14 @@ public class TourRepositoryImplTest extends AbstractTest implements CrudTest {
 
         Tour tourNew = tourRepository.read(1);
 
-        Assert.assertNotNull(tourNew.getId());
         Assert.assertEquals("tor New", tourNew.getName());
     }
 
     @Test
     @Override
     public void deleteTest() {
+        tourRepository.delete(5);
 
-        String tourName = "Test delete";
-        Tour tourNew = Tour.builder()
-                .name(tourName)
-                .description("dded")
-                .price(new BigDecimal(22323.2))
-                .tourCategoryId(1)
-                .build();
-        tourRepository.create(tourNew);
-
-        @Language("MySQL")
-        String sql = "select max(tour_id) from tour";
-        int id = jdbcTemplate.queryForObject(sql, int.class);
-
-        Tour tour = tourRepository.read(id);
-
-        Assert.assertNotNull(tour);
-
-        tourRepository.delete(id);
-
-        Assert.assertNull(tourRepository.read(id));
+        Assert.assertNull(tourRepository.read(5));
     }
 }

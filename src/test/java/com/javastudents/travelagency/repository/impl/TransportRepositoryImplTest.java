@@ -41,7 +41,7 @@ public class TransportRepositoryImplTest extends AbstractTest implements CrudTes
     public void readTest() {
         String descriptionExpected = "2";
         Transport byId = transportRepository.read(1);
-        Assert.assertNotNull(byId);
+
         Assert.assertEquals(descriptionExpected, byId.getDescription());
     }
 
@@ -55,30 +55,14 @@ public class TransportRepositoryImplTest extends AbstractTest implements CrudTes
 
         Transport transportNew = transportRepository.read(1);
 
-        Assert.assertNotNull(transportNew.getId());
         Assert.assertEquals(transport.getId(), transportNew.getId());
     }
 
     @Test
     @Override
     public void deleteTest() {
-        Transport transport = Transport.builder()
-                .name("test delete")
-                .description("dded")
-                .passengerSeatQty(5)
-                .build();
-        transportRepository.create(transport);
+        transportRepository.delete(5);
 
-        @Language("MySQL")
-        String sql = "select max(transport_id) from transport";
-        int id = jdbcTemplate.queryForObject(sql, int.class);
-
-        Transport transport1 = transportRepository.read(id);
-
-        Assert.assertNotNull(transport1);
-
-        transportRepository.delete(id);
-
-        Assert.assertNull(transportRepository.read(id));
+        Assert.assertNull(transportRepository.read(5));
     }
 }

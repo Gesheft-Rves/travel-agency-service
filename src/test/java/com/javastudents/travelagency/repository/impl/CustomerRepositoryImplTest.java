@@ -34,7 +34,7 @@ public class CustomerRepositoryImplTest extends AbstractTest implements CrudTest
         repository.create(customer);
 
         @Language("MySQL")
-        String sql = "SELECT name from customer where customer_id = (select max(customer_id) from customer)";
+        String sql = "SELECT name FROM customer WHERE customer_id = (SELECT max(customer_id) FROM customer)";
         String nameFromDb = jdbcTemplate.queryForObject(sql, String.class);
 
         Assert.assertEquals(customerName, nameFromDb);
@@ -49,7 +49,6 @@ public class CustomerRepositoryImplTest extends AbstractTest implements CrudTest
 
         String expected = "Jack";
 
-        Assert.assertNotNull(byName);
         Assert.assertEquals(expected, byName.getName());
 
     }
@@ -64,7 +63,7 @@ public class CustomerRepositoryImplTest extends AbstractTest implements CrudTest
         customer.setName("Piter New");
         repository.update(customer);
         customer = repository.read(2);
-        Assert.assertNotNull(customer);
+
         Assert.assertEquals(customerOld.getId(), customer.getId());
         Assert.assertNotEquals(customer.getName(), customerOld.getName());
     }

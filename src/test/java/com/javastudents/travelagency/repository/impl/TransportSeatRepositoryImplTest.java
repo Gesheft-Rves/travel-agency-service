@@ -42,7 +42,6 @@ public class TransportSeatRepositoryImplTest extends AbstractTest implements Cru
     public void readTest() {
         String commentExpected = "22";
         TransportSeat byId = transportSeatRepository.read(1);
-        Assert.assertNotNull(byId);
         Assert.assertEquals(commentExpected, byId.getComment());
     }
 
@@ -57,30 +56,14 @@ public class TransportSeatRepositoryImplTest extends AbstractTest implements Cru
 
         TransportSeat transportSeatNew = transportSeatRepository.read(1);
 
-        Assert.assertNotNull(transportSeatNew.getId());
         Assert.assertEquals(transportSeat.getId(), transportSeatNew.getId());
     }
 
     @Test
     @Override
     public void deleteTest() {
-        TransportSeat transportSeat = TransportSeat.builder()
-                .transportId(2)
-                .seatNo(2)
-                .comment("comment")
-                .build();
-        transportSeatRepository.create(transportSeat);
+        transportSeatRepository.delete(5);
 
-        @Language("MySQL")
-        String sql = "select max(transport_seat_id) from transport_seat";
-        int id = jdbcTemplate.queryForObject(sql, int.class);
-
-        TransportSeat transportSeat1 = transportSeatRepository.read(id);
-
-        Assert.assertNotNull(transportSeat1);
-
-        transportSeatRepository.delete(id);
-
-        Assert.assertNull(transportSeatRepository.read(id));
+        Assert.assertNull(transportSeatRepository.read(5));
     }
 }
