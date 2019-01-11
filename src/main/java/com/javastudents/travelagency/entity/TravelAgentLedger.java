@@ -11,11 +11,9 @@ import java.sql.Timestamp;
 @Getter @Setter
 @EqualsAndHashCode
 public class TravelAgentLedger implements Entity {
-
     private Integer id;
     private Integer travelAgentId;
     private Timestamp operationDate;
     private Integer purchaseId;
     private BigDecimal amount;
-
 }
