@@ -48,15 +48,15 @@ public class TransportSeatRepositoryImplTest extends AbstractTest implements Cru
     @Test
     @Override
     public void updateTest() {
+        String commentExpected = "transportSeat New";
+
         TransportSeat transportSeat = transportSeatRepository.read(1);
 
-        transportSeat.setComment("transportSeat New");
+        transportSeat.setComment(commentExpected);
 
         transportSeatRepository.update(transportSeat);
 
-        TransportSeat transportSeatNew = transportSeatRepository.read(1);
-
-        Assert.assertEquals(transportSeat.getId(), transportSeatNew.getId());
+        Assert.assertEquals(commentExpected, transportSeatRepository.read(1).getComment());
     }
 
     @Test

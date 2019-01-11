@@ -59,15 +59,15 @@ public class TravelAgentRepositoryImplTest extends AbstractTest implements CrudT
     @Test
     @Override
     public void updateTest() {
+        String nameExpected = "travelAgent new";
+
         TravelAgent travelAgent = travelAgentRepository.read(1);
 
-        travelAgent.setName("travelAgent new");
+        travelAgent.setName(nameExpected);
 
         travelAgentRepository.update(travelAgent);
 
-        TravelAgent travelAgentNew = travelAgentRepository.read(1);
-
-        Assert.assertEquals(travelAgent.getId(), travelAgentNew.getId());
+        Assert.assertEquals(nameExpected, travelAgentRepository.read(1).getName());
     }
 
     @Test

@@ -53,15 +53,15 @@ public class TravelAgentLedgerRepositoryImplTest extends AbstractTest implements
     @Test
     @Override
     public void updateTest() {
+        BigDecimal amountExpected = new BigDecimal(12.22);
+
         TravelAgentLedger travelAgentLedger = travelAgentLedgerRepository.read(1);
 
-        travelAgentLedger.setAmount(new BigDecimal(12.22));
+        travelAgentLedger.setAmount(amountExpected);
 
         travelAgentLedgerRepository.update(travelAgentLedger);
 
-        TravelAgentLedger travelAgentLedgerNew = travelAgentLedgerRepository.read(1);
-
-        Assert.assertEquals(travelAgentLedger.getId(), travelAgentLedgerNew.getId());
+        Assert.assertEquals(amountExpected, travelAgentLedgerRepository.read(1).getAmount());
     }
 
     @Test

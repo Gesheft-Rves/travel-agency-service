@@ -66,14 +66,17 @@ public class PurchaseRepositoryImplTest extends AbstractTest implements CrudTest
     @Test
     @Override
     public void updateTest() {
+        Timestamp operationDateExpected = new Timestamp(System.currentTimeMillis());
         Purchase purchase = purchaseRepository.read(1);
-        Timestamp test = purchase.getOperationDate();
 
-        purchase.setOperationDate(new Timestamp(System.currentTimeMillis()));
+        Timestamp operationDateOld = purchase.getOperationDate();
+
+        purchase.setOperationDate(operationDateExpected);
 
         purchaseRepository.update(purchase);
 
-        Assert.assertNotEquals(test, purchaseRepository.read(1).getOperationDate());
+        Assert.assertNotEquals(operationDateOld, purchaseRepository.read(1).getOperationDate());
+        Assert.assertEquals(operationDateExpected,purchaseRepository.read(1).getOperationDate());
     }
 
     @Test

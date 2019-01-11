@@ -50,15 +50,15 @@ public class TravelAgencyRepositoryImplTest extends AbstractTest implements Crud
     @Test
     @Override
     public void updateTest() {
+        String abbreviatedNameExpected = "travelAgency New";
+
         TravelAgency travelAgency = travelAgencyRepository.read(1);
 
-        travelAgency.setAbbreviatedName("travelAgency New");
+        travelAgency.setAbbreviatedName(abbreviatedNameExpected);
 
         travelAgencyRepository.update(travelAgency);
 
-        TravelAgency travelAgencyNew = travelAgencyRepository.read(1);
-
-        Assert.assertEquals(travelAgency.getId(), travelAgencyNew.getId());
+        Assert.assertEquals(abbreviatedNameExpected, travelAgencyRepository.read(1).getAbbreviatedName());
     }
 
     @Test

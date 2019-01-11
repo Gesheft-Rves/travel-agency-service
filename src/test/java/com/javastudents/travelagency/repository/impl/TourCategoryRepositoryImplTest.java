@@ -49,15 +49,15 @@ public class TourCategoryRepositoryImplTest extends AbstractTest implements Crud
     @Test
     @Override
     public void updateTest() {
+        String nameExpected = "tourCategoryNew";
+
         TourCategory tourCategory = tourCategoryRepository.read(1);
 
-        tourCategory.setName("torCategory New");
+        tourCategory.setName(nameExpected);
 
         tourCategoryRepository.update(tourCategory);
 
-        TourCategory tourCategoryNew = tourCategoryRepository.read(1);
-
-        Assert.assertEquals(tourCategory.getId(), tourCategoryNew.getId());
+        Assert.assertEquals(nameExpected, tourCategoryRepository.read(1).getName());
     }
 
     @Test

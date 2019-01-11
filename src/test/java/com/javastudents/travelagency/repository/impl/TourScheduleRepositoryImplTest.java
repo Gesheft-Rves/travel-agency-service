@@ -57,15 +57,15 @@ public class TourScheduleRepositoryImplTest extends AbstractTest implements Crud
     @Test
     @Override
     public void updateTest() {
+        Timestamp timestampExpected = new Timestamp(System.currentTimeMillis());
+
         TourSchedule tourSchedule = tourScheduleRepository.read(1);
 
-        Timestamp timestamp = new Timestamp(System.currentTimeMillis());
-
-        tourSchedule.setStartingDateTime(timestamp);
+        tourSchedule.setStartingDateTime(timestampExpected);
 
         tourScheduleRepository.update(tourSchedule);
 
-        Assert.assertEquals(timestamp, tourSchedule.getStartingDateTime());
+        Assert.assertEquals(timestampExpected, tourScheduleRepository.read(1).getStartingDateTime());
     }
 
     @Test

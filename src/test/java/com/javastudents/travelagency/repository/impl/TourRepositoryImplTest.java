@@ -53,15 +53,14 @@ public class TourRepositoryImplTest extends AbstractTest implements CrudTest {
     @Test
     @Override
     public void updateTest() {
+        String nameExpected = "tor New";
         Tour tour = tourRepository.read(1);
 
-        tour.setName("tor New");
+        tour.setName(nameExpected);
 
         tourRepository.update(tour);
 
-        Tour tourNew = tourRepository.read(1);
-
-        Assert.assertEquals("tor New", tourNew.getName());
+        Assert.assertEquals(nameExpected, tourRepository.read(1).getName());
     }
 
     @Test

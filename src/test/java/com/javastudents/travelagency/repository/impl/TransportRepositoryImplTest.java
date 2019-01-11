@@ -48,14 +48,14 @@ public class TransportRepositoryImplTest extends AbstractTest implements CrudTes
     @Test
     @Override
     public void updateTest() {
+        String nameExpected = "transport New";
+
         Transport transport = transportRepository.read(1);
 
-        transport.setName("transport New");
+        transport.setName(nameExpected);
         transportRepository.update(transport);
 
-        Transport transportNew = transportRepository.read(1);
-
-        Assert.assertEquals(transport.getId(), transportNew.getId());
+        Assert.assertEquals(nameExpected, transportRepository.read(1).getName());
     }
 
     @Test
