@@ -53,7 +53,6 @@ public class TravelAgentRepositoryImplTest extends AbstractTest implements CrudT
         String nameExpected = "test1";
 
         TravelAgent byId = travelAgentRepository.read(1);
-        Assert.assertNotNull(byId);
         Assert.assertEquals(nameExpected, byId.getName());
     }
 
