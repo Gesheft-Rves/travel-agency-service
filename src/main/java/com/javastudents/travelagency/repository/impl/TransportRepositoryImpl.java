@@ -11,7 +11,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class TransportRepositoryImpl implements TransportRepository {
 
-    @Autowired
     private final JdbcTemplate jdbcTemplate;
 
     @Autowired

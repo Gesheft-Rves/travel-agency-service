@@ -11,7 +11,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class TravelAgentRepositoryImpl implements TravelAgentRepository {
 
-    @Autowired
     private final JdbcTemplate jdbcTemplate;
 
     @Autowired
@@ -30,7 +29,7 @@ public class TravelAgentRepositoryImpl implements TravelAgentRepository {
                 travelAgent.getName(),
                 travelAgent.getSurname(),
                 travelAgent.getPatronymic(),
-                travelAgent.isEnabled(),
+                travelAgent.getEnabled(),
                 travelAgent.getPhoneNumber(),
                 travelAgent.getLimitAmount()
         );
@@ -73,7 +72,7 @@ public class TravelAgentRepositoryImpl implements TravelAgentRepository {
                 travelAgent.getName(),
                 travelAgent.getSurname(),
                 travelAgent.getPatronymic(),
-                travelAgent.isEnabled(),
+                travelAgent.getEnabled(),
                 travelAgent.getPhoneNumber(),
                 travelAgent.getLimitAmount(),
                 travelAgent.getId()
