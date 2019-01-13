@@ -13,10 +13,5 @@ import java.sql.SQLException;
         Application.class
 })
 public class AbstractTest {
-   /* @Before
-    public void initTest() throws SQLException {
-        Server webServer = Server.createWebServer("-web",
-                "-webAllowOthers", "-webPort", "8082");
-        webServer.start();
-    }*/
+
 }
