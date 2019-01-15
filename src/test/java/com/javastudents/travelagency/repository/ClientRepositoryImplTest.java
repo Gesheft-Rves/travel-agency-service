@@ -28,7 +28,7 @@ public class ClientRepositoryImplTest extends AbstractTest implements CrudTest {
                 .surname("")
                 .patronymic("")
                 .address("")
-                .phoneNumber(123456789)
+                .phoneNumber("1234")
                 .build();
 
         clientRepository.create(client);

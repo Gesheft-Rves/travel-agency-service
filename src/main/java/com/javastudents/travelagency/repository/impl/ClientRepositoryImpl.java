@@ -54,7 +54,7 @@ public class ClientRepositoryImpl implements ClientRepository {
                             .surname(rs.getString("surname"))
                             .patronymic(rs.getString("patronymic"))
                             .address(rs.getString("address"))
-                            .phoneNumber(rs.getInt("phone_number"))
+                            .phoneNumber(rs.getString("phone_number"))
                             .build()
             );
         } catch (EmptyResultDataAccessException e) {

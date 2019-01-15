@@ -15,5 +15,5 @@ public class Client implements Entity {
     private String surname;
     private String patronymic;
     private String address;
-    private Integer phoneNumber;
+    private String phoneNumber;
 }
