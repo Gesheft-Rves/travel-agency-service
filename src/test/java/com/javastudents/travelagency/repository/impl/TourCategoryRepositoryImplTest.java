@@ -32,7 +32,7 @@ public class TourCategoryRepositoryImplTest extends AbstractTest implements Crud
         tourCategoryRepository.create(tourCategory);
 
         @Language("MySQL")
-        String sql = "SELECT name from tour_category where tour_category_id = (select max(tour_category_id) from tour_category)";
+        String sql = "SELECT name FROM tour_category WHERE tour_category_id = (SELECT MAX(tour_category_id) FROM tour_category)";
         String nameFromDb = jdbcTemplate.queryForObject(sql, String.class);
 
         Assert.assertEquals(tourCategoryName, nameFromDb);

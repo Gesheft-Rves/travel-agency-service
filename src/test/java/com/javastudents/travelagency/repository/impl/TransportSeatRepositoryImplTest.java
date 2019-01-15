@@ -31,7 +31,7 @@ public class TransportSeatRepositoryImplTest extends AbstractTest implements Cru
         transportSeatRepository.create(transportSeat);
 
         @Language("MySQL")
-        String sql = "SELECT comment from transport_seat where transport_seat_id = (select max(transport_seat_id) from transport_seat)";
+        String sql = "SELECT comment FROM transport_seat WHERE transport_seat_id = (SELECT MAX(transport_seat_id) FROM transport_seat)";
         String commentDB = jdbcTemplate.queryForObject(sql, String.class);
 
         Assert.assertEquals(comment, commentDB);

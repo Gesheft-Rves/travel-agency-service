@@ -34,7 +34,7 @@ public class TravelAgencyRepositoryImplTest extends AbstractTest implements Crud
         travelAgencyRepository.create(travelAgency);
 
         @Language("MySQL")
-        String sql = "SELECT abbreviated_name from travel_agency where travel_agency_id = (select max(travel_agency_id) from travel_agency)";
+        String sql = "SELECT abbreviated_name FROM travel_agency WHERE travel_agency_id = (SELECT MAX(travel_agency_id) FROM travel_agency)";
         String nameFromDb = jdbcTemplate.queryForObject(sql, String.class);
 
         Assert.assertEquals(travelAgencyName, nameFromDb);

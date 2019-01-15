@@ -33,7 +33,7 @@ public class DepartmentRepositoryImplTest extends AbstractTest implements CrudTe
         repository.create(department);
 
         @Language("MySQL")
-        String sql = "SELECT name from department where department_id = (select max(department_id) from department)";
+        String sql = "SELECT name FROM department WHERE department_id = (SELECT MAX(department_id) FROM department)";
 
         String nameFromDb = jdbcTemplate.queryForObject(sql, String.class);
 

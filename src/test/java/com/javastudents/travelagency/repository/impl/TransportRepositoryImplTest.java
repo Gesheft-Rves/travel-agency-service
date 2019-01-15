@@ -30,7 +30,7 @@ public class TransportRepositoryImplTest extends AbstractTest implements CrudTes
         transportRepository.create(transport);
 
         @Language("MySQL")
-        String sql = "SELECT name from transport where transport_id = (select max(transport_id) from transport)";
+        String sql = "SELECT name FROM transport WHERE transport_id = (SELECT MAX(transport_id) FROM transport)";
         String nameFromDb = jdbcTemplate.queryForObject(sql, String.class);
 
         Assert.assertEquals(transportName, nameFromDb);

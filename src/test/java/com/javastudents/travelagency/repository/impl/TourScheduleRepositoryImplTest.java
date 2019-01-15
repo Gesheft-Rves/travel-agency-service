@@ -36,7 +36,7 @@ public class TourScheduleRepositoryImplTest extends AbstractTest implements Crud
         tourScheduleRepository.create(tourSchedule);
 
         @Language("MySQL")
-        String sql = "SELECT starting_date_time from tour_schedule where tour_schedule_id = (select max(tour_schedule_id) from tour_schedule)";
+        String sql = "SELECT starting_date_time FROM tour_schedule WHERE tour_schedule_id = (SELECT MAX(tour_schedule_id) FROM tour_schedule)";
         Timestamp startingDateTimeTest = jdbcTemplate.queryForObject(sql, Timestamp.class);
 
         Assert.assertEquals(timestamp, startingDateTimeTest);
@@ -45,13 +45,12 @@ public class TourScheduleRepositoryImplTest extends AbstractTest implements Crud
     @Test
     @Override
     public void readTest() {
-        Integer tourIdExpected = 1;
-        Integer transportIdExpected = 1;
+        Integer expected = 1;
 
         TourSchedule byId = tourScheduleRepository.read(1);
 
-        Assert.assertEquals(tourIdExpected, byId.getTourId());
-        Assert.assertEquals(transportIdExpected, byId.getTransportId());
+        Assert.assertEquals(expected, byId.getTourId());
+        Assert.assertEquals(expected, byId.getTransportId());
     }
 
     @Test

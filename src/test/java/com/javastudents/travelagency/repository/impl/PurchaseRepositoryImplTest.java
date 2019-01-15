@@ -37,7 +37,7 @@ public class PurchaseRepositoryImplTest extends AbstractTest implements CrudTest
         purchaseRepository.create(purchase);
 
         @Language("MySQL")
-        String sql = "SELECT operation_date from purchase where purchase_id = (select max(purchase_id) from purchase)";
+        String sql = "SELECT operation_date FROM purchase WHERE purchase_id = (SELECT MAX(purchase_id) FROM purchase)";
 
         Timestamp operationDate = jdbcTemplate.queryForObject(sql, Timestamp.class);
 
@@ -48,19 +48,15 @@ public class PurchaseRepositoryImplTest extends AbstractTest implements CrudTest
     @Override
     public void readTest() {
 
-        Integer tourScheduleIdExpected = 1;
-        Integer travelAgentIdExpected = 1;
-        Integer clientIdExpected = 1;
-        Integer transportIdExpected = 1;
-        Integer transportSeatIdExpected = 1;
+        Integer expected = 1;
 
         Purchase byId = purchaseRepository.read(1);
 
-        Assert.assertEquals(tourScheduleIdExpected, byId.getTourScheduleId());
-        Assert.assertEquals(travelAgentIdExpected, byId.getTravelAgentId());
-        Assert.assertEquals(clientIdExpected, byId.getClientId());
-        Assert.assertEquals(transportIdExpected, byId.getClientId());
-        Assert.assertEquals(transportSeatIdExpected, byId.getTransportSeatId());
+        Assert.assertEquals(expected, byId.getTourScheduleId());
+        Assert.assertEquals(expected, byId.getTravelAgentId());
+        Assert.assertEquals(expected, byId.getClientId());
+        Assert.assertEquals(expected, byId.getClientId());
+        Assert.assertEquals(expected, byId.getTransportSeatId());
     }
 
     @Test

@@ -40,7 +40,7 @@ public class TravelAgentRepositoryImplTest extends AbstractTest implements CrudT
         travelAgentRepository.create(travelAgent);
 
         @Language("MySQL")
-        String sql = "SELECT name from travel_agent where travel_agent_id = (select max(travel_agent_id) from travel_agent)";
+        String sql = "SELECT name FROM travel_agent WHERE travel_agent_id = (SELECT max(travel_agent_id) FROM travel_agent)";
 
         String nameFromDb = jdbcTemplate.queryForObject(sql, String.class);
 

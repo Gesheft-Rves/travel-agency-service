@@ -36,7 +36,7 @@ public class TravelAgentLedgerRepositoryImplTest extends AbstractTest implements
         travelAgentLedgerRepository.create(travelAgentLedger);
 
         @Language("MySQL")
-        String sql = "SELECT operation_date from travel_agent_ledger where travel_agent_ledger_id = (select max(travel_agent_ledger_id) from travel_agent_ledger)";
+        String sql = "SELECT operation_date FROM travel_agent_ledger WHERE travel_agent_ledger_id = (SELECT MAX(travel_agent_ledger_id) FROM travel_agent_ledger)";
         Timestamp operationDate = jdbcTemplate.queryForObject(sql, Timestamp.class);
 
         Assert.assertEquals(timestamp, operationDate);
