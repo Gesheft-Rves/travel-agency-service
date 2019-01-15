@@ -15,7 +15,7 @@ public class AppUserRoleRepositoryImplTest extends AbstractTest implements CrudT
     private JdbcTemplate jdbcTemplate;
 
     @Autowired
-    private AppUserRoleRepository repository;
+    private AppUserRoleRepository appUserRoleRepository;
 
     @Autowired
     private AppRoleRepository appRoleRepository;
@@ -35,7 +35,7 @@ public class AppUserRoleRepositoryImplTest extends AbstractTest implements CrudT
                 .roleId(roleId)
                 .build();
 
-        repository.create(appUserRole);
+        appUserRoleRepository.create(appUserRole);
 
         @Language("MySQL")
         String sqlNew = "SELECT MAX(app_user_role_id) from app_user_role ";
@@ -50,7 +50,7 @@ public class AppUserRoleRepositoryImplTest extends AbstractTest implements CrudT
     @Override
     public void readTest() {
         String nameRoleExpected = "appRole_2";
-        AppUserRole byId = repository.read(1);
+        AppUserRole byId = appUserRoleRepository.read(1);
         Integer appRoleId = byId.getRoleId();
         String appRoleName = appRoleRepository.read(appRoleId).getName();
 
@@ -60,18 +60,18 @@ public class AppUserRoleRepositoryImplTest extends AbstractTest implements CrudT
     @Test
     @Override
     public void updateTest() {
-        AppUserRole appUserRole = repository.read(2);
+        AppUserRole appUserRole = appUserRoleRepository.read(2);
         appUserRole.setRoleId(4);
-        repository.update(appUserRole);
+        appUserRoleRepository.update(appUserRole);
 
-        Assert.assertEquals(appUserRole.getRoleId(), repository.read(2).getRoleId());
+        Assert.assertEquals(appUserRole.getRoleId(), appUserRoleRepository.read(2).getRoleId());
     }
 
     @Test
     @Override
     public void deleteTest() {
-        repository.delete(4);
+        appUserRoleRepository.delete(4);
 
-        Assert.assertNull(repository.read(4));
+        Assert.assertNull(appUserRoleRepository.read(4));
     }
 }
