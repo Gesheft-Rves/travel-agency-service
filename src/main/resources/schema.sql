@@ -103,7 +103,7 @@ create table if not exists client (
   name varchar(50) not null,
   surname varchar(50) not null,
   patronymic varchar(50) not null,
-  address  varchar(100) not null,
+  address  varchar(50) not null,
   phone_number int not null,
   foreign key (document_type_id) references document_type(document_type_id),
   UNIQUE (document_type_id, document_series_number)
