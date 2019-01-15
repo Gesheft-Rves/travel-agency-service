@@ -18,21 +18,21 @@ public class TravelAgentServiceImpl implements TravelAgentService {
 
     @Override
     public void create(TravelAgent travelAgent) {
-
+        repository.create(travelAgent);
     }
 
     @Override
     public TravelAgent read(int travelAgentId) {
-        return null;
+        return repository.read(travelAgentId);
     }
 
     @Override
     public void update(TravelAgent travelAgent) {
-
+        repository.update(travelAgent);
     }
 
     @Override
     public void delete(int travelAgentId) {
-
+        repository.delete(travelAgentId);
     }
 }
