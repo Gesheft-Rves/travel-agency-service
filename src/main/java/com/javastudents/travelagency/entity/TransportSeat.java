@@ -1,13 +1,15 @@
 package com.javastudents.travelagency.entity;
 
+
 import lombok.*;
 
 @Builder
 @ToString
 @Getter @Setter
 @EqualsAndHashCode
-public class Department implements Entity {
-
+public class TransportSeat implements Entity {
     private Integer id;
-    private String name;
+    private Integer transportId;
+    private Integer seatNo;
+    private String comment;
 }

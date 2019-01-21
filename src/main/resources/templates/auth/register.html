@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+
+    <title>Register</title>
+    <!--/*/ <th:block th:include="fragments/header:: head"></th:block> /*/-->
+
+</head>
+<body>
+<div class="container">
+
+    <h2 th:text="#{reg.header}"></h2>
+    <a href="?lang=en" th:text="#{lang.eng}"></a> | <a href="?lang=ru" th:text="#{lang.rus}"></a>
+    <div class="row">
+        <div class="col-md6 col-md-offset-3">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title" th:text="#{reg.title}"></h3>
+            </div>
+            <div class="panel-body">
+                <ul>
+                    <li th:each="err : ${#fields.errors('*')}" th:text="${err}" />
+                </ul>
+                <form th:action="@{/register}" th:object="${userForm}" method="post">
+                    <div class="form-group">
+                        <label for="username" th:text="#{reg.username}"></label>
+                        <input type="text" class="form-control" id="username" th:placeholder="#{reg.username}" th:field="*{username}" th:required="required"/>
+                        <div th:if="${#fields.hasErrors('username')}" th:errors="*{username}" class="alert alert-danger" role="alert"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email" th:text="#{reg.email}">Email</label>
+                        <input type="email" class="form-control" id="email" th:placeholder="#{reg.email}" th:field="*{email}" th:required="required"/>
+                        <div th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="alert alert-danger" role="alert"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="password" th:text="#{reg.password}"></label>
+                        <input type="password" class="form-control" id="password" th:placeholder="#{reg.password}" th:field="*{password}" th:required="required" onkeyup="check()"/>
+                        <span style="float: right" id="srenghthValue"></span>
+                        <div th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="alert alert-danger" role="alert"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="matchingPassword" th:text="#{reg.passConfirm}"></label>
+                        <input type="password" class="form-control" id="matchingPassword" th:placeholder="#{reg.passConfirm}" th:field="*{matchingPassword}" th:required="required"/>
+                        <span style="float: right" id="matchingPassword"></span>
+                        <div th:if="${#fields.hasErrors('matchingPassword')}" th:errors="*{matchingPassword}" class="alert alert-danger" role="alert"></div>
+                    </div>
+
+                    <div class="btn-group" role="group">
+                        <button type="submit" class="btn btn-primary" th:text="#{reg.button}"></button>
+                        <button type="button" class="btn btn-success" th:text="#{login.button}" onclick="location.href='/login';" ></button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+</body>
+</html>

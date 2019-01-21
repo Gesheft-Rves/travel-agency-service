@@ -1,14 +1,16 @@
-package com.javastudents.travelagency.repository;
+package com.javastudents.travelagency.repository.impl;
 
 import com.javastudents.travelagency.AbstractTest;
 import com.javastudents.travelagency.entity.Department;
+import com.javastudents.travelagency.repository.CrudTest;
+import com.javastudents.travelagency.repository.DepartmentRepository;
 import org.intellij.lang.annotations.Language;
 import org.junit.Assert;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 
-public class DepartmentRepositoryTest extends AbstractTest implements CrudTest {
+public class DepartmentRepositoryImplTest extends AbstractTest implements CrudTest {
 
 
     @Autowired
@@ -31,7 +33,7 @@ public class DepartmentRepositoryTest extends AbstractTest implements CrudTest {
         repository.create(department);
 
         @Language("MySQL")
-        String sql = "SELECT name from department where department_id = (select max(department_id) from department)";
+        String sql = "SELECT name FROM department WHERE department_id = (SELECT MAX(department_id) FROM department)";
 
         String nameFromDb = jdbcTemplate.queryForObject(sql, String.class);
 
