@@ -169,7 +169,7 @@ create table if not exists purchase (
 );
 
 create table if not exists travel_agent_ledger (
-  traval_agent_ledger_id serial primary key ,
+  travel_agent_ledger_id serial primary key ,
   travel_agent_id int not null,
   operation_date TIMESTAMP NOT NULL ,
   purchase_id int,
