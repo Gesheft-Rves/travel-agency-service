@@ -1,8 +1,3 @@
-insert into department (name) values ('West');
-insert into department (name) values ('East');
-insert into department (name) values ('South');
-insert into department (name) values ('North');
-
 INSERT INTO travel_agency (abbreviated_name, address, phone_number, site, email_address) VALUES ('name_1','addres_1',1,'site_1','email_1');
 INSERT INTO travel_agency (abbreviated_name, address, phone_number, site, email_address) VALUES ('name_2','addres_2',2,'site_2','email_2');
 INSERT INTO travel_agency (abbreviated_name, address, phone_number, site, email_address) VALUES ('name_3','addres_3',3,'site_3','email_3');
@@ -51,17 +46,6 @@ INSERT INTO client (document_type_id, document_series_number, name, surname, pat
 INSERT INTO client (document_type_id, document_series_number, name, surname, patronymic, address, phone_number) VALUES (3,'03', 'client_name_3', 'client_surname_3', 'client_patronymic_3', 'client_address_3', 3);
 INSERT INTO client (document_type_id, document_series_number, name, surname, patronymic, address, phone_number) VALUES (4,'04', 'client_name_4', 'client_surname_4', 'client_patronymic_4', 'client_address_4', 4);
 INSERT INTO client (document_type_id, document_series_number, name, surname, patronymic, address, phone_number) VALUES (4,'05', 'client_name_5', 'client_surname_5', 'client_patronymic_5', 'client_address_5', 5);
-INSERT INTO`department` (name) VALUES ('West');
-INSERT INTO`department` (name) VALUES ('East');
-INSERT INTO`department` (name) VALUES ('South');
-INSERT INTO`department` (name) VALUES ('North');
-
-INSERT INTO customer (name, department_id) VALUES ('Jack',  1);
-INSERT INTO customer (name, department_id) VALUES ('Piter1',  2);
-INSERT INTO customer (name, department_id) VALUES ('Piter2',  2);
-INSERT INTO customer (name, department_id) VALUES ('Piter3',  2);
-INSERT INTO customer (name, department_id) VALUES ('Green', 3);
-INSERT INTO customer (name, department_id) VALUES ('Floyd', 4);
 
 INSERT INTO tour_category (name) VALUES ('1');
 INSERT INTO tour_category (name) VALUES ('2');

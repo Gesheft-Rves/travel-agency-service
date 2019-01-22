@@ -1,7 +1,10 @@
-package com.javastudents.travelagency.repository;
+package com.javastudents.travelagency.repository.impl;
 
 import com.javastudents.travelagency.AbstractTest;
 import com.javastudents.travelagency.entity.AppRolePermission;
+import com.javastudents.travelagency.repository.AppRolePermissionRepository;
+import com.javastudents.travelagency.repository.AppRoleRepository;
+import com.javastudents.travelagency.repository.CrudTest;
 import org.intellij.lang.annotations.Language;
 import org.junit.Assert;
 import org.junit.Test;

@@ -1,7 +1,9 @@
-package com.javastudents.travelagency.repository;
+package com.javastudents.travelagency.repository.impl;
 
 import com.javastudents.travelagency.AbstractTest;
 import com.javastudents.travelagency.entity.AppUser;
+import com.javastudents.travelagency.repository.AppUserRepository;
+import com.javastudents.travelagency.repository.CrudTest;
 import org.intellij.lang.annotations.Language;
 import org.junit.Assert;
 import org.junit.Test;
@@ -9,7 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 
-public class AppUserRepositoryImplTest extends AbstractTest implements CrudTest{
+public class AppUserRepositoryImplTest extends AbstractTest implements CrudTest {
 
     @Autowired
     private JdbcTemplate jdbcTemplate;

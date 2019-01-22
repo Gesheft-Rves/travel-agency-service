@@ -1,14 +1,16 @@
-package com.javastudents.travelagency.repository;
+package com.javastudents.travelagency.repository.impl;
 
 import com.javastudents.travelagency.AbstractTest;
 import com.javastudents.travelagency.entity.DocumentType;
+import com.javastudents.travelagency.repository.CrudTest;
+import com.javastudents.travelagency.repository.DocumentTypeRepository;
 import org.intellij.lang.annotations.Language;
 import org.junit.Assert;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 
-public class DocumentTypeRepositoryImplTest extends AbstractTest implements CrudTest{
+public class DocumentTypeRepositoryImplTest extends AbstractTest implements CrudTest {
 
     @Autowired
     private JdbcTemplate jdbcTemplate;

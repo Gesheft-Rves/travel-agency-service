@@ -1,7 +1,9 @@
-package com.javastudents.travelagency.repository;
+package com.javastudents.travelagency.repository.impl;
 
 import com.javastudents.travelagency.AbstractTest;
 import com.javastudents.travelagency.entity.AppPermission;
+import com.javastudents.travelagency.repository.AppPermissionRepository;
+import com.javastudents.travelagency.repository.CrudTest;
 import org.intellij.lang.annotations.Language;
 import org.junit.Assert;
 import org.junit.Test;
@@ -57,8 +59,8 @@ public class AppPermissionRepositoryImplTest extends AbstractTest implements Cru
     @Test
     @Override
     public void deleteTest() {
-        appPermissionRepository.delete(4);
+        appPermissionRepository.delete(5);
 
-        Assert.assertNull(appPermissionRepository.read(4));
+        Assert.assertNull(appPermissionRepository.read(5));
     }
 }
