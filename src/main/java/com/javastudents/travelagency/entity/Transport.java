@@ -6,7 +6,9 @@ import lombok.*;
 @ToString
 @Getter @Setter
 @EqualsAndHashCode
-public class AppRole implements Entity {
-    private Integer appRoleId;
+public class Transport implements Entity {
+    private Integer id;
     private String name;
+    private String description;
+    private Integer passengerSeatQty;
 }
