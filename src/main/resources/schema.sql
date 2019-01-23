@@ -15,21 +15,7 @@ drop table if exists tour;
 drop table if exists tour_category;
 drop table if exists transport_seat;
 drop table if exists transport;
-drop table if exists customer;
-drop table if exists department;
 drop table if exists document_type;
-
-create table if not exists department (
-  department_id serial primary key ,
-  name varchar (45)
-);
-
-create table if not exists customer (
-  customer_id serial primary key,
-  department_id int,
-  name varchar (45),
-  foreign key (department_id) references department(department_id)
-);
 
 create table if not exists app_role (
   app_role_id serial not null primary key,
