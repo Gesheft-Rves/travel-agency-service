@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+    <title th:text="TravelAgency"></title>
+    <!--/*/ <th:block th:include="fragments/header :: head"></th:block> /*/-->
+</head>
+<body>
+<div class="container">
+    <!--/*/ <th:block th:include="fragments/header :: header"></th:block> /*/-->
+</div>
+    <a th:href="${'/travelagencys/new'}"> Создать новый объект класса TravelAgency </a>
+    <div th:if="${not #lists.isEmpty(travelagencys)}">
+        <h2> Список TravelAgency </h2>
+        <table class="table table-striped">
+            <tr>
+                
+                <th th:text="id"></th>
+                <th th:text="abbreviatedName"></th>
+                <th th:text="address"></th>
+                <th th:text="phoneNumber"></th>
+                <th th:text="site"></th>
+                <th th:text="emailAddress"></th>
+
+            </tr>
+            <tr th:each="object : ${travelagencys}">
+                
+                <td th:text="${object.id}"></td>\n
+                <td th:text="${object.abbreviatedName}"></td>\n
+                <td th:text="${object.address}"></td>\n
+                <td th:text="${object.phoneNumber}"></td>\n
+                <td th:text="${object.site}"></td>\n
+                <td th:text="${object.emailAddress}"></td>\n
+
+                <td>
+                    <ul class="list-inline">
+                        <li><a th:href="${'/travelagencys/delete/' + object.id}" th:text="Удалить"></a> </li>
+                        <li><a th:href="${'/travelagencys/edit/' + object.id}" th:text="Редактировать"></a> </li>
+                        <li><a th:href="${'/travelagencys/details/' + object.id}" th:text="Карточка"></a> </li>
+                    </ul>
+                </td>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>

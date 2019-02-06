@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+    <title th:text="'Новый TourSchedule'"></title>
+    <!--/*/ <th:block th:include="fragments/header:: head"></th:block> /*/-->
+</head>
+<body>
+<div class="container">
+    <!--/*/ <th:block th:include="fragments/header :: header"></th:block> /*/-->
+    <h2  th:text="'Новый объект класса TourSchedule'"></h2>
+    <div>
+        <form class="form-horizontal" th:object="${tourschedule}" th:action="@{/tourschedules/save}" method="post">
+            <input type="hidden" th:field="*{id}"/>
+             
+            <div class="form-group">
+                <label class="col-sm-2 control-label">id</label>
+               <div class="col-sm-10">
+                    <div class="col-sm-10">
+                        <input type="text" placeholder="Введите значение для id" class="form-control" th:field="*{id}" th:required="required"/>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">tourId</label>
+               <div class="col-sm-10">
+                    <div class="col-sm-10">
+                        <input type="text" placeholder="Введите значение для tourId" class="form-control" th:field="*{tourId}" th:required="required"/>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">startingDateTime</label>
+               <div class="col-sm-10">
+                    <div class="col-sm-10">
+                        <input type="text" placeholder="Введите значение для startingDateTime" class="form-control" th:field="*{startingDateTime}" th:required="required"/>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">endingDateTime</label>
+               <div class="col-sm-10">
+                    <div class="col-sm-10">
+                        <input type="text" placeholder="Введите значение для endingDateTime" class="form-control" th:field="*{endingDateTime}" th:required="required"/>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">transportId</label>
+               <div class="col-sm-10">
+                    <div class="col-sm-10">
+                        <input type="text" placeholder="Введите значение для transportId" class="form-control" th:field="*{transportId}" th:required="required"/>
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <button type="submit" class="btn btn-default btn-block" th:text="'Сохранить'"></button>
+            </div>
+        </form>
+    </div>
+</div>
+</body>
+</html>

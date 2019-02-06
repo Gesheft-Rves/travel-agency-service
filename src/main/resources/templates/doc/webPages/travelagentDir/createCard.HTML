@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+    <title th:text="'Карточка объекта TravelAgent'"></title>
+    <!--/*/ <th:block th:include="fragments/header :: head"></th:block> /*/-->
+</head>
+<body>
+<div class="container">
+    <!--/*/ <th:block th:include="fragments/header :: header"></th:block> /*/-->
+    <h2 th:text="'Карточка TravelAgent '"></h2>
+    <div>
+        <form class="form-horizontal">
+            <div class="form-group">
+                
+                <label class="col-sm-2 control-label">id</label>
+                <div class="col-sm-10">
+                    <p class="form-control-static" th:text="${travelagent.id}"></p>
+                </div>
+                <label class="col-sm-2 control-label">travelAgencyId</label>
+                <div class="col-sm-10">
+                    <p class="form-control-static" th:text="${travelagent.travelAgencyId}"></p>
+                </div>
+                <label class="col-sm-2 control-label">name</label>
+                <div class="col-sm-10">
+                    <p class="form-control-static" th:text="${travelagent.name}"></p>
+                </div>
+                <label class="col-sm-2 control-label">surname</label>
+                <div class="col-sm-10">
+                    <p class="form-control-static" th:text="${travelagent.surname}"></p>
+                </div>
+                <label class="col-sm-2 control-label">patronymic</label>
+                <div class="col-sm-10">
+                    <p class="form-control-static" th:text="${travelagent.patronymic}"></p>
+                </div>
+                <label class="col-sm-2 control-label">enabled</label>
+                <div class="col-sm-10">
+                    <p class="form-control-static" th:text="${travelagent.enabled}"></p>
+                </div>
+                <label class="col-sm-2 control-label">phoneNumber</label>
+                <div class="col-sm-10">
+                    <p class="form-control-static" th:text="${travelagent.phoneNumber}"></p>
+                </div>
+                <label class="col-sm-2 control-label">limitAmount</label>
+                <div class="col-sm-10">
+                    <p class="form-control-static" th:text="${travelagent.limitAmount}"></p>
+                </div>
+
+            </div>
+        </form>
+    </div>
+</div>
+</body>
+</html>
