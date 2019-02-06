@@ -8,6 +8,8 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 public class AppPermissionRepositoryImpl implements AppPermissionRepository {
 
@@ -60,5 +62,22 @@ public class AppPermissionRepositoryImpl implements AppPermissionRepository {
         String query = "DELETE FROM app_permission WHERE app_permission_id = ?";
 
         jdbcTemplate.update(query, appPermissionId);
+    }
+
+    public List<AppPermission> list () {
+        @Language("MySQL")
+        String query = "SELECT * FROM app_permission";
+
+        try {
+            return jdbcTemplate.query(
+                    query, new Object[]{},
+                    (rs, rowNum) -> AppPermission.builder()
+                            .appPermissionId(rs.getInt("app_permission_id"))
+                            .name(rs.getString("name"))
+                            .build()
+            );
+        } catch (EmptyResultDataAccessException e) {
+            return null;
+        }
     }
 }
