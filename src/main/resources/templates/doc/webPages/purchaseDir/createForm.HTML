@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+    <title th:text="'Новый Purchase'"></title>
+    <!--/*/ <th:block th:include="fragments/header:: head"></th:block> /*/-->
+</head>
+<body>
+<div class="container">
+    <!--/*/ <th:block th:include="fragments/header :: header"></th:block> /*/-->
+    <h2  th:text="'Новый объект класса Purchase'"></h2>
+    <div>
+        <form class="form-horizontal" th:object="${purchase}" th:action="@{/purchase/save}" method="post">
+            <input type="hidden" th:field="*{purchaseId}"/>
+             
+            <div class="form-group">
+                <label class="col-sm-2 control-label">purchaseId</label>
+               <div class="col-sm-10">
+                    <div class="col-sm-10">
+                        <input type="text" placeholder="Введите значение для id" class="form-control" th:field="*{purchaseId}" th:required="required"/>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">tourScheduleId</label>
+               <div class="col-sm-10">
+                    <div class="col-sm-10">
+                        <input type="text" placeholder="Введите значение для tourScheduleId" class="form-control" th:field="*{tourScheduleId}" th:required="required"/>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">travelAgentId</label>
+               <div class="col-sm-10">
+                    <div class="col-sm-10">
+                        <input type="text" placeholder="Введите значение для travelAgentId" class="form-control" th:field="*{travelAgentId}" th:required="required"/>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">clientId</label>
+               <div class="col-sm-10">
+                    <div class="col-sm-10">
+                        <input type="text" placeholder="Введите значение для clientId" class="form-control" th:field="*{clientId}" th:required="required"/>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">transportId</label>
+               <div class="col-sm-10">
+                    <div class="col-sm-10">
+                        <input type="text" placeholder="Введите значение для transportId" class="form-control" th:field="*{transportId}" th:required="required"/>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">transportSeatId</label>
+               <div class="col-sm-10">
+                    <div class="col-sm-10">
+                        <input type="text" placeholder="Введите значение для transportSeatId" class="form-control" th:field="*{transportSeatId}" th:required="required"/>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">operationDate</label>
+               <div class="col-sm-10">
+                    <div class="col-sm-10">
+                        <input type="text" placeholder="Введите значение для operationDate" class="form-control" th:field="*{operationDate}" th:required="required"/>
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <button type="submit" class="btn btn-default btn-block" th:text="'Сохранить'"></button>
+            </div>
+        </form>
+    </div>
+</div>
+</body>
+</html>

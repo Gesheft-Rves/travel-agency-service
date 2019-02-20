@@ -6,6 +6,8 @@ import com.javastudents.travelagency.service.PurchaseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class PurchaseServiceImpl implements PurchaseService {
 
@@ -34,5 +36,9 @@ public class PurchaseServiceImpl implements PurchaseService {
     @Override
     public void delete(int purchaseId) {
         repository.delete(purchaseId);
+    }
+
+    public List<Purchase> list() {
+        return repository.list();
     }
 }
