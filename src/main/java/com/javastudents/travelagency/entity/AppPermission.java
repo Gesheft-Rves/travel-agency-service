@@ -10,4 +10,12 @@ import lombok.*;
 public class AppPermission implements Entity {
     private Integer appPermissionId;
     private String name;
+
+    public AppPermission() {
+    }
+
+    public AppPermission(Integer appPermissionId, String name) {
+        this.appPermissionId = appPermissionId;
+        this.name = name;
+    }
 }
