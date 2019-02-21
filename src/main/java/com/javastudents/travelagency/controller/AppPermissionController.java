@@ -19,7 +19,7 @@ public class AppPermissionController {
     @RequestMapping("/apppermissionList")
     public String list(Model model){
         model.addAttribute("apppermissions", appPermissionService.list());
-        return "doc/webPages/apppermissionDir/list";
+        return "webPages/apppermission/list";
     }
 
     @RequestMapping("/apppermissions/delete/{id}")
@@ -31,13 +31,13 @@ public class AppPermissionController {
     @RequestMapping("/apppermissions/edit/{id}")
     public String edit(@PathVariable  Integer id, Model model){
         model.addAttribute("apppermission", appPermissionService.read(id));
-        return "doc/webPages/apppermissionDir/form";
+        return "webPages/apppermission/form";
     }
 
     @RequestMapping("/apppermissions/new")
     public String newAppPermission(Model model){
         model.addAttribute("apppermission", new AppPermission());
-        return "doc/webPages/apppermissionDir/form";
+        return "webPages/apppermission/form";
     }
 
     @RequestMapping(value = "/apppermissions/save", method = RequestMethod.POST)
@@ -53,6 +53,6 @@ public class AppPermissionController {
     @RequestMapping("/apppermissions/details/{id}")
     public String details(@PathVariable Integer id, Model model){
         model.addAttribute("apppermission", appPermissionService.read(id));
-        return "doc/webPages/apppermissionDir/card";
+        return "webPages/apppermission/card";
     }
 }
