@@ -7,7 +7,7 @@
 <body>
 <div class="container">
     <!--/*/ <th:block th:include="fragments/header :: header"></th:block> /*/-->
-</div>
+
     <a th:href="${'/%classNameToLowerCase%s/new'}"> Создать новый объект класса %className% </a>
     <div th:if="${not #lists.isEmpty(%classNameToLowerCase%s)}">
         <h2> Список %className% </h2>
@@ -27,5 +27,6 @@
             </tr>
         </table>
     </div>
+</div>
 </body>
 </html>

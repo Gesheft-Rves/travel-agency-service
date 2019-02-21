@@ -22,19 +22,19 @@ public class PurchaseController {
     @GetMapping("/list")
     public String list(Model model){
         model.addAttribute("purchases", purchaseService.list());
-        return "doc/webPages/purchaseDir/createList";
+        return "doc/webPages/purchaseDir/list";
     }
 
     @DeleteMapping("/delete/{id}")
     public String delete(@PathVariable Integer id){
         purchaseService.delete(id);
-        return "redirect:/list";
+        return "redirect:doc/webPages/purchaseDir/list";
     }
 
     @PutMapping("/edit/{id}")
     public String edit(@PathVariable  Integer id, Model model){
         model.addAttribute("purchase", purchaseService.read(id));
-        return "doc/webPages/purchaseDir/createForm";
+        return "doc/webPages/purchaseDir/form";
     }
 
     @GetMapping("/new")
@@ -51,13 +51,13 @@ public class PurchaseController {
         } else {
             purchaseService.update(purchase);
         }
-        return "redirect:/list";
+        return "redirect:doc/webPages/purchaseDir/list";
     }
 
     @GetMapping("/details/{id}")
     public String details(@PathVariable Integer id, Model model){
         model.addAttribute("purchase", purchaseService.read(id));
-        return "doc/webPages/purchaseDir/createCard";
+        return "doc/webPages/purchaseDir/card";
     }
 
 }
