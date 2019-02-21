@@ -63,7 +63,7 @@ public class HTMLCreator {
      * Создает html страницу со списком сущностей
      * @param clazz класс сущности
      */
-    void createList(Class clazz) {
+    void list(Class clazz) {
         createFolders(clazz);
         StringBuilder field = new StringBuilder(System.lineSeparator());
         StringBuilder fieldValues = new StringBuilder(System.lineSeparator());
@@ -103,7 +103,7 @@ public class HTMLCreator {
      * Создает html страницу с формой сущности
      * @param clazz класс сущности
      */
-    void createForm(Class clazz) {
+    void form(Class clazz) {
         createFolders(clazz);
         StringBuilder field = new StringBuilder(System.lineSeparator());
 
@@ -137,7 +137,7 @@ public class HTMLCreator {
      * Создает html страницу с формой сущности
      * @param clazz класс сущности
      */
-    void createCard(Class clazz) {
+    void card(Class clazz) {
         createFolders(clazz);
         StringBuilder field = new StringBuilder(System.lineSeparator());
         try {
@@ -166,9 +166,9 @@ public class HTMLCreator {
     }
 
     void createAll(Class clazz){
-        createList(clazz);
-        createCard(clazz);
-        createForm(clazz);
+        list(clazz);
+        card(clazz);
+        form(clazz);
     }
 }
 
