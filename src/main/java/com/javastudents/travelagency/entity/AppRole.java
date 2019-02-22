@@ -9,4 +9,13 @@ import lombok.*;
 public class AppRole implements Entity {
     private Integer appRoleId;
     private String name;
+
+    public AppRole(Integer appRoleId, String name) {
+        this.appRoleId = appRoleId;
+        this.name = name;
+    }
+
+    public AppRole() {
+    }
+
 }

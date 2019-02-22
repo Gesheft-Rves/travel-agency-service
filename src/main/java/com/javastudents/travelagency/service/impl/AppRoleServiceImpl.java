@@ -6,6 +6,8 @@ import com.javastudents.travelagency.service.AppRoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class AppRoleServiceImpl implements AppRoleService {
 
@@ -34,5 +36,10 @@ public class AppRoleServiceImpl implements AppRoleService {
     @Override
     public void delete(int appRoleId) {
         repository.delete(appRoleId);
+    }
+
+    @Override
+    public List<AppRole> list() {
+        return repository.list();
     }
 }
