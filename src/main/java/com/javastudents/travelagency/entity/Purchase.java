@@ -8,12 +8,16 @@ import java.sql.Timestamp;
 @ToString
 @Getter @Setter
 @EqualsAndHashCode
+@AllArgsConstructor
 public class Purchase implements Entity {
-    private Integer id;
+    private Integer purchaseId;
     private Integer tourScheduleId;
     private Integer travelAgentId;
     private Integer clientId;
     private Integer transportId;
     private Integer transportSeatId;
     private Timestamp operationDate;
+
+    public Purchase() {
+    }
 }

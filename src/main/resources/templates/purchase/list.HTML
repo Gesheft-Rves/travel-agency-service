@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+    <title th:text="Purchase"></title>
+    <!--/*/ <th:block th:include="fragments/header :: head"></th:block> /*/-->
+</head>
+<body>
+<div class="container">
+    <!--/*/ <th:block th:include="fragments/header :: header"></th:block> /*/-->
+    <a th:href="${'/purchase/new'}"> Создать новый объект класса Purchase </a>
+    <div th:if="${not #lists.isEmpty(purchases)}">
+        <h2> Список Purchase </h2>
+        <table class="table table-striped">
+            <tr>
+                
+                <th th:text="purchaseId"></th>
+                <th th:text="tourScheduleId"></th>
+                <th th:text="travelAgentId"></th>
+                <th th:text="clientId"></th>
+                <th th:text="transportId"></th>
+                <th th:text="transportSeatId"></th>
+                <th th:text="operationDate"></th>
+                <th th:test="Действия"></th>
+
+            </tr>
+            <tr th:each="purchase : ${purchases}">
+                
+                <td th:text="${purchase.purchaseId}"></td>
+                <td th:text="${purchase.tourScheduleId}"></td>
+                <td th:text="${purchase.travelAgentId}"></td>
+                <td th:text="${purchase.clientId}"></td>
+                <td th:text="${purchase.transportId}"></td>
+                <td th:text="${purchase.transportSeatId}"></td>
+                <td th:text="${purchase.operationDate}"></td>
+
+                <td>
+                    <ul class="list-inline">
+                        <li><a th:href="${'/purchase/delete/' + purchase.purchaseId}" th:text="Удалить"></a> </li>
+                        <li><a th:href="${'/purchase/edit/' + purchase.purchaseId}" th:text="Редактировать"></a> </li>
+                        <li><a th:href="${'/purchase/details/' + purchase.purchaseId}" th:text="Карточка"></a> </li>
+                    </ul>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+</body>
+</html>

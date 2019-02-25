@@ -8,6 +8,8 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 public class PurchaseRepositoryImpl implements PurchaseRepository {
 
@@ -45,7 +47,7 @@ public class PurchaseRepositoryImpl implements PurchaseRepository {
                     new Object[]{purchaseId},
 
                     (rs, rowNum) -> Purchase.builder()
-                            .id(rs.getInt("purchase_id"))
+                            .purchaseId(rs.getInt("purchase_id"))
                             .tourScheduleId(rs.getInt("tour_schedule_id"))
                             .travelAgentId(rs.getInt("travel_agent_id"))
                             .clientId(rs.getInt("client_id"))
@@ -72,7 +74,7 @@ public class PurchaseRepositoryImpl implements PurchaseRepository {
                 purchase.getTransportId(),
                 purchase.getTransportSeatId(),
                 purchase.getOperationDate(),
-                purchase.getId()
+                purchase.getPurchaseId()
         );
     }
 
@@ -82,5 +84,28 @@ public class PurchaseRepositoryImpl implements PurchaseRepository {
         String query = "DELETE FROM purchase WHERE purchase_id = ?";
 
         jdbcTemplate.update(query, purchaseId);
+    }
+
+    @Override
+    public List<Purchase> list() {
+        @Language("MySQL")
+        String query = "SELECT * FROM purchase";
+
+        try {
+            return jdbcTemplate.query(
+                    query, new Object[]{},
+                    (rs, rowNum) -> Purchase.builder()
+                            .purchaseId(rs.getInt("purchase_id"))
+                            .tourScheduleId(rs.getInt("tour_schedule_id"))
+                            .travelAgentId(rs.getInt("travel_agent_id"))
+                            .clientId(rs.getInt("client_id"))
+                            .transportId(rs.getInt("transport_id"))
+                            .transportSeatId(rs.getInt("transport_seat_id"))
+                            .operationDate(rs.getTimestamp("operation_date"))
+                            .build()
+            );
+        } catch (EmptyResultDataAccessException e) {
+            return null;
+        }
     }
 }
