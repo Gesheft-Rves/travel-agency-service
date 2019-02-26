@@ -28,7 +28,7 @@ public class PurchaseController {
     @GetMapping("/delete/{id}")
     public String delete(@PathVariable Integer id){
         purchaseService.delete(id);
-        return "redirect:list";
+        return "redirect:/purchase/list";
     }
 
     @GetMapping("/edit/{id}")
@@ -51,7 +51,7 @@ public class PurchaseController {
         } else {
             purchaseService.update(purchase);
         }
-        return "redirect:list";
+        return "redirect:/purchase/list";
     }
 
     @GetMapping("/details/{id}")
