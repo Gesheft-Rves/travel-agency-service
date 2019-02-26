@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head lang="en">
-    <title th:text="AppPermission"></title>
+    <title th:text="'Разрешения приложения'"></title>
     <!--/*/ <th:block th:include="fragments/header :: head"></th:block> /*/-->
 </head>
 <body>
@@ -10,7 +10,7 @@
 </div>
 <a th:href="${'/apppermission/new'}"> Создать новое Разрешение </a>
 <div th:if="${not #lists.isEmpty(apppermissions)}">
-    <h2> Список AppPermission </h2>
+    <h2> Список разрешений </h2>
     <table class="table table-striped">
         <tr>
             <th th:text="ID"></th>
