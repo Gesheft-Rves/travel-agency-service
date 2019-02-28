@@ -8,6 +8,8 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 public class TourRepositoryImpl implements TourRepository {
 
@@ -43,7 +45,7 @@ public class TourRepositoryImpl implements TourRepository {
                     new Object[]{turId},
 
                     (rs, rowNum) -> Tour.builder()
-                            .id(rs.getInt("tour_id"))
+                            .tourId(rs.getInt("tour_id"))
                             .name(rs.getString("name"))
                             .description(rs.getString("description"))
                             .price(rs.getBigDecimal("price"))
@@ -60,7 +62,7 @@ public class TourRepositoryImpl implements TourRepository {
         @Language("MySQL")
         String query = "UPDATE tour SET name = ? WHERE tour_id = ?";
 
-        jdbcTemplate.update(query, tour.getName(), tour.getId());
+        jdbcTemplate.update(query, tour.getName(), tour.getTourId());
     }
 
     @Override
@@ -69,5 +71,26 @@ public class TourRepositoryImpl implements TourRepository {
         String query = "DELETE FROM tour WHERE tour_id = ?";
 
         jdbcTemplate.update(query, tourId);
+    }
+
+    @Override
+    public List<Tour> list() {
+        @Language("MySQL")
+        String query = "SELECT * FROM tour";
+
+        try {
+            return jdbcTemplate.query(
+                    query, new Object[]{},
+                    (rs, rowNum) -> Tour.builder()
+                            .tourId(rs.getInt("tour_id"))
+                            .name(rs.getString("name"))
+                            .description(rs.getString("description"))
+                            .price(rs.getBigDecimal("price"))
+                            .tourCategoryId(rs.getInt("tour_category_id"))
+                            .build()
+            );
+        } catch (EmptyResultDataAccessException e) {
+            return null;
+        }
     }
 }

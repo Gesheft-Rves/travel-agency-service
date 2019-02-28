@@ -8,10 +8,12 @@ import java.math.BigDecimal;
 @ToString
 @Getter @Setter
 @EqualsAndHashCode
+@AllArgsConstructor @NoArgsConstructor
 public class Tour implements Entity {
-    private Integer id;
+    private Integer tourId;
     private String name;
     private String description;
     private BigDecimal price;
     private Integer tourCategoryId;
+
 }

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+    <title th:text="Tour"></title>
+    <!--/*/ <th:block th:include="fragments/header :: head"></th:block> /*/-->
+</head>
+<body>
+<div class="container">
+    <!--/*/ <th:block th:include="fragments/header :: header"></th:block> /*/-->
+    <a th:href="${'/tour/new'}"> Создать новый объект класса Tour </a>
+    <div th:if="${not #lists.isEmpty(tours)}">
+        <h2> Список Tour </h2>
+        <table class="table table-striped">
+            <tr>
+
+                <th th:text="tourId"></th>
+                <th th:text="name"></th>
+                <th th:text="description"></th>
+                <th th:text="price"></th>
+                <th th:text="tourCategoryId"></th>
+                <th th:text="'Действия'"></th>
+
+            </tr>
+            <tr th:each="tour : ${tours}">
+                
+                <td th:text="${tour.tourId}"></td>
+                <td th:text="${tour.name}"></td>
+                <td th:text="${tour.description}"></td>
+                <td th:text="${tour.price}"></td>
+                <td th:text="${tour.tourCategoryId}"></td>
+
+                <td>
+                    <ul class="list-inline">
+                        <li><a th:href="${'/tour/delete/' + tour.tourId}" th:text="Удалить"></a> </li>
+                        <li><a th:href="${'/tour/edit/' + tour.tourId}" th:text="Редактировать"></a> </li>
+                        <li><a th:href="${'/tour/details/' + tour.tourId}" th:text="Карточка"></a> </li>
+                    </ul>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+</body>
+</html>
