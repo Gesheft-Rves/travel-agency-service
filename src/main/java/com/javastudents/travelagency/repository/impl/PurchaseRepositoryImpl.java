@@ -1,6 +1,7 @@
 package com.javastudents.travelagency.repository.impl;
 
 import com.javastudents.travelagency.entity.Purchase;
+import com.javastudents.travelagency.entity.wrapper.PurchaseWrapper;
 import com.javastudents.travelagency.repository.PurchaseRepository;
 import org.intellij.lang.annotations.Language;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -107,5 +108,10 @@ public class PurchaseRepositoryImpl implements PurchaseRepository {
         } catch (EmptyResultDataAccessException e) {
             return null;
         }
+    }
+
+    @Override
+    public PurchaseWrapper getPurchaseWrapper() {
+        return null;
     }
 }
