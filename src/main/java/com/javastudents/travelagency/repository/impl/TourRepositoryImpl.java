@@ -1,6 +1,8 @@
 package com.javastudents.travelagency.repository.impl;
 
 import com.javastudents.travelagency.entity.Tour;
+import com.javastudents.travelagency.entity.TourCategory;
+import com.javastudents.travelagency.entity.wrapper.TourWrapper;
 import com.javastudents.travelagency.repository.TourRepository;
 import org.intellij.lang.annotations.Language;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -92,5 +94,38 @@ public class TourRepositoryImpl implements TourRepository {
         } catch (EmptyResultDataAccessException e) {
             return null;
         }
+    }
+
+    @Override
+    public List<TourWrapper> listWrapper() {
+        @Language("MySQL")
+        String query = "SELECT *, " +
+                "tour.name as tour_name, " +
+                "tour_category.name as tour_category_name " +
+                "FROM tour " +
+                "JOIN tour_category on tour.tour_category_id = tour_category.tour_category_id";
+
+        try{
+            return jdbcTemplate.query(query, new Object[]{},
+                    (rs, rowNub) -> TourWrapper.builder()
+                                .tourId(rs.getInt("tour_id"))
+                                .name(rs.getString("name"))
+                                .description(rs.getString("description"))
+                                .price(rs.getBigDecimal("price"))
+                                .tourCategory(TourCategory.builder()
+                                                .id(rs.getInt("tour_category_id"))
+                                                .name(rs.getString("name"))
+                                                .build()
+                                )
+                                .build()
+            );
+        } catch (EmptyResultDataAccessException e){
+            return null;
+        }
+    }
+
+    @Override
+    public TourWrapper readWrapper() {
+        return null;
     }
 }
