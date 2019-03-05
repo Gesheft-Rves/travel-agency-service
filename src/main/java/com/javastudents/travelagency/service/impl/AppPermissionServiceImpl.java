@@ -6,6 +6,8 @@ import com.javastudents.travelagency.service.AppPermissionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class AppPermissionServiceImpl implements AppPermissionService {
 
@@ -35,5 +37,10 @@ public class AppPermissionServiceImpl implements AppPermissionService {
     @Override
     public void delete(int appPermissionId) {
         repository.delete(appPermissionId);
+    }
+
+    @Override
+    public List<AppPermission> list() {
+        return repository.list();
     }
 }
