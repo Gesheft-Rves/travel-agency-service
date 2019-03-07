@@ -2,6 +2,7 @@ package com.javastudents.travelagency.repository.impl;
 
 import com.javastudents.travelagency.AbstractTest;
 import com.javastudents.travelagency.entity.AppRolePermission;
+import com.javastudents.travelagency.entity.wrapper.AppRolePermissionWrapper;
 import com.javastudents.travelagency.repository.AppRolePermissionRepository;
 import com.javastudents.travelagency.repository.AppRoleRepository;
 import com.javastudents.travelagency.repository.CrudTest;
@@ -10,6 +11,8 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
+
+import java.util.List;
 
 
 public class AppRolePermissionRepositoryImplTest extends AbstractTest implements CrudTest {
@@ -74,5 +77,44 @@ public class AppRolePermissionRepositoryImplTest extends AbstractTest implements
         appRolePermissionRepository.delete(4);
 
         Assert.assertNull(appRolePermissionRepository.read(4));
+    }
+
+    @Test
+    public void listTest() {
+        Integer expectedSize = 4;
+
+        List<AppRolePermission> appRolePermissionList = appRolePermissionRepository.list();
+
+        Assert.assertEquals(expectedSize,  (Integer) appRolePermissionList.size());
+    }
+
+    @Test
+    public void appRolePermissionWrapperListTest() {
+        Integer expectedSize = 4;
+
+        List<AppRolePermissionWrapper> appRolePermissionWrapperList = appRolePermissionRepository.appRolePermissionWrapperList();
+
+        Assert.assertEquals(expectedSize,  (Integer) appRolePermissionWrapperList.size());
+    }
+
+    @Test
+    public void readAppRolePermissionWrapperTest() {
+        Integer expectedSize = 5;
+        Integer appRoleId = 1;
+        Integer appPermissionId = 2;
+
+
+        AppRolePermission appRolePermission = AppRolePermission.builder()
+                .appRoleId(appRoleId)
+                .appPermissionId(appPermissionId)
+                .build();
+
+        appRolePermissionRepository.create(appRolePermission);
+
+        AppRolePermissionWrapper test = appRolePermissionRepository.readAppRolePermissionWrapper(5);
+
+        Assert.assertNotNull(test);
+
+        Assert.assertEquals(expectedSize,  (Integer) appRolePermissionRepository.appRolePermissionWrapperList().size());
     }
 }
