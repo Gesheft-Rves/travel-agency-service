@@ -21,7 +21,7 @@ public class PurchaseController {
 
     @GetMapping("/list")
     public String list(Model model){
-        model.addAttribute("purchases", purchaseService.list());
+        model.addAttribute("purchases", purchaseService.listWrapper());
         return "purchase/list";
     }
 
@@ -33,7 +33,8 @@ public class PurchaseController {
 
     @GetMapping("/edit/{id}")
     public String edit(@PathVariable  Integer id, Model model){
-        model.addAttribute("purchase", purchaseService.read(id));
+        System.out.println(purchaseService.readWrapper(id).toString());
+        model.addAttribute("purchase", purchaseService.readWrapper(id));
         return "purchase/form";
     }
 
@@ -56,7 +57,7 @@ public class PurchaseController {
 
     @GetMapping("/details/{id}")
     public String details(@PathVariable Integer id, Model model){
-        model.addAttribute("purchase", purchaseService.read(id));
+        model.addAttribute("purchase", purchaseService.readWrapper(id));
         return "purchase/card";
     }
 

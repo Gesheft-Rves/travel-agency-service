@@ -3,10 +3,11 @@ package com.javastudents.travelagency.entity.wrapper;
 import com.javastudents.travelagency.entity.*;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.ToString;
 
 import java.sql.Timestamp;
 
-@Builder @Getter
+@Builder @Getter @ToString
 public class PurchaseWrapper implements Entity {
     private Integer purchaseId;
     private TourSchedule tourSchedule;

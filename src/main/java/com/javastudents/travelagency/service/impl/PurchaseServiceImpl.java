@@ -45,7 +45,17 @@ public class PurchaseServiceImpl implements PurchaseService {
     }
 
     @Override
-    public PurchaseWrapper getPurchaseWrapper() {
-        return repository.getPurchaseWrapper();
+    public List<PurchaseWrapper> listWrapper() {
+        return repository.listWrapper();
+    }
+
+    @Override
+    public PurchaseWrapper readWrapper(int purchaseId) {
+        return repository.readWrapper(purchaseId);
+    }
+
+    @Override
+    public void updateWrapper(PurchaseWrapper purchaseWrapper) {
+        repository.update(purchaseWrapper);
     }
 }

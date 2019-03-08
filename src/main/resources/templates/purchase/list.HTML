@@ -13,24 +13,24 @@
         <table class="table table-striped">
             <tr>
                 
-                <th th:text="purchaseId"></th>
+                <th th:text="ИД"></th>
                 <th th:text="tourScheduleId"></th>
-                <th th:text="travelAgentId"></th>
-                <th th:text="clientId"></th>
-                <th th:text="transportId"></th>
-                <th th:text="transportSeatId"></th>
-                <th th:text="operationDate"></th>
+                <th th:text="Агент"></th>
+                <th th:text="Клиент"></th>
+                <th th:text="Транспорт"></th>
+                <th th:text="Место"></th>
+                <th th:text="'Дата операции'"></th>
                 <th th:test="Действия"></th>
 
             </tr>
             <tr th:each="purchase : ${purchases}">
                 
                 <td th:text="${purchase.purchaseId}"></td>
-                <td th:text="${purchase.tourScheduleId}"></td>
-                <td th:text="${purchase.travelAgentId}"></td>
-                <td th:text="${purchase.clientId}"></td>
-                <td th:text="${purchase.transportId}"></td>
-                <td th:text="${purchase.transportSeatId}"></td>
+                <td th:text="${purchase.tourSchedule.id}"></td>
+                <td th:text="${purchase.travelAgent.name}"></td>
+                <td th:text="${purchase.client.name}"></td>
+                <td th:text="${purchase.transport.name}"></td>
+                <td th:text="${purchase.transportSeat.seatNo}"></td>
                 <td th:text="${purchase.operationDate}"></td>
 
                 <td>

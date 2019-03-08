@@ -7,5 +7,7 @@ import java.util.List;
 
 public interface PurchaseService extends CrudService<Purchase> {
     List<Purchase> list();
-    PurchaseWrapper getPurchaseWrapper();
+    List<PurchaseWrapper> listWrapper();
+    PurchaseWrapper readWrapper(int id);
+    void updateWrapper(PurchaseWrapper purchaseWrapper);
 }

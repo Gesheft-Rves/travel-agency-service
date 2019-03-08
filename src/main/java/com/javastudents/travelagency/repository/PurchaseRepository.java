@@ -7,5 +7,7 @@ import java.util.List;
 
 public interface PurchaseRepository extends CrudRepository<Purchase> {
     List<Purchase> list();
-    PurchaseWrapper getPurchaseWrapper();
+    List<PurchaseWrapper> listWrapper();
+    PurchaseWrapper readWrapper(int id);
+    void updateWrapper(PurchaseWrapper purchaseWrapper);
 }
