@@ -7,17 +7,17 @@
 <body>
 <div class="container">
     <!--/*/ <th:block th:include="fragments/header :: header"></th:block> /*/-->
-    <a th:href="${'/tour/new'}"> Создать новый объект класса Tour </a>
+    <a th:href="${'/tour/new'}"> Создать тур </a>
     <div th:if="${not #lists.isEmpty(tours)}">
         <h2> Список Tour </h2>
         <table class="table table-striped">
             <tr>
 
-                <th th:text="tourId"></th>
-                <th th:text="name"></th>
-                <th th:text="description"></th>
-                <th th:text="price"></th>
-                <th th:text="tourCategoryId"></th>
+                <th th:text="Ид"></th>
+                <th th:text="Имя"></th>
+                <th th:text="Описание"></th>
+                <th th:text="Цена"></th>
+                <th th:text="'Категория тура'"></th>
                 <th th:text="'Действия'"></th>
 
             </tr>

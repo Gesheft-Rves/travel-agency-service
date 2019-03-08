@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head lang="en">
-    <title th:text="'Карточка объекта Purchase'"></title>
+    <title th:text="'Карточка тура'"></title>
     <!--/*/ <th:block th:include="fragments/header :: head"></th:block> /*/-->
 </head>
 <body>
 <div class="container">
     <!--/*/ <th:block th:include="fragments/header :: header"></th:block> /*/-->
-    <h2 th:text="'Карточка Tour '"></h2>
+    <h2 th:text="'Карточка тура'"></h2>
     <div>
         <form class="form-horizontal">
             <div class="form-group">
@@ -15,23 +15,23 @@
                 private Integer tourCategoryId;
 
 
-                <label class="col-sm-2 control-label">tourId</label>
+                <label class="col-sm-2 control-label">Ид</label>
                 <div class="col-sm-10">
                     <p class="form-control-static" th:text="${purchase.tourId}"></p>
                 </div>
-                <label class="col-sm-2 control-label">name</label>
+                <label class="col-sm-2 control-label">Имя</label>
                 <div class="col-sm-10">
                     <p class="form-control-static" th:text="${tour.name}"></p>
                 </div>
-                <label class="col-sm-2 control-label">description</label>
+                <label class="col-sm-2 control-label">Описание</label>
                 <div class="col-sm-10">
                     <p class="form-control-static" th:text="${tour.description}"></p>
                 </div>
-                <label class="col-sm-2 control-label">price</label>
+                <label class="col-sm-2 control-label">Цена</label>
                 <div class="col-sm-10">
                     <p class="form-control-static" th:text="${tour.price}"></p>
                 </div>
-                <label class="col-sm-2 control-label">tourCategoryId</label>
+                <label class="col-sm-2 control-label">Категория тура</label>
                 <div class="col-sm-10">
                     <p class="form-control-static" th:text="${tour.tourCategoryId}"></p>
                 </div>
