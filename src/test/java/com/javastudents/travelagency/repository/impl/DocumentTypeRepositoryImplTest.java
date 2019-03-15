@@ -10,6 +10,8 @@ import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 
+import java.util.List;
+
 public class DocumentTypeRepositoryImplTest extends AbstractTest implements CrudTest {
 
     @Autowired
@@ -62,5 +64,17 @@ public class DocumentTypeRepositoryImplTest extends AbstractTest implements Crud
         documentTypeRepository.delete(5);
 
         Assert.assertNull(documentTypeRepository.read(5));
+    }
+
+    @Test
+    public void listTest() {
+        @Language("MySQL")
+        String sql = "SELECT MAX (document_type_id) name from document_type";
+
+        Integer expectedSize = jdbcTemplate.queryForObject(sql, Integer.class);
+
+        List<DocumentType> documentTypeList = documentTypeRepository.list();
+
+        Assert.assertEquals(expectedSize,  (Integer) documentTypeList.size());
     }
 }

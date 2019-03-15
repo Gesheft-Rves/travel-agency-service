@@ -8,6 +8,8 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 public class DocumentTypeRepositoryImpl implements DocumentTypeRepository {
 
@@ -62,5 +64,23 @@ public class DocumentTypeRepositoryImpl implements DocumentTypeRepository {
         String query = "DELETE FROM document_type WHERE document_type_id = ?";
 
         jdbcTemplate.update(query, documentTypeId);
+    }
+
+    @Override
+    public List<DocumentType> list() {
+        @Language("MySQL")
+        String query = "SELECT * FROM document_type";
+
+        try {
+            return jdbcTemplate.query(
+                    query, new Object[]{},
+                    (rs, rowNum) -> DocumentType.builder()
+                            .documentTypeId(rs.getInt("document_type_id"))
+                            .name(rs.getString("name"))
+                            .build()
+            );
+        } catch (EmptyResultDataAccessException e) {
+            return null;
+        }
     }
 }
