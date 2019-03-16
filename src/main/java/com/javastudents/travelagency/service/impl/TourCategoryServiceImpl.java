@@ -6,6 +6,8 @@ import com.javastudents.travelagency.service.TourCategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class TourCategoryServiceImpl implements TourCategoryService {
 
@@ -34,5 +36,10 @@ public class TourCategoryServiceImpl implements TourCategoryService {
     @Override
     public void delete(int tourCategoryId) {
         repository.delete(tourCategoryId);
+    }
+
+    @Override
+    public List<TourCategory> list() {
+        return repository.list();
     }
 }

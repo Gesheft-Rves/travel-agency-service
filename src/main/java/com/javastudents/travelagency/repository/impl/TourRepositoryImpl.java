@@ -2,7 +2,6 @@ package com.javastudents.travelagency.repository.impl;
 
 import com.javastudents.travelagency.entity.Tour;
 import com.javastudents.travelagency.entity.TourCategory;
-import com.javastudents.travelagency.entity.wrapper.TourWrapper;
 import com.javastudents.travelagency.repository.TourRepository;
 import org.intellij.lang.annotations.Language;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,29 +31,34 @@ public class TourRepositoryImpl implements TourRepository {
                 tour.getName(),
                 tour.getDescription(),
                 tour.getPrice(),
-                tour.getTourCategoryId()
+                tour.getTourCategory().getId()
         );
     }
 
     @Override
-    public Tour read(int turId) {
+    public Tour read(int tourId) {
         @Language("MySQL")
-        String query = "SELECT * FROM tour WHERE tour_id=?";
-
+        String query = "SELECT * , " +
+                "tour.name as tour_name, " +
+                "tour_category.name as tour_category_name " +
+                "FROM tour " +
+                "JOIN tour_category on tour.tour_category_id = tour_category.tour_category_id " +
+                "WHERE tour.tour_id = ?";
         try {
-            return jdbcTemplate.queryForObject(
-                    query,
-                    new Object[]{turId},
-
-                    (rs, rowNum) -> Tour.builder()
+            return jdbcTemplate.queryForObject(query, new Object[]{tourId},
+                    (rs, rowNub) -> Tour.builder()
                             .tourId(rs.getInt("tour_id"))
-                            .name(rs.getString("name"))
+                            .name(rs.getString("tour_name"))
                             .description(rs.getString("description"))
                             .price(rs.getBigDecimal("price"))
-                            .tourCategoryId(rs.getInt("tour_category_id"))
+                            .tourCategory(TourCategory.builder()
+                                    .id(rs.getInt("tour_category_id"))
+                                    .name(rs.getString("tour_category_name"))
+                                    .build()
+                            )
                             .build()
             );
-        } catch (EmptyResultDataAccessException e) {
+        } catch (EmptyResultDataAccessException e){
             return null;
         }
     }
@@ -62,9 +66,9 @@ public class TourRepositoryImpl implements TourRepository {
     @Override
     public void update(Tour tour) {
         @Language("MySQL")
-        String query = "UPDATE tour SET name = ? WHERE tour_id = ?";
+        String query = "UPDATE tour SET name = ?, description = ?, price = ?, tour_category_id = ?  WHERE tour_id = ?";
 
-        jdbcTemplate.update(query, tour.getName(), tour.getTourId());
+        jdbcTemplate.update(query, tour.getName(), tour.getDescription(), tour.getPrice(),  tour.getTourCategory().getId(), tour.getTourId());
     }
 
     @Override
@@ -78,27 +82,6 @@ public class TourRepositoryImpl implements TourRepository {
     @Override
     public List<Tour> list() {
         @Language("MySQL")
-        String query = "SELECT * FROM tour";
-
-        try {
-            return jdbcTemplate.query(
-                    query, new Object[]{},
-                    (rs, rowNum) -> Tour.builder()
-                            .tourId(rs.getInt("tour_id"))
-                            .name(rs.getString("name"))
-                            .description(rs.getString("description"))
-                            .price(rs.getBigDecimal("price"))
-                            .tourCategoryId(rs.getInt("tour_category_id"))
-                            .build()
-            );
-        } catch (EmptyResultDataAccessException e) {
-            return null;
-        }
-    }
-
-    @Override
-    public List<TourWrapper> listWrapper() {
-        @Language("MySQL")
         String query = "SELECT *, " +
                 "tour.name as tour_name, " +
                 "tour_category.name as tour_category_name " +
@@ -107,25 +90,20 @@ public class TourRepositoryImpl implements TourRepository {
 
         try{
             return jdbcTemplate.query(query, new Object[]{},
-                    (rs, rowNub) -> TourWrapper.builder()
-                                .tourId(rs.getInt("tour_id"))
-                                .name(rs.getString("name"))
-                                .description(rs.getString("description"))
-                                .price(rs.getBigDecimal("price"))
-                                .tourCategory(TourCategory.builder()
-                                                .id(rs.getInt("tour_category_id"))
-                                                .name(rs.getString("name"))
-                                                .build()
-                                )
-                                .build()
+                    (rs, rowNub) -> Tour.builder()
+                            .tourId(rs.getInt("tour_id"))
+                            .name(rs.getString("tour_name"))
+                            .description(rs.getString("description"))
+                            .price(rs.getBigDecimal("price"))
+                            .tourCategory(TourCategory.builder()
+                                    .id(rs.getInt("tour_category_id"))
+                                    .name(rs.getString("tour_category_name"))
+                                    .build()
+                            )
+                            .build()
             );
         } catch (EmptyResultDataAccessException e){
             return null;
         }
-    }
-
-    @Override
-    public TourWrapper readWrapper() {
-        return null;
     }
 }

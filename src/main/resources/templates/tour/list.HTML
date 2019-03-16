@@ -13,7 +13,6 @@
         <table class="table table-striped">
             <tr>
 
-                <th th:text="Ид"></th>
                 <th th:text="Имя"></th>
                 <th th:text="Описание"></th>
                 <th th:text="Цена"></th>
@@ -23,11 +22,10 @@
             </tr>
             <tr th:each="tour : ${tours}">
                 
-                <td th:text="${tour.tourId}"></td>
                 <td th:text="${tour.name}"></td>
                 <td th:text="${tour.description}"></td>
                 <td th:text="${tour.price}"></td>
-                <td th:text="${tour.tourCategoryId}"></td>
+                <td th:text="${tour.tourCategory.name}"></td>
 
                 <td>
                     <ul class="list-inline">

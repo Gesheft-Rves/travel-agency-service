@@ -6,6 +6,7 @@ import lombok.*;
 @ToString
 @Getter @Setter
 @EqualsAndHashCode
+@AllArgsConstructor @NoArgsConstructor
 public class TourCategory implements Entity {
     private Integer id;
     private String name;

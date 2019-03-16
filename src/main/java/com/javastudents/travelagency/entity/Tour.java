@@ -14,6 +14,5 @@ public class Tour implements Entity {
     private String name;
     private String description;
     private BigDecimal price;
-    private Integer tourCategoryId;
-
+    private TourCategory tourCategory;
 }

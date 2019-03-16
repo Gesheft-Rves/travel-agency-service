@@ -1,7 +1,6 @@
 package com.javastudents.travelagency.service.impl;
 
 import com.javastudents.travelagency.entity.Tour;
-import com.javastudents.travelagency.entity.wrapper.TourWrapper;
 import com.javastudents.travelagency.repository.TourRepository;
 import com.javastudents.travelagency.service.TourService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,15 +41,5 @@ public class TourServiceImpl implements TourService {
     @Override
     public List<Tour> list() {
         return repository.list();
-    }
-
-    @Override
-    public List<TourWrapper> listWrapper() {
-        return repository.listWrapper();
-    }
-
-    @Override
-    public TourWrapper readWrapper(int id) {
-        return repository.readWrapper();
     }
 }
