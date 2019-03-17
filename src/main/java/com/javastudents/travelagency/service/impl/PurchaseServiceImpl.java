@@ -1,7 +1,6 @@
 package com.javastudents.travelagency.service.impl;
 
 import com.javastudents.travelagency.entity.Purchase;
-import com.javastudents.travelagency.entity.wrapper.PurchaseWrapper;
 import com.javastudents.travelagency.repository.PurchaseRepository;
 import com.javastudents.travelagency.service.PurchaseService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,18 +43,4 @@ public class PurchaseServiceImpl implements PurchaseService {
         return repository.list();
     }
 
-    @Override
-    public List<PurchaseWrapper> listWrapper() {
-        return repository.listWrapper();
-    }
-
-    @Override
-    public PurchaseWrapper readWrapper(int purchaseId) {
-        return repository.readWrapper(purchaseId);
-    }
-
-    @Override
-    public void updateWrapper(PurchaseWrapper purchaseWrapper) {
-        repository.update(purchaseWrapper);
-    }
 }

@@ -6,6 +6,8 @@ import com.javastudents.travelagency.service.TourScheduleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class TourScheduleServiceImpl implements TourScheduleService {
 
@@ -34,5 +36,10 @@ public class TourScheduleServiceImpl implements TourScheduleService {
     @Override
     public void delete(int tourScheduleId) {
         repository.delete(tourScheduleId);
+    }
+
+    @Override
+    public List<TourSchedule> list() {
+        return repository.list();
     }
 }

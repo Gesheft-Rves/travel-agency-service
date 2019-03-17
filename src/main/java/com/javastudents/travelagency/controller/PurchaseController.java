@@ -2,6 +2,7 @@ package com.javastudents.travelagency.controller;
 
 import com.javastudents.travelagency.entity.Purchase;
 import com.javastudents.travelagency.service.impl.PurchaseServiceImpl;
+import com.javastudents.travelagency.service.impl.TourScheduleServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
@@ -13,15 +14,17 @@ import org.springframework.web.bind.annotation.*;
 public class PurchaseController {
 
     private PurchaseServiceImpl purchaseService;
+    private TourScheduleServiceImpl tourScheduleService;
 
     @Autowired
-    public PurchaseController(PurchaseServiceImpl purchaseService) {
+    public PurchaseController(PurchaseServiceImpl purchaseService, TourScheduleServiceImpl tourScheduleService) {
         this.purchaseService = purchaseService;
+        this.tourScheduleService = tourScheduleService;
     }
 
     @GetMapping("/list")
     public String list(Model model){
-        model.addAttribute("purchases", purchaseService.listWrapper());
+        model.addAttribute("purchases", purchaseService.list());
         return "purchase/list";
     }
 
@@ -33,8 +36,8 @@ public class PurchaseController {
 
     @GetMapping("/edit/{id}")
     public String edit(@PathVariable  Integer id, Model model){
-        System.out.println(purchaseService.readWrapper(id).toString());
-        model.addAttribute("purchase", purchaseService.readWrapper(id));
+        model.addAttribute("purchase", purchaseService.read(id));
+        model.addAttribute("tourSchedules", tourScheduleService.list());
         return "purchase/form";
     }
 
@@ -57,7 +60,7 @@ public class PurchaseController {
 
     @GetMapping("/details/{id}")
     public String details(@PathVariable Integer id, Model model){
-        model.addAttribute("purchase", purchaseService.readWrapper(id));
+        model.addAttribute("purchase", purchaseService.read(id));
         return "purchase/card";
     }
 

@@ -8,6 +8,8 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 public class TourScheduleRepositoryImpl implements TourScheduleRepository {
 
@@ -76,5 +78,24 @@ public class TourScheduleRepositoryImpl implements TourScheduleRepository {
         String query = "DELETE FROM tour_schedule WHERE tour_schedule_id = ?";
 
         jdbcTemplate.update(query, tourScheduleId);
+    }
+
+    @Override
+    public List<TourSchedule> list() {
+        @Language("MySQL")
+        String query = "SELECT * FROM tour_schedule";
+
+        try{
+            return jdbcTemplate.query(
+                    query, new Object[]{},
+                    (rs, rowNum) -> TourSchedule.builder()
+                                .id(rs.getInt("tour_schedule_id"))
+                                .build()
+            );
+
+
+        } catch (EmptyResultDataAccessException e){
+            return null;
+        }
     }
 }
