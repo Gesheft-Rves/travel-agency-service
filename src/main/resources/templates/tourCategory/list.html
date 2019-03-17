@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+    <title th:text="'Категории туров'"></title>
+    <!--/*/ <th:block th:include="fragments/header :: head"></th:block> /*/-->
+</head>
+<body>
+<div class="container">
+    <!--/*/ <th:block th:include="fragments/header :: header"></th:block> /*/-->
+    <a th:href="${'/tourCategory/new'}"> Создать категорию </a>
+    <div th:if="${not #lists.isEmpty(tourCategories)}">
+        <h2> Список категории туров </h2>
+        <table class="table table-striped">
+            <tr>
+                <th th:text="Имя"></th>
+                <th th:text="'Действия'"></th>
+            </tr>
+            <tr th:each="tourCategory : ${tourCategories}">
+                <td th:text="${tourCategory.name}"></td>
+                <td>
+                    <ul class="list-inline">
+                        <li><a th:href="${'/tourCategory/delete/' + tourCategory.id}" th:text="Удалить"></a> </li>
+                        <li><a th:href="${'/tourCategory/edit/' + tourCategory.id}" th:text="Редактировать"></a> </li>
+                        <li><a th:href="${'/tourCategory/details/' + tourCategory.id}" th:text="Карточка"></a> </li>
+                    </ul>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+</body>
+</html>
