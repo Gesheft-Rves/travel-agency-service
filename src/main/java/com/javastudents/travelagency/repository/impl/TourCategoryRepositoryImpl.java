@@ -8,6 +8,8 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 public class TourCategoryRepositoryImpl implements TourCategoryRepository {
 
@@ -63,5 +65,22 @@ public class TourCategoryRepositoryImpl implements TourCategoryRepository {
         String query = "DELETE FROM tour_category WHERE tour_category_id = ?";
 
         jdbcTemplate.update(query, tourCategoryId);
+    }
+
+    @Override
+    public List<TourCategory> list() {
+        @Language("MySQL")
+        String query = "SELECT * FROM tour_category";
+
+        try {
+            return jdbcTemplate.query(query, new Object[]{},
+                    (rs, rowNub) -> TourCategory.builder()
+                            .id(rs.getInt("tour_category_id"))
+                            .name(rs.getString("name"))
+                            .build()
+            );
+        } catch (EmptyResultDataAccessException e) {
+            return null;
+        }
     }
 }
