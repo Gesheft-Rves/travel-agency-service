@@ -7,6 +7,7 @@ import lombok.*;
 @ToString
 @Getter @Setter
 @EqualsAndHashCode
+@AllArgsConstructor @NoArgsConstructor
 public class TravelAgency implements Entity {
     private Integer id;
     private String abbreviatedName;

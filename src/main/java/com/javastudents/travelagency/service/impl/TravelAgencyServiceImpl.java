@@ -6,6 +6,8 @@ import com.javastudents.travelagency.service.TravelAgencyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class TravelAgencyServiceImpl implements TravelAgencyService {
 
@@ -35,5 +37,10 @@ public class TravelAgencyServiceImpl implements TravelAgencyService {
     @Override
     public void delete(int travelAgencyId) {
         repository.delete(travelAgencyId);
+    }
+
+    @Override
+    public List<TravelAgency> list() {
+        return repository.list();
     }
 }
