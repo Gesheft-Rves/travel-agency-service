@@ -8,6 +8,8 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 public class AppRoleRepositoryImpl implements AppRoleRepository {
 
@@ -61,5 +63,23 @@ public class AppRoleRepositoryImpl implements AppRoleRepository {
         String query = "DELETE FROM app_role WHERE app_role_id = ?";
 
         jdbcTemplate.update(query, appRoleId);
+    }
+
+    @Override
+    public List<AppRole> list() {
+        @Language("MySQL")
+        String query = "SELECT * FROM app_role";
+
+        try {
+            return jdbcTemplate.query(
+                    query, new Object[]{},
+                    (rs, rowNum) -> AppRole.builder()
+                            .appRoleId(rs.getInt("app_role_id"))
+                            .name(rs.getString("name"))
+                            .build()
+            );
+        } catch (EmptyResultDataAccessException e) {
+            return null;
+        }
     }
 }
