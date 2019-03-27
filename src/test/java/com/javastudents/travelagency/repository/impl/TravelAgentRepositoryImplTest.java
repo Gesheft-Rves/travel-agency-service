@@ -27,7 +27,7 @@ public class TravelAgentRepositoryImplTest extends AbstractTest implements CrudT
     public void createTest() {
         String travelAgentName = "Test";
 
-        TravelAgent travelAgent = TravelAgent.builder()
+        /*TravelAgent travelAgent = TravelAgent.builder()
                 .travelAgencyId(1)
                 .name(travelAgentName)
                 .surname("testT")
@@ -35,9 +35,9 @@ public class TravelAgentRepositoryImplTest extends AbstractTest implements CrudT
                 .enabled(true)
                 .phoneNumber("4646546")
                 .limitAmount(new BigDecimal(455.8454))
-                .build();
+                .build();*/
 
-        travelAgentRepository.create(travelAgent);
+        //travelAgentRepository.create(travelAgent);
 
         @Language("MySQL")
         String sql = "SELECT name FROM travel_agent WHERE travel_agent_id = (SELECT max(travel_agent_id) FROM travel_agent)";

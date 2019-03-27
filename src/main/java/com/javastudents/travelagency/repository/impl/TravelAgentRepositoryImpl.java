@@ -1,5 +1,6 @@
 package com.javastudents.travelagency.repository.impl;
 
+import com.javastudents.travelagency.entity.TravelAgency;
 import com.javastudents.travelagency.entity.TravelAgent;
 import com.javastudents.travelagency.repository.TravelAgentRepository;
 import org.intellij.lang.annotations.Language;
@@ -7,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
 
 @Repository
 public class TravelAgentRepositoryImpl implements TravelAgentRepository {
@@ -25,7 +28,7 @@ public class TravelAgentRepositoryImpl implements TravelAgentRepository {
 
         jdbcTemplate.update(
                 query,
-                travelAgent.getTravelAgencyId(),
+                travelAgent.getTravelAgency(),
                 travelAgent.getName(),
                 travelAgent.getSurname(),
                 travelAgent.getPatronymic(),
@@ -47,7 +50,9 @@ public class TravelAgentRepositoryImpl implements TravelAgentRepository {
 
                     (rs, rowNum) -> TravelAgent.builder()
                             .id(rs.getInt("travel_agent_id"))
-                            .travelAgencyId(rs.getInt("travel_agency_id"))
+                            .travelAgency(TravelAgency.builder()
+                                    .id(rs.getInt(""))
+                                    .build())
                             .name(rs.getString("name"))
                             .surname(rs.getString("surname"))
                             .patronymic(rs.getString("patronymic"))
@@ -68,7 +73,7 @@ public class TravelAgentRepositoryImpl implements TravelAgentRepository {
 
         jdbcTemplate.update(
                 query,
-                travelAgent.getTravelAgencyId(),
+                travelAgent.getTravelAgency(),
                 travelAgent.getName(),
                 travelAgent.getSurname(),
                 travelAgent.getPatronymic(),
@@ -85,5 +90,10 @@ public class TravelAgentRepositoryImpl implements TravelAgentRepository {
         String query = "DELETE FROM travel_agent WHERE travel_agent_id = ?";
 
         jdbcTemplate.update(query, travelAgentId);
+    }
+
+    @Override
+    public List<TravelAgent> list() {
+        return null;
     }
 }
