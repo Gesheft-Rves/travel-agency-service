@@ -50,7 +50,7 @@ public class TourController {
     }
 
     @PostMapping("/save")
-    public String save(@PathVariable Tour tour){
+    public String save(Tour tour){
         System.out.println(tour.toString());
         if(tour.getTourId()== null){
             tourService.create(tour);
