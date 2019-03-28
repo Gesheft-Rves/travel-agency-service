@@ -40,8 +40,14 @@ public class TravelAgentRepositoryImpl implements TravelAgentRepository {
 
     @Override
     public TravelAgent read(int travelAgentId) {
+
         @Language("MySQL")
-        String query = "SELECT * FROM travel_agent WHERE travel_agent_id=?";
+        String query = "SELECT *, " +
+                "travel_agent.phone_number as travel_agent_phone_number, " +
+                "travel_agency.phone_number as travel_agency_phone_number " +
+                "FROM travel_agent " +
+                "JOIN travel_agency on travel_agent.travel_agency_id = travel_agency.travel_agency_id "+
+                "WHERE travel_agent_id=?";
 
         try {
             return jdbcTemplate.queryForObject(
@@ -51,7 +57,11 @@ public class TravelAgentRepositoryImpl implements TravelAgentRepository {
                     (rs, rowNum) -> TravelAgent.builder()
                             .id(rs.getInt("travel_agent_id"))
                             .travelAgency(TravelAgency.builder()
-                                    .id(rs.getInt(""))
+                                    .id(rs.getInt("travel_agency_id"))
+                                    .abbreviatedName(rs.getString("abbreviated_name"))
+                                    .phoneNumber(rs.getString("phone_number"))
+                                    .site(rs.getString("site"))
+                                    .emailAddress(rs.getString("email_address"))
                                     .build())
                             .name(rs.getString("name"))
                             .surname(rs.getString("surname"))
@@ -73,7 +83,7 @@ public class TravelAgentRepositoryImpl implements TravelAgentRepository {
 
         jdbcTemplate.update(
                 query,
-                travelAgent.getTravelAgency(),
+                travelAgent.getTravelAgency().getId(),
                 travelAgent.getName(),
                 travelAgent.getSurname(),
                 travelAgent.getPatronymic(),
