@@ -1,6 +1,8 @@
 package com.javastudents.travelagency.controller;
 
 import com.javastudents.travelagency.entity.Tour;
+import com.javastudents.travelagency.entity.TourCategory;
+import com.javastudents.travelagency.entity.dto.TourDTO;
 import com.javastudents.travelagency.service.impl.TourCategoryServiceImpl;
 import com.javastudents.travelagency.service.impl.TourServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,8 +52,16 @@ public class TourController {
     }
 
     @PostMapping("/save")
-    public String save(Tour tour){
-        System.out.println(tour.toString());
+    public String save(@ModelAttribute("tour") TourDTO tourDTO){
+        TourCategory tourCategory = tourCategoryService.read(tourDTO.getTourCategory());
+        Tour tour = Tour.builder()
+                .tourId(tourDTO.getTourId())
+                .name(tourDTO.getName())
+                .description(tourDTO.getDescription())
+                .price(tourDTO.getPrice())
+                .tourCategory(tourCategory)
+                .build();
+
         if(tour.getTourId()== null){
             tourService.create(tour);
         } else {
