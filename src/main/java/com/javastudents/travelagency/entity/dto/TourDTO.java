@@ -13,5 +13,5 @@ public class TourDTO implements Entity {
     private String name;
     private String description;
     private BigDecimal price;
-    private Integer tourCategory;
+    private Integer tourCategoryId;
 }

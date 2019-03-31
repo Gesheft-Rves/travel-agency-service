@@ -38,7 +38,15 @@ public class TourController {
 
     @GetMapping("/edit/{id}")
     public String edit(@PathVariable  Integer id, Model model){
-        model.addAttribute("tour", tourService.read(id));
+        Tour tour = tourService.read(id);
+        TourDTO tourDTO = TourDTO.builder()
+                .tourId(tour.getTourId())
+                .name(tour.getName())
+                .description(tour.getDescription())
+                .price(tour.getPrice())
+                .tourCategoryId(tour.getTourCategory().getId())
+                .build();
+        model.addAttribute("tourDTO", tourDTO);
         model.addAttribute("tourCategories", tourCategoryService.list());
         return "tour/form";
     }
@@ -46,20 +54,19 @@ public class TourController {
     @GetMapping("/new")
     @ResponseStatus(HttpStatus.CREATED)
     public String newAppPermission(Model model){
-        model.addAttribute("tour", new Tour());
+        model.addAttribute("tourDTO", new TourDTO());
         model.addAttribute("tourCategories", tourCategoryService.list());
         return "tour/form";
     }
 
     @PostMapping("/save")
-    public String save(@ModelAttribute("tour") TourDTO tourDTO){
-        TourCategory tourCategory = tourCategoryService.read(tourDTO.getTourCategory());
+    public String save(@ModelAttribute("tourDTO") TourDTO tourDTO){
         Tour tour = Tour.builder()
                 .tourId(tourDTO.getTourId())
                 .name(tourDTO.getName())
                 .description(tourDTO.getDescription())
                 .price(tourDTO.getPrice())
-                .tourCategory(tourCategory)
+                .tourCategory(tourCategoryService.read(tourDTO.getTourCategoryId()))
                 .build();
 
         if(tour.getTourId()== null){
