@@ -69,17 +69,18 @@ public class TourCategoryRepositoryImpl implements TourCategoryRepository {
 
     @Override
     public List<TourCategory> list() {
+
         @Language("MySQL")
         String query = "SELECT * FROM tour_category";
 
-        try {
+        try{
             return jdbcTemplate.query(query, new Object[]{},
                     (rs, rowNub) -> TourCategory.builder()
                             .id(rs.getInt("tour_category_id"))
                             .name(rs.getString("name"))
                             .build()
             );
-        } catch (EmptyResultDataAccessException e) {
+        } catch (EmptyResultDataAccessException e){
             return null;
         }
     }

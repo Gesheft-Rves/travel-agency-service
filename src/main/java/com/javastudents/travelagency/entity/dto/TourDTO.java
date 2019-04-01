@@ -1,18 +1,17 @@
-package com.javastudents.travelagency.entity;
+package com.javastudents.travelagency.entity.dto;
 
+import com.javastudents.travelagency.entity.Entity;
 import lombok.*;
 
 import java.math.BigDecimal;
 
-@Builder
-@ToString
+@Builder @ToString
 @Getter @Setter
-@EqualsAndHashCode
 @AllArgsConstructor @NoArgsConstructor
-public class Tour implements Entity {
+public class TourDTO implements Entity {
     private Integer tourId;
     private String name;
     private String description;
     private BigDecimal price;
-    private TourCategory tourCategory;
+    private Integer tourCategoryId;
 }
