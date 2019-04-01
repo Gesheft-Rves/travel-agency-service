@@ -38,14 +38,7 @@ public class TourController {
 
     @GetMapping("/edit/{id}")
     public String edit(@PathVariable  Integer id, Model model){
-        Tour tour = tourService.read(id);
-        TourDTO tourDTO = TourDTO.builder()
-                .tourId(tour.getTourId())
-                .name(tour.getName())
-                .description(tour.getDescription())
-                .price(tour.getPrice())
-                .tourCategoryId(tour.getTourCategory().getId())
-                .build();
+        TourDTO tourDTO = tour2DTO(tourService.read(id));
         model.addAttribute("tourDTO", tourDTO);
         model.addAttribute("tourCategories", tourCategoryService.list());
         return "tour/form";
@@ -61,14 +54,7 @@ public class TourController {
 
     @PostMapping("/save")
     public String save(@ModelAttribute("tourDTO") TourDTO tourDTO){
-        Tour tour = Tour.builder()
-                .tourId(tourDTO.getTourId())
-                .name(tourDTO.getName())
-                .description(tourDTO.getDescription())
-                .price(tourDTO.getPrice())
-                .tourCategory(tourCategoryService.read(tourDTO.getTourCategoryId()))
-                .build();
-
+        Tour tour = DTO2tour(tourDTO);
         if(tour.getTourId()== null){
             tourService.create(tour);
         } else {
@@ -81,5 +67,27 @@ public class TourController {
     public String details(@PathVariable Integer id, Model model){
         model.addAttribute("tour", tourService.read(id));
         return "tour/card";
+    }
+
+    public TourDTO tour2DTO(Tour tour) {
+        return TourDTO.builder()
+                .tourId(tour.getTourId())
+                .name(tour.getName())
+                .description(tour.getDescription())
+                .price(tour.getPrice())
+                .tourCategoryId(tour.getTourCategory().getId())
+                .build();
+
+    }
+
+    public Tour DTO2tour (TourDTO tourDTO) {
+        return Tour.builder()
+                .tourId(tourDTO.getTourId())
+                .name(tourDTO.getName())
+                .description(tourDTO.getDescription())
+                .price(tourDTO.getPrice())
+                .tourCategory(tourCategoryService.read(tourDTO.getTourCategoryId()))
+                .build();
+
     }
 }
