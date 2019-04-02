@@ -2,15 +2,13 @@ package com.javastudents.travelagency.controller;
 
 
 import com.javastudents.travelagency.entity.TravelAgent;
+import com.javastudents.travelagency.entity.dto.TravelAgentDTO;
 import com.javastudents.travelagency.service.impl.TravelAgencyServiceImpl;
 import com.javastudents.travelagency.service.impl.TravelAgentServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping("/travelAgent")
@@ -40,21 +38,22 @@ public class TravelAgentController {
 
     @GetMapping("/edit/{id}")
     public String edit(@PathVariable Integer id, Model model){
-        model.addAttribute("travelAgent", travelAgentService.read(id));
+        TravelAgentDTO travelAgentDTO = travelAgent2DTO(travelAgentService.read(id));
+        model.addAttribute("travelAgentDTO", travelAgentDTO);
         model.addAttribute("travelAgencies", travelAgencyService.list());
         return "travelAgent/form";
     }
 
     @GetMapping("/new")
     public String newAppPermission(Model model){
-        model.addAttribute("travelAgent", new TravelAgent());
+        model.addAttribute("travelAgentDTO", new TravelAgentDTO());
         model.addAttribute("travelAgencies", travelAgencyService.list());
         return "travelAgent/form";
     }
 
     @PostMapping("/save")
-    public String save(TravelAgent travelAgent){
-        System.out.println(travelAgent.toString());
+    public String save(@ModelAttribute("travelAgentDTO") TravelAgentDTO travelAgentDTO){
+        TravelAgent travelAgent = dto2TravelAgent(travelAgentDTO);
         if(travelAgent.getId()== null){
             travelAgentService.create(travelAgent);
         } else {
@@ -67,5 +66,31 @@ public class TravelAgentController {
     public String details(@PathVariable Integer id, Model model){
         model.addAttribute("travelAgent", travelAgentService.read(id));
         return "travelAgent/card";
+    }
+
+    TravelAgentDTO travelAgent2DTO(TravelAgent travelAgent) {
+        return TravelAgentDTO.builder()
+                .id(travelAgent.getId())
+                .travelAgencyId(travelAgent.getTravelAgency().getId())
+                .name(travelAgent.getName())
+                .surname(travelAgent.getSurname())
+                .patronymic(travelAgent.getPatronymic())
+                .enabled(travelAgent.getEnabled())
+                .phoneNumber(travelAgent.getPhoneNumber())
+                .limitAmount(travelAgent.getLimitAmount())
+                .build();
+    }
+
+    TravelAgent dto2TravelAgent (TravelAgentDTO travelAgentDTO) {
+        return TravelAgent.builder()
+                .id(travelAgentDTO.getId())
+                .travelAgency(travelAgencyService.read(travelAgentDTO.getTravelAgencyId()))
+                .name(travelAgentDTO.getName())
+                .surname(travelAgentDTO.getSurname())
+                .patronymic(travelAgentDTO.getPatronymic())
+                .enabled(travelAgentDTO.getEnabled())
+                .phoneNumber(travelAgentDTO.getPhoneNumber())
+                .limitAmount(travelAgentDTO.getLimitAmount())
+                .build();
     }
 }

@@ -28,7 +28,7 @@ public class TravelAgentRepositoryImpl implements TravelAgentRepository {
 
         jdbcTemplate.update(
                 query,
-                travelAgent.getTravelAgency(),
+                travelAgent.getTravelAgency().getId(),
                 travelAgent.getName(),
                 travelAgent.getSurname(),
                 travelAgent.getPatronymic(),
@@ -104,6 +104,36 @@ public class TravelAgentRepositoryImpl implements TravelAgentRepository {
 
     @Override
     public List<TravelAgent> list() {
-        return null;
+        @Language("MySQL")
+        String query = "SELECT *, " +
+                "travel_agent.phone_number as travel_agent_phone_number, " +
+                "travel_agency.phone_number as travel_agency_phone_number " +
+                "FROM travel_agent " +
+                "JOIN travel_agency on travel_agent.travel_agency_id = travel_agency.travel_agency_id ";
+
+        try{
+            return jdbcTemplate.query(query, new Object[]{},
+                    (rs, rowNub) -> TravelAgent.builder()
+                            .id(rs.getInt("travel_agent_id"))
+                            .travelAgency(TravelAgency.builder()
+                                    .id(rs.getInt("travel_agency_id"))
+                                    .abbreviatedName(rs.getString("abbreviated_name"))
+                                    .address(rs.getString("address"))
+                                    .phoneNumber(rs.getString("phone_number"))
+                                    .site(rs.getString("site"))
+                                    .emailAddress(rs.getString("email_address"))
+                                    .build()
+                            )
+                            .name(rs.getString("name"))
+                            .surname(rs.getString("surname"))
+                            .patronymic(rs.getString("patronymic"))
+                            .enabled(rs.getBoolean("enabled"))
+                            .phoneNumber(rs.getString("phone_number"))
+                            .limitAmount(rs.getBigDecimal("limit_amount"))
+                            .build()
+            );
+        } catch (EmptyResultDataAccessException e){
+            return null;
+        }
     }
 }
