@@ -4,7 +4,7 @@ INSERT INTO travel_agency (abbreviated_name, address, phone_number, site, email_
 INSERT INTO travel_agency (abbreviated_name, address, phone_number, site, email_address) VALUES ('name_4','addres_4',4,'site_4','email_4');
 INSERT INTO travel_agency (abbreviated_name, address, phone_number, site, email_address) VALUES ('name_5','addres_5',5,'site_5','email_5');
 
-INSERT INTO travel_agent (travel_agency_id, name, surname, patronymic, enabled, phone_number, limit_amount) VALUES (1,'agent_surname_1','agent_name_1','agent_patronymic_1','true','111','10');
+INSERT INTO travel_agent (travel_agency_id, name, surname, patronymic, enabled, phone_number, limit_amount) VALUES (1,'agent_name_1','agent_surname_1','agent_patronymic_1','true','111','10');
 INSERT INTO travel_agent (travel_agency_id, name, surname, patronymic, enabled, phone_number, limit_amount) VALUES (2,'agent_surname_2','agent_name_2','agent_patronymic_2','true','222','10');
 INSERT INTO travel_agent (travel_agency_id, name, surname, patronymic, enabled, phone_number, limit_amount) VALUES (3,'agent_surname_3','agent_name_3','agent_patronymic_3','true','333','10');
 INSERT INTO travel_agent (travel_agency_id, name, surname, patronymic, enabled, phone_number, limit_amount) VALUES (4,'agent_surname_4','agent_name_4','agent_patronymic_4','true','444','10');

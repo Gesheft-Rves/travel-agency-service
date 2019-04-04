@@ -43,10 +43,10 @@ public class TravelAgentRepositoryImpl implements TravelAgentRepository {
 
         @Language("MySQL")
         String query = "SELECT *, " +
-                "travel_agent.phone_number as travel_agent_phone_number, " +
-                "travel_agency.phone_number as travel_agency_phone_number " +
+                "travel_agent.phone_number AS travel_agent_phone_number, " +
+                "travel_agency.phone_number AS travel_agency_phone_number " +
                 "FROM travel_agent " +
-                "JOIN travel_agency on travel_agent.travel_agency_id = travel_agency.travel_agency_id "+
+                "JOIN travel_agency ON travel_agent.travel_agency_id = travel_agency.travel_agency_id "+
                 "WHERE travel_agent_id=?";
 
         try {
@@ -106,10 +106,10 @@ public class TravelAgentRepositoryImpl implements TravelAgentRepository {
     public List<TravelAgent> list() {
         @Language("MySQL")
         String query = "SELECT *, " +
-                "travel_agent.phone_number as travel_agent_phone_number, " +
-                "travel_agency.phone_number as travel_agency_phone_number " +
+                "travel_agent.phone_number AS travel_agent_phone_number, " +
+                "travel_agency.phone_number AS travel_agency_phone_number " +
                 "FROM travel_agent " +
-                "JOIN travel_agency on travel_agent.travel_agency_id = travel_agency.travel_agency_id ";
+                "JOIN travel_agency ON travel_agent.travel_agency_id = travel_agency.travel_agency_id ";
 
         try{
             return jdbcTemplate.query(query, new Object[]{},

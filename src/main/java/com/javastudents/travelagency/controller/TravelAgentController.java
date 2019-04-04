@@ -68,7 +68,7 @@ public class TravelAgentController {
         return "travelAgent/card";
     }
 
-    TravelAgentDTO travelAgent2DTO(TravelAgent travelAgent) {
+    private TravelAgentDTO travelAgent2DTO(TravelAgent travelAgent) {
         return TravelAgentDTO.builder()
                 .id(travelAgent.getId())
                 .travelAgencyId(travelAgent.getTravelAgency().getId())
@@ -81,7 +81,7 @@ public class TravelAgentController {
                 .build();
     }
 
-    TravelAgent dto2TravelAgent (TravelAgentDTO travelAgentDTO) {
+    private TravelAgent dto2TravelAgent (TravelAgentDTO travelAgentDTO) {
         return TravelAgent.builder()
                 .id(travelAgentDTO.getId())
                 .travelAgency(travelAgencyService.read(travelAgentDTO.getTravelAgencyId()))
