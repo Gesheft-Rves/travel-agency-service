@@ -5,7 +5,7 @@ import lombok.*;
 
 import java.math.BigDecimal;
 
-@Builder @ToString
+@Builder
 @Getter @Setter
 @AllArgsConstructor @NoArgsConstructor
 public class TourDTO implements Entity {

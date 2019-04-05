@@ -69,7 +69,7 @@ public class TourController {
         return "tour/card";
     }
 
-    public TourDTO tour2DTO(Tour tour) {
+    private TourDTO tour2DTO(Tour tour) {
         return TourDTO.builder()
                 .tourId(tour.getTourId())
                 .name(tour.getName())
@@ -80,7 +80,7 @@ public class TourController {
 
     }
 
-    public Tour DTO2tour (TourDTO tourDTO) {
+    private Tour DTO2tour (TourDTO tourDTO) {
         return Tour.builder()
                 .tourId(tourDTO.getTourId())
                 .name(tourDTO.getName())
