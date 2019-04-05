@@ -1,18 +1,15 @@
-package com.javastudents.travelagency.entity;
-
+package com.javastudents.travelagency.entity.dto;
 
 import lombok.*;
 
 import java.math.BigDecimal;
 
 @Builder
-@ToString
 @Getter @Setter
-@EqualsAndHashCode
 @AllArgsConstructor @NoArgsConstructor
-public class TravelAgent implements Entity {
+public class TravelAgentDTO {
     private Integer id;
-    private TravelAgency travelAgency;
+    private Integer travelAgencyId;
     private String name;
     private String surname;
     private String patronymic;

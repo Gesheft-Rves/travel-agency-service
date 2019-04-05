@@ -1,5 +1,6 @@
 package com.javastudents.travelagency.repository.impl;
 
+import com.javastudents.travelagency.entity.TravelAgency;
 import com.javastudents.travelagency.entity.TravelAgent;
 import com.javastudents.travelagency.repository.TravelAgentRepository;
 import org.intellij.lang.annotations.Language;
@@ -7,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
 
 @Repository
 public class TravelAgentRepositoryImpl implements TravelAgentRepository {
@@ -25,7 +28,7 @@ public class TravelAgentRepositoryImpl implements TravelAgentRepository {
 
         jdbcTemplate.update(
                 query,
-                travelAgent.getTravelAgencyId(),
+                travelAgent.getTravelAgency().getId(),
                 travelAgent.getName(),
                 travelAgent.getSurname(),
                 travelAgent.getPatronymic(),
@@ -37,8 +40,14 @@ public class TravelAgentRepositoryImpl implements TravelAgentRepository {
 
     @Override
     public TravelAgent read(int travelAgentId) {
+
         @Language("MySQL")
-        String query = "SELECT * FROM travel_agent WHERE travel_agent_id=?";
+        String query = "SELECT *, " +
+                "travel_agent.phone_number AS travel_agent_phone_number, " +
+                "travel_agency.phone_number AS travel_agency_phone_number " +
+                "FROM travel_agent " +
+                "JOIN travel_agency ON travel_agent.travel_agency_id = travel_agency.travel_agency_id "+
+                "WHERE travel_agent_id=?";
 
         try {
             return jdbcTemplate.queryForObject(
@@ -47,7 +56,13 @@ public class TravelAgentRepositoryImpl implements TravelAgentRepository {
 
                     (rs, rowNum) -> TravelAgent.builder()
                             .id(rs.getInt("travel_agent_id"))
-                            .travelAgencyId(rs.getInt("travel_agency_id"))
+                            .travelAgency(TravelAgency.builder()
+                                    .id(rs.getInt("travel_agency_id"))
+                                    .abbreviatedName(rs.getString("abbreviated_name"))
+                                    .phoneNumber(rs.getString("phone_number"))
+                                    .site(rs.getString("site"))
+                                    .emailAddress(rs.getString("email_address"))
+                                    .build())
                             .name(rs.getString("name"))
                             .surname(rs.getString("surname"))
                             .patronymic(rs.getString("patronymic"))
@@ -68,7 +83,7 @@ public class TravelAgentRepositoryImpl implements TravelAgentRepository {
 
         jdbcTemplate.update(
                 query,
-                travelAgent.getTravelAgencyId(),
+                travelAgent.getTravelAgency().getId(),
                 travelAgent.getName(),
                 travelAgent.getSurname(),
                 travelAgent.getPatronymic(),
@@ -85,5 +100,40 @@ public class TravelAgentRepositoryImpl implements TravelAgentRepository {
         String query = "DELETE FROM travel_agent WHERE travel_agent_id = ?";
 
         jdbcTemplate.update(query, travelAgentId);
+    }
+
+    @Override
+    public List<TravelAgent> list() {
+        @Language("MySQL")
+        String query = "SELECT *, " +
+                "travel_agent.phone_number AS travel_agent_phone_number, " +
+                "travel_agency.phone_number AS travel_agency_phone_number " +
+                "FROM travel_agent " +
+                "JOIN travel_agency ON travel_agent.travel_agency_id = travel_agency.travel_agency_id ";
+
+        try{
+            return jdbcTemplate.query(query, new Object[]{},
+                    (rs, rowNub) -> TravelAgent.builder()
+                            .id(rs.getInt("travel_agent_id"))
+                            .travelAgency(TravelAgency.builder()
+                                    .id(rs.getInt("travel_agency_id"))
+                                    .abbreviatedName(rs.getString("abbreviated_name"))
+                                    .address(rs.getString("address"))
+                                    .phoneNumber(rs.getString("phone_number"))
+                                    .site(rs.getString("site"))
+                                    .emailAddress(rs.getString("email_address"))
+                                    .build()
+                            )
+                            .name(rs.getString("name"))
+                            .surname(rs.getString("surname"))
+                            .patronymic(rs.getString("patronymic"))
+                            .enabled(rs.getBoolean("enabled"))
+                            .phoneNumber(rs.getString("phone_number"))
+                            .limitAmount(rs.getBigDecimal("limit_amount"))
+                            .build()
+            );
+        } catch (EmptyResultDataAccessException e){
+            return null;
+        }
     }
 }
