@@ -1,9 +1,7 @@
 package com.javastudents.travelagency.repository;
 
 import com.javastudents.travelagency.entity.AppRole;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-import java.util.List;
-
-public interface AppRoleRepository extends CrudRepository<AppRole> {
-    List<AppRole> list();
+public interface AppRoleRepository extends JpaRepository<AppRole, Integer> {
 }

@@ -2,12 +2,19 @@ package com.javastudents.travelagency.entity;
 
 import lombok.*;
 
+import javax.persistence.*;
+import javax.persistence.Entity;
 
-@Builder
-@ToString
+@AllArgsConstructor
+@NoArgsConstructor
 @Getter @Setter
-@EqualsAndHashCode
-public class DocumentType implements Entity {
+@Entity
+public class DocumentType {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column
     private Integer documentTypeId;
+
+    @Column
     private String name;
 }

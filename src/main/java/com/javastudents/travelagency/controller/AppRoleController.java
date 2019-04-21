@@ -1,7 +1,7 @@
 package com.javastudents.travelagency.controller;
 
 import com.javastudents.travelagency.entity.AppRole;
-import com.javastudents.travelagency.service.impl.AppRoleServiceImpl;
+import com.javastudents.travelagency.service.AppRoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,10 +12,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 @RequestMapping("/approle")
 public class AppRoleController {
-    private AppRoleServiceImpl appRoleService;
+    private AppRoleService appRoleService;
 
     @Autowired
-    public void setAppRoleService(AppRoleServiceImpl appRoleService) {
+    public void setAppRoleService(AppRoleService appRoleService) {
         this.appRoleService = appRoleService;
     }
 
@@ -33,7 +33,7 @@ public class AppRoleController {
 
     @RequestMapping("/edit/{id}")
     public String edit(@PathVariable  Integer id, Model model){
-        model.addAttribute("approle", appRoleService.read(id));
+        model.addAttribute("approle", appRoleService.getById(id));
         return "approle/form";
     }
 
@@ -45,18 +45,13 @@ public class AppRoleController {
 
     @RequestMapping(value = "/save", method = RequestMethod.POST)
     public String save(AppRole appRole){
-        boolean newRecord = appRole.getAppRoleId()== null;
-        if(newRecord){
-            appRoleService.create(appRole);
-        } else {
-            appRoleService.update(appRole);
-        }
+        appRoleService.save(appRole);
         return "redirect:/approle/list";
     }
 
     @RequestMapping("/details/{id}")
     public String details(@PathVariable Integer id, Model model){
-        model.addAttribute("approle", appRoleService.read(id));
+        model.addAttribute("approle", appRoleService.getById(id));
         return "approle/card";
     }
 }

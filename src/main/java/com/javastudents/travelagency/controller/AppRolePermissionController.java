@@ -1,13 +1,9 @@
 package com.javastudents.travelagency.controller;
 
 import com.javastudents.travelagency.entity.AppRolePermission;
-import com.javastudents.travelagency.entity.wrapper.AppRolePermissionWrapper;
 import com.javastudents.travelagency.service.AppPermissionService;
 import com.javastudents.travelagency.service.AppRolePermissionService;
 import com.javastudents.travelagency.service.AppRoleService;
-import com.javastudents.travelagency.service.impl.AppPermissionServiceImpl;
-import com.javastudents.travelagency.service.impl.AppRolePermissionServiceImpl;
-import com.javastudents.travelagency.service.impl.AppRoleServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,24 +22,24 @@ public class AppRolePermissionController {
 
 
     @Autowired
-    public void setAppRolePermissionService(AppRolePermissionServiceImpl appRolePermissionService) {
+    public void setAppRolePermissionService(AppRolePermissionService appRolePermissionService) {
         this.appRolePermissionService = appRolePermissionService;
     }
 
     @Autowired
-    public void setAppRoleService(AppRoleServiceImpl appRoleService) {
+    public void setAppRoleService(AppRoleService appRoleService) {
         this.appRoleService = appRoleService;
     }
 
     @Autowired
-    public void setAppPermissionService(AppPermissionServiceImpl appPermissionService) {
+    public void setAppPermissionService(AppPermissionService appPermissionService) {
         this.appPermissionService = appPermissionService;
     }
 
 
     @RequestMapping("/list")
     public String list(Model model){
-        List<AppRolePermissionWrapper> roles = appRolePermissionService.appRolePermissionWrapperList();
+        List<AppRolePermission> roles = appRolePermissionService.list();
         model.addAttribute("approlepermissions", roles);
         return "approlepermissions/list";
     }
@@ -58,7 +54,7 @@ public class AppRolePermissionController {
     public String edit(@PathVariable  Integer id, Model model){
         model.addAttribute("roles",appRoleService.list());
         model.addAttribute("permissions",appPermissionService.list());
-        model.addAttribute("approlepermission", appRolePermissionService.read(id));
+        model.addAttribute("approlepermission", appRolePermissionService.getById(id));
         return "approlepermissions/form";
     }
 
@@ -72,18 +68,13 @@ public class AppRolePermissionController {
 
     @RequestMapping(value = "/save", method = RequestMethod.POST)
     public String save(AppRolePermission appRolePermission){
-        boolean newRecord = appRolePermission.getAppRolePermissionId()== null;
-        if(newRecord){
-            appRolePermissionService.create(appRolePermission);
-        } else {
-            appRolePermissionService.update(appRolePermission);
-        }
+        appRolePermissionService.save(appRolePermission);
         return "redirect:list";
     }
 
     @RequestMapping("/details/{id}")
     public String details(@PathVariable Integer id, Model model){
-        model.addAttribute("approlepermission", appRolePermissionService.readAppRolePermissionWrapper(id));
+        model.addAttribute("approlepermission", appRolePermissionService.getById(id));
         return "approlepermissions/card";
     }
 }

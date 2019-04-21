@@ -2,22 +2,22 @@ package com.javastudents.travelagency.entity;
 
 import lombok.*;
 
+import javax.persistence.*;
+import javax.persistence.Entity;
 
-@Builder
-@ToString
+@AllArgsConstructor
+@NoArgsConstructor
 @Getter @Setter
-@EqualsAndHashCode
-public class AppRolePermission implements Entity {
+@Entity
+public class AppRolePermission {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column
     private Integer appRolePermissionId;
+
+    @Column
     private Integer appRoleId;
+
+    @Column
     private Integer appPermissionId;
-
-    public AppRolePermission(Integer appRolePermissionId, Integer appRoleId, Integer appPermissionId) {
-        this.appRolePermissionId = appRolePermissionId;
-        this.appRoleId = appRoleId;
-        this.appPermissionId = appPermissionId;
-    }
-
-    public AppRolePermission() {
-    }
 }

@@ -1,7 +1,7 @@
 package com.javastudents.travelagency.controller;
 
 import com.javastudents.travelagency.entity.AppPermission;
-import com.javastudents.travelagency.service.impl.AppPermissionServiceImpl;
+import com.javastudents.travelagency.service.AppPermissionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,10 +13,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 @RequestMapping("/apppermission")
 public class AppPermissonController {
-    private AppPermissionServiceImpl appPermissionService;
+    private AppPermissionService appPermissionService;
 
     @Autowired
-    public void setAppPermissionService(AppPermissionServiceImpl appPermissionService) {
+    public void setAppPermissionService(AppPermissionService appPermissionService) {
         this.appPermissionService = appPermissionService;
     }
 
@@ -34,7 +34,7 @@ public class AppPermissonController {
 
     @RequestMapping("/edit/{id}")
     public String edit(@PathVariable  Integer id, Model model){
-        model.addAttribute("apppermission", appPermissionService.read(id));
+        model.addAttribute("apppermission", appPermissionService.getById(id));
         return "apppermission/form";
     }
 
@@ -46,18 +46,13 @@ public class AppPermissonController {
 
     @RequestMapping(value = "/save", method = RequestMethod.POST)
     public String save(AppPermission apppermission){
-        boolean newRecord = apppermission.getAppPermissionId()== null;
-        if(newRecord){
-            appPermissionService.create(apppermission);
-        } else {
-            appPermissionService.update(apppermission);
-        }
+            appPermissionService.save(apppermission);
         return "redirect:list";
     }
 
     @RequestMapping("/details/{id}")
     public String details(@PathVariable Integer id, Model model){
-        model.addAttribute("apppermission", appPermissionService.read(id));
+        model.addAttribute("apppermission", appPermissionService.getById(id));
         return "apppermission/card";
     }
 }

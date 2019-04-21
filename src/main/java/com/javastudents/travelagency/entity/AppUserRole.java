@@ -2,13 +2,25 @@ package com.javastudents.travelagency.entity;
 
 import lombok.*;
 
+import javax.persistence.*;
+import javax.persistence.Entity;
 
-@Builder
-@ToString
+
+@AllArgsConstructor
+@NoArgsConstructor
 @Getter @Setter
-@EqualsAndHashCode
-public class AppUserRole implements Entity {
+@Entity
+public class AppUserRole {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column
     private Integer appUserRoleId;
-    private Integer appUserId;
-    private Integer roleId;
+
+    @OneToOne
+    @JoinColumn
+    private AppUser appUser;
+
+    @OneToOne
+    @JoinColumn
+    private AppRole appRole;
 }

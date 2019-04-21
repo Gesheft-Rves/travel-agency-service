@@ -2,16 +2,29 @@ package com.javastudents.travelagency.entity;
 
 import lombok.*;
 
+import javax.persistence.*;
+import javax.persistence.Entity;
 import java.math.BigDecimal;
 
-@Builder
-@ToString
+@AllArgsConstructor
+@NoArgsConstructor
 @Getter @Setter
-@EqualsAndHashCode
-public class Tour implements Entity {
+@Entity
+public class Tour {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column
     private Integer id;
+
+    @Column
     private String name;
+
+    @Column
     private String description;
+
+    @Column
     private BigDecimal price;
+
+    @Column
     private Integer tourCategoryId;
 }

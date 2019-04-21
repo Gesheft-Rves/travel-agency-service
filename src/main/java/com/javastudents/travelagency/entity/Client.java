@@ -2,18 +2,39 @@ package com.javastudents.travelagency.entity;
 
 import lombok.*;
 
+import javax.persistence.*;
+import javax.persistence.Entity;
 
-@Builder
-@ToString
+@AllArgsConstructor
+@NoArgsConstructor
 @Getter @Setter
-@EqualsAndHashCode
-public class Client implements Entity {
+@Entity
+public class Client {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column
     private Integer clientId;
-    private Integer documentTypeId;
-    private String documentSeriesNumber;
+
+    @OneToOne
+    @JoinColumn
+    private DocumentType documentTypeId;
+
+    @OneToOne
+    @JoinColumn
+    private DocumentType documentSeriesNumber;
+
+    @Column
     private String name;
+
+    @Column
     private String surname;
+
+    @Column
     private String patronymic;
+
+    @Column
     private String address;
+
+    @Column
     private String phoneNumber;
 }

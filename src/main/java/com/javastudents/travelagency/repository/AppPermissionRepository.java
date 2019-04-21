@@ -1,9 +1,7 @@
 package com.javastudents.travelagency.repository;
 
 import com.javastudents.travelagency.entity.AppPermission;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-import java.util.List;
-
-public interface AppPermissionRepository extends CrudRepository<AppPermission> {
-    List<AppPermission> list ();
+public interface AppPermissionRepository extends JpaRepository<AppPermission, Integer> {
 }
