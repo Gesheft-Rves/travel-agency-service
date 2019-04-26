@@ -1,9 +1,7 @@
 package com.javastudents.travelagency.repository;
 
 import com.javastudents.travelagency.entity.TravelAgency;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-import java.util.List;
-
-public interface TravelAgencyRepository extends CrudRepository<TravelAgency> {
-    List<TravelAgency> list();
+public interface TravelAgencyRepository extends JpaRepository<TravelAgency, Integer> {
 }

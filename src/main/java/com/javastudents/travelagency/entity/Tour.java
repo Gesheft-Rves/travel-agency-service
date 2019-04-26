@@ -13,7 +13,7 @@ import java.math.BigDecimal;
 public class Tour {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column
+    @Column(name = "tour_id")
     private Integer id;
 
     @Column
@@ -25,6 +25,14 @@ public class Tour {
     @Column
     private BigDecimal price;
 
-    @Column
-    private Integer tourCategoryId;
+    @OneToOne
+    @JoinColumn(name = "tour_category_id")
+    private TourCategory tourCategory;
+
+    public Tour(String name, String description, BigDecimal price, TourCategory tourCategory) {
+        this.name = name;
+        this.description = description;
+        this.price = price;
+        this.tourCategory = tourCategory;
+    }
 }

@@ -13,24 +13,38 @@ import java.sql.Timestamp;
 public class Purchase {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column
+    @Column(name = "purchase_id")
     private Integer id;
 
-    @Column
-    private Integer tourScheduleId;
+    @OneToOne
+    @JoinColumn(name = "tour_schedule_id")
+    private TourSchedule tourSchedule;
 
-    @Column
-    private Integer travelAgentId;
+    @OneToOne
+    @JoinColumn(name = "travel_agent_id")
+    private TravelAgent travelAgent;
 
-    @Column
-    private Integer clientId;
+    @OneToOne
+    @JoinColumn(name = "client_id")
+    private Client client;
 
-    @Column
-    private Integer transportId;
+    @OneToOne
+    @JoinColumn(name = "transport_id")
+    private Transport transport;
 
-    @Column
-    private Integer transportSeatId;
+    @OneToOne
+    @JoinColumn(name = "transport_seat_id")
+    private TransportSeat transportSeat;
 
     @Column
     private Timestamp operationDate;
+
+    public Purchase(TourSchedule tourSchedule, TravelAgent travelAgent, Client client, Transport transport, TransportSeat transportSeat, Timestamp operationDate) {
+        this.tourSchedule = tourSchedule;
+        this.travelAgent = travelAgent;
+        this.client = client;
+        this.transport = transport;
+        this.transportSeat = transportSeat;
+        this.operationDate = operationDate;
+    }
 }

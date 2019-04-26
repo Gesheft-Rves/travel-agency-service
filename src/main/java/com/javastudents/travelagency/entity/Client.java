@@ -16,12 +16,11 @@ public class Client {
     private Integer clientId;
 
     @OneToOne
-    @JoinColumn
+    @JoinColumn(name = "document_type_id")
     private DocumentType documentTypeId;
 
-    @OneToOne
-    @JoinColumn
-    private DocumentType documentSeriesNumber;
+    @Column(name = "document_series_number")
+    private String documentSeriesNumber;
 
     @Column
     private String name;
@@ -37,4 +36,14 @@ public class Client {
 
     @Column
     private String phoneNumber;
+
+    public Client(DocumentType documentTypeId, String documentSeriesNumber, String name, String surname, String patronymic, String address, String phoneNumber) {
+        this.documentTypeId = documentTypeId;
+        this.documentSeriesNumber = documentSeriesNumber;
+        this.name = name;
+        this.surname = surname;
+        this.patronymic = patronymic;
+        this.address = address;
+        this.phoneNumber = phoneNumber;
+    }
 }

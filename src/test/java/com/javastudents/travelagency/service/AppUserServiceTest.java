@@ -1,8 +1,6 @@
-package com.javastudents.travelagency.service.impl;
+package com.javastudents.travelagency.service;
 
 import com.javastudents.travelagency.entity.AppUser;
-import com.javastudents.travelagency.service.AppUserService;
-import com.javastudents.travelagency.service.TravelAgentService;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -30,6 +28,7 @@ public class AppUserServiceTest {
     public void list() {
         Integer expected = 4;
         Integer actual = appUserService.list().size();
+
         Assert.assertEquals(expected,actual);
     }
 
@@ -37,6 +36,7 @@ public class AppUserServiceTest {
     public void getById() {
         AppUser appUser = appUserService.getById(1);
         Integer expected = 1;
+
         Assert.assertEquals(expected,appUser.getAppUserId());
     }
 
@@ -44,6 +44,7 @@ public class AppUserServiceTest {
     public void save() {
         AppUser appUser = new AppUser(5,"newUserName","newUserSurname","newEmail","Log","Pass",travelAgentService.getById(5));
         appUserService.save(appUser);
+
         Assert.assertNotNull(appUserService.getById(5));
     }
 
@@ -51,8 +52,11 @@ public class AppUserServiceTest {
     public void delete() {
         AppUser appUser = new AppUser(5,"newUserName","newUserSurname","newEmail","Log","Pass",travelAgentService.getById(5));
         appUserService.save(appUser);
+
         Assert.assertNotNull(appUserService.getById(5));
+
         appUserService.delete(5);
-        Assert.assertEquals(4,appUserService.list().size());
+
+        Assert.assertEquals(4, appUserService.list().size());
     }
 }

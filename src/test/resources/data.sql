@@ -64,7 +64,7 @@ INSERT INTO transport_seat (transport_id, seat_no, comment) VALUES (1, 2, '23');
 INSERT INTO transport_seat (transport_id, seat_no, comment) VALUES (2, 2, '24');
 
 INSERT INTO travel_agency (abbreviated_name, address, phone_number, email_address) values ('asd', 'asd', '654', 'asd');
-INSERT INTO travel_agency (abbreviated_name, address, phone_number, email_address) values ('asd', 'asd', '654', 'asd');
+INSERT INTO travel_agency (abbreviated_name, address, phone_number, email_address) values ('asd', 'asd', '65444', 'asd');
 
 INSERT INTO travel_agent (travel_agency_id, name, phone_number) VALUES (1, 'test1', '123456');
 INSERT INTO travel_agent (travel_agency_id, name, phone_number) VALUES (2, 'test', '123456');

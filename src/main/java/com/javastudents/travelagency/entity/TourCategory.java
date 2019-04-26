@@ -2,12 +2,23 @@ package com.javastudents.travelagency.entity;
 
 import lombok.*;
 
-@Builder
-@ToString
+import javax.persistence.*;
+import javax.persistence.Entity;
+
+@AllArgsConstructor
+@NoArgsConstructor
 @Getter @Setter
-@EqualsAndHashCode
-@AllArgsConstructor @NoArgsConstructor
-public class TourCategory implements Entity {
+@Entity
+public class TourCategory {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "tour_category_id")
     private Integer id;
+
+    @Column
     private String name;
+
+    public TourCategory(String name) {
+        this.name = name;
+    }
 }

@@ -2,16 +2,38 @@ package com.javastudents.travelagency.entity;
 
 import lombok.*;
 
+import javax.persistence.*;
+import javax.persistence.Entity;
 import java.sql.Timestamp;
 
-@Builder
-@ToString
+@AllArgsConstructor
+@NoArgsConstructor
 @Getter @Setter
-@EqualsAndHashCode
-public class TourSchedule implements Entity {
+@Entity
+public class TourSchedule {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "tour_schedule_id")
     private Integer id;
-    private Integer tourId;
+
+    @OneToOne
+    @JoinColumn(name = "tour_id")
+    private Tour tour;
+
+    @Column
     private Timestamp startingDateTime;
+
+    @Column
     private Timestamp endingDateTime;
-    private Integer transportId;
+
+    @OneToOne
+    @JoinColumn(name = "transport_id")
+    private Transport transport;
+
+    public TourSchedule(Tour tour, Timestamp startingDateTime, Timestamp endingDateTime, Transport transport) {
+        this.tour = tour;
+        this.startingDateTime = startingDateTime;
+        this.endingDateTime = endingDateTime;
+        this.transport = transport;
+    }
 }

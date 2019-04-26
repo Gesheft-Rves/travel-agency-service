@@ -1,9 +1,7 @@
 package com.javastudents.travelagency.repository;
 
 import com.javastudents.travelagency.entity.TourCategory;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-import java.util.List;
-
-public interface TourCategoryRepository extends CrudRepository<TourCategory> {
-    List<TourCategory> list();
+public interface TourCategoryRepository extends JpaRepository<TourCategory, Integer> {
 }
