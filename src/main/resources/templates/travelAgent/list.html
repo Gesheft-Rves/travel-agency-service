@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+    <title th:text="'Турагенты'"></title>
+    <!--/*/ <th:block th:include="fragments/header :: head"></th:block> /*/-->
+</head>
+<body>
+<div class="container">
+    <!--/*/ <th:block th:include="fragments/header :: header"></th:block> /*/-->
+    <a th:href="${'/travelAgent/new'}"> Создать турагента </a>
+    <div th:if="${not #lists.isEmpty(travelAgents)}">
+        <h2> Список турагентов </h2>
+        <table class="table table-striped">
+            <tr>
+                <th th:text="Турагенство"></th>
+                <th th:text="Имя"></th>
+                <th th:text="Фамилия"></th>
+                <th th:text="Отчество"></th>
+                <th th:text="Статус"></th>
+                <th th:text="'Номер телефона'"></th>
+                <th th:text="Лимит"></th>
+                <th th:text="'Действия'"></th>
+            </tr>
+            <tr th:each="travelAgent : ${travelAgents}">
+                <td th:text="${travelAgent.getTravelAgency().getAbbreviatedName()}"></td>
+                <td th:text="${travelAgent.name}"></td>
+                <td th:text="${travelAgent.surname}"></td>
+                <td th:text="${travelAgent.patronymic}">
+                <td th:text="${travelAgent.enabled}"></td>
+                <td th:text="${travelAgent.phoneNumber}"></td>
+                <td th:text="${travelAgent.limitAmount}"></td>
+                <td>
+                    <ul class="list-inline">
+                        <li><a th:href="${'/travelAgent/delete/' + travelAgent.id}" th:text="Удалить"></a> </li>
+                        <li><a th:href="${'/travelAgent/edit/' + travelAgent.id}" th:text="Редактировать"></a> </li>
+                        <li><a th:href="${'/travelAgent/details/' + travelAgent.id}" th:text="Карточка"></a> </li>
+                    </ul>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+</body>
+</html>
