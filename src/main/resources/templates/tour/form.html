@@ -10,9 +10,9 @@
     <h2 th:text="'Новый тур'"></h2>
     <div>
 
-        <form class="form-horizontal" th:object="${tourDTO}" th:action="@{/tour/save}" method="post">
+        <form class="form-horizontal" th:object="${tour}" th:action="@{/tour/save}" method="post">
 
-            <input type="hidden"  th:field="*{tourId}"/>
+            <input type="hidden"  th:field="*{id}"/>
 
             <div class="form-group">
                 <label class="col-sm-2 control-label">Имя</label>
@@ -48,10 +48,12 @@
                 <label class="col-sm-2 control-label">Категория тура</label>
                 <div class="col-sm-10">
                     <div class="col-sm-10">
-                        <select th:field="*{tourCategoryId}" size="1" class="form-control" th:required="required">
+                        <select th:field="*{tourCategory}" size="1" class="form-control" th:required="required">
                             <option th:each="tourCategory : ${tourCategories}"
                                     th:value="${tourCategory.id}"
-                                    th:text="${tourCategory.name}">
+                                    th:text="${tourCategory.name}"
+                                    th:with="temp=${tour.tourCategory}"
+                                    th:selected="${#strings.equals(temp, tourCategory.name)}">
                             </option>
                         </select>
                     </div>

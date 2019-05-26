@@ -16,12 +16,12 @@
                 <th th:text="'Действия'"></th>
             </tr>
             <tr th:each="tourCategory : ${tourCategories}">
-                <td th:text="${tourCategory.name}"></td>
+                <td th:text="${tourCategory.getName()}"></td>
                 <td>
                     <ul class="list-inline">
-                        <li><a th:href="${'/tourCategory/delete/' + tourCategory.id}" th:text="Удалить"></a> </li>
-                        <li><a th:href="${'/tourCategory/edit/' + tourCategory.id}" th:text="Редактировать"></a> </li>
-                        <li><a th:href="${'/tourCategory/details/' + tourCategory.id}" th:text="Карточка"></a> </li>
+                        <li><a th:href="${'/tourCategory/delete/' + tourCategory.getId()}" th:text="Удалить"></a> </li>
+                        <li><a th:href="${'/tourCategory/edit/' + tourCategory.getId()}" th:text="Редактировать"></a> </li>
+                        <li><a th:href="${'/tourCategory/details/' + tourCategory.getId()}" th:text="Карточка"></a> </li>
                     </ul>
                 </td>
             </tr>

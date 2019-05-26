@@ -31,9 +31,9 @@
                 <td th:text="${travelAgent.limitAmount}"></td>
                 <td>
                     <ul class="list-inline">
-                        <li><a th:href="${'/travelAgent/delete/' + travelAgent.id}" th:text="Удалить"></a> </li>
-                        <li><a th:href="${'/travelAgent/edit/' + travelAgent.id}" th:text="Редактировать"></a> </li>
-                        <li><a th:href="${'/travelAgent/details/' + travelAgent.id}" th:text="Карточка"></a> </li>
+                        <li><a th:href="${'/travelAgent/delete/' + travelAgent.getId()}" th:text="Удалить"></a> </li>
+                        <li><a th:href="${'/travelAgent/edit/' + travelAgent.getId()}" th:text="Редактировать"></a> </li>
+                        <li><a th:href="${'/travelAgent/details/' + travelAgent.getId()}" th:text="Карточка"></a> </li>
                     </ul>
                 </td>
             </tr>

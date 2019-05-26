@@ -10,7 +10,7 @@
     <h2 th:text="'Новый тур-агент'"></h2>
     <div>
 
-        <form class="form-horizontal" th:object="${travelAgentDTO}" th:action="@{/travelAgent/save}" method="post">
+        <form class="form-horizontal" th:object="${travelAgent}" th:action="@{/travelAgent/save}" method="post">
 
             <input type="hidden" th:field="*{id}"/>
 
@@ -18,11 +18,13 @@
                 <label class="col-sm-2 control-label">Турагенство</label>
                 <div class="col-sm-10">
                     <div class="col-sm-10">
-                        <select th:field="*{travelAgencyId}" size="1" class="form-control" th:required="required">
+                        <select th:field="*{travelAgency}" size="1" class="form-control" th:required="required">
 
                             <option th:each="travelAgency : ${travelAgencies}"
                                     th:value="${travelAgency.getId()}"
-                                    th:text="${travelAgency.abbreviatedName}">
+                                    th:text="${travelAgency.abbreviatedName}"
+                                    th:with="temp=${travelAgent.travelAgency}"
+                                    th:selected="${#strings.equals(temp, travelAgency.abbreviatedName)}">
                             </option>
 
                         </select>

@@ -1,10 +1,8 @@
 package com.javastudents.travelagency.controller;
 
 import com.javastudents.travelagency.entity.Tour;
-import com.javastudents.travelagency.entity.TourCategory;
-import com.javastudents.travelagency.entity.dto.TourDTO;
-import com.javastudents.travelagency.service.impl.TourCategoryServiceImpl;
-import com.javastudents.travelagency.service.impl.TourServiceImpl;
+import com.javastudents.travelagency.service.TourCategoryService;
+import com.javastudents.travelagency.service.TourService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
@@ -15,11 +13,11 @@ import org.springframework.web.bind.annotation.*;
 @Controller
 @RequestMapping("/tour")
 public class TourController {
-    private TourServiceImpl tourService;
-    private TourCategoryServiceImpl tourCategoryService;
+    private TourService tourService;
+    private TourCategoryService tourCategoryService;
 
     @Autowired
-    public TourController(TourServiceImpl tourService, TourCategoryServiceImpl tourCategoryService) {
+    public TourController(TourService tourService, TourCategoryService tourCategoryService) {
         this.tourService = tourService;
         this.tourCategoryService = tourCategoryService;
     }
@@ -38,8 +36,7 @@ public class TourController {
 
     @GetMapping("/edit/{id}")
     public String edit(@PathVariable  Integer id, Model model){
-        TourDTO tourDTO = tour2DTO(tourService.read(id));
-        model.addAttribute("tourDTO", tourDTO);
+        model.addAttribute("tour", tourService.getById(id));
         model.addAttribute("tourCategories", tourCategoryService.list());
         return "tour/form";
     }
@@ -47,47 +44,24 @@ public class TourController {
     @GetMapping("/new")
     @ResponseStatus(HttpStatus.CREATED)
     public String newAppPermission(Model model){
-        model.addAttribute("tourDTO", new TourDTO());
+        model.addAttribute("tour", new Tour());
         model.addAttribute("tourCategories", tourCategoryService.list());
         return "tour/form";
     }
 
     @PostMapping("/save")
-    public String save(@ModelAttribute("tourDTO") TourDTO tourDTO){
-        Tour tour = DTO2tour(tourDTO);
-        if(tour.getTourId()== null){
-            tourService.create(tour);
+    public String save(@ModelAttribute("tour") Tour tour){
+        if(tour.getId()== null){
+            tourService.save(tour);
         } else {
-            tourService.update(tour);
+            tourService.save(tour);
         }
         return "redirect:/tour/list";
     }
 
     @GetMapping("/details/{id}")
     public String details(@PathVariable Integer id, Model model){
-        model.addAttribute("tour", tourService.read(id));
+        model.addAttribute("tour", tourService.getById(id));
         return "tour/card";
-    }
-
-    private TourDTO tour2DTO(Tour tour) {
-        return TourDTO.builder()
-                .tourId(tour.getTourId())
-                .name(tour.getName())
-                .description(tour.getDescription())
-                .price(tour.getPrice())
-                .tourCategoryId(tour.getTourCategory().getId())
-                .build();
-
-    }
-
-    private Tour DTO2tour (TourDTO tourDTO) {
-        return Tour.builder()
-                .tourId(tourDTO.getTourId())
-                .name(tourDTO.getName())
-                .description(tourDTO.getDescription())
-                .price(tourDTO.getPrice())
-                .tourCategory(tourCategoryService.read(tourDTO.getTourCategoryId()))
-                .build();
-
     }
 }

@@ -12,9 +12,14 @@
         <form class="form-horizontal">
             <div class="form-group">
 
+                <label class="col-sm-2 control-label">Ид</label>
+                <div class="col-sm-10">
+                    <p class="form-control-static" th:text="${tourCategory.getId()}"></p>
+                </div>
+
                 <label class="col-sm-2 control-label">Имя</label>
                 <div class="col-sm-10">
-                    <p class="form-control-static" th:text="${tourCategory.name}"></p>
+                    <p class="form-control-static" th:text="${tourCategory.getName()}"></p>
                 </div>
 
             </div>
