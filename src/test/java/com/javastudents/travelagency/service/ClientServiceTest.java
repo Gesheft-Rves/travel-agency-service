@@ -1,7 +1,6 @@
 package com.javastudents.travelagency.service;
 
 import com.javastudents.travelagency.entity.Client;
-import com.sun.xml.internal.bind.v2.TODO;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;

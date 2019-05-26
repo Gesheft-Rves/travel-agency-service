@@ -14,37 +14,37 @@
 
                 <label class="col-sm-2 control-label">Адрес</label>
                 <div class="col-sm-10">
-                    <p class="form-control-static" th:text="${travelAgent.travelAgency.abbreviatedName}"></p>
+                    <p class="form-control-static" th:text="${travelAgent.getTravelAgency().getAbbreviatedName()}"></p>
                 </div>
 
                 <label class="col-sm-2 control-label">Имя</label>
                 <div class="col-sm-10">
-                    <p class="form-control-static" th:text="${travelAgent.name}"></p>
+                    <p class="form-control-static" th:text="${travelAgent.getName()}"></p>
                 </div>
 
                 <label class="col-sm-2 control-label">Фамилия</label>
                 <div class="col-sm-10">
-                    <p class="form-control-static" th:text="${travelAgent.surname}"></p>
+                    <p class="form-control-static" th:text="${travelAgent.getSurname()}"></p>
                 </div>
 
                 <label class="col-sm-2 control-label">Отчество</label>
                 <div class="col-sm-10">
-                    <p class="form-control-static" th:text="${travelAgent.patronymic}"></p>
+                    <p class="form-control-static" th:text="${travelAgent.getPatronymic()}"></p>
                 </div>
 
                 <label class="col-sm-2 control-label">Статус</label>
                 <div class="col-sm-10">
-                    <p class="form-control-static" th:text="${travelAgent.enabled}"></p>
+                    <p class="form-control-static" th:text="${travelAgent.getEnabled()}"></p>
                 </div>
 
                 <label class="col-sm-2 control-label">Номер телефона</label>
                 <div class="col-sm-10">
-                    <p class="form-control-static" th:text="${travelAgent.phoneNumber}"></p>
+                    <p class="form-control-static" th:text="${travelAgent.getPhoneNumber()}"></p>
                 </div>
 
                 <label class="col-sm-2 control-label">Лимит</label>
                 <div class="col-sm-10">
-                    <p class="form-control-static" th:text="${travelAgent.limitAmount}"></p>
+                    <p class="form-control-static" th:text="${travelAgent.getLimitAmount()}"></p>
                 </div>
 
             </div>

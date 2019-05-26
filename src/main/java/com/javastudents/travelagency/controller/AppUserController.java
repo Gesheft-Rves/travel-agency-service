@@ -1,3 +1,4 @@
+/*
 package com.javastudents.travelagency.controller;
 
 import com.javastudents.travelagency.entity.AppUser;
@@ -66,3 +67,4 @@ public class AppUserController {
     }
 
 }
+*/
