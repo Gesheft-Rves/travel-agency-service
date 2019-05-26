@@ -22,7 +22,9 @@
 
                             <option th:each="travelAgency : ${travelAgencies}"
                                     th:value="${travelAgency.getId()}"
-                                    th:text="${travelAgency.abbreviatedName}">
+                                    th:text="${travelAgency.abbreviatedName}"
+                                    th:with="temp=${travelAgent.travelAgency}"
+                                    th:selected="${#strings.equals(temp, travelAgency.abbreviatedName)}">
                             </option>
 
                         </select>

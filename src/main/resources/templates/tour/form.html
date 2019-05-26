@@ -51,7 +51,9 @@
                         <select th:field="*{tourCategory}" size="1" class="form-control" th:required="required">
                             <option th:each="tourCategory : ${tourCategories}"
                                     th:value="${tourCategory.id}"
-                                    th:text="${tourCategory.name}">
+                                    th:text="${tourCategory.name}"
+                                    th:with="temp=${tour.tourCategory}"
+                                    th:selected="${#strings.equals(temp, tourCategory.name)}">
                             </option>
                         </select>
                     </div>
