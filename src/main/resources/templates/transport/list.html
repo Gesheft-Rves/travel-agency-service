@@ -9,7 +9,7 @@
     <!--/*/ <th:block th:include="fragments/header :: header"></th:block> /*/-->
     <a th:href="${'/transport/new'}"> Создать транспорт </a>
     <div th:if="${not #lists.isEmpty(transports)}">
-        <h2> Список транспорта </h2>
+        <h2> Список транспортов </h2>
         <table class="table table-striped">
             <tr>
                 <th th:text="Имя"></th>

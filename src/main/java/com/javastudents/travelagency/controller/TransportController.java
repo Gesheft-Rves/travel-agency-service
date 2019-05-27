@@ -39,18 +39,14 @@ public class TransportController {
 
     @GetMapping("/new")
     @ResponseStatus(HttpStatus.CREATED)
-    public String newAppPermission(Model model) {
+    public String newTransport(Model model) {
         model.addAttribute("transport", new Transport());
         return "transport/form";
     }
 
     @PostMapping("/save")
     public String save(@ModelAttribute("transport") Transport transport) {
-        if (transport.getId() == null) {
-            transportService.save(transport);
-        } else {
-            transportService.save(transport);
-        }
+        transportService.save(transport);
         return "redirect:/transport/list";
     }
 
