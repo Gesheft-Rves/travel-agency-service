@@ -43,7 +43,7 @@ public class TravelAgentController {
     }
 
     @GetMapping("/new")
-    public String newAppPermission(Model model){
+    public String newTravelAgent(Model model){
         model.addAttribute("travelAgent", new TravelAgent());
         model.addAttribute("travelAgencies", travelAgencyService.list());
         return "travelAgent/form";
@@ -51,11 +51,7 @@ public class TravelAgentController {
 
     @PostMapping("/save")
     public String save(@ModelAttribute("travelAgent") TravelAgent travelAgent){
-        if(travelAgent.getId()== null){
-            travelAgentService.save(travelAgent);
-        } else {
-            travelAgentService.save(travelAgent);
-        }
+        travelAgentService.save(travelAgent);
         return "redirect:/travelAgent/list";
     }
 
