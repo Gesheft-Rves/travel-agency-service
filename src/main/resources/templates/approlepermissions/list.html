@@ -1,22 +1,22 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head lang="en">
-    <title th:text="'Разрешения ролей приложения'"></title>
+    <title th:text="'Права доступа для ролей приложения'"></title>
     <!--/*/ <th:block th:include="fragments/header :: head"></th:block> /*/-->
 </head>
 <body>
 <div class="container">
     <!--/*/ <th:block th:include="fragments/header :: header"></th:block> /*/-->
 </div>
-<a th:href="${'/approlepermissions/new'}"> Создать новое разрешение для роли приложения </a>
+<a th:href="${'/approlepermissions/new'}"> Создать новое право доступа для роли приложения </a>
 <div th:if="${not #lists.isEmpty(approlepermissions)}">
-    <h2> Список разрешений ролей приложения </h2>
+    <h2> Список прав доступа для ролей приложения </h2>
     <table class="table table-striped">
         <tr>
 
             <th th:text="Id"></th>
             <th th:text="'Роль приложения'"></th>
-            <th th:text="'Разрешение приложения'"></th>
+            <th th:text="'Право доступа приложения'"></th>
             <th th:text="Действия"></th>
 
         </tr>
