@@ -12,12 +12,14 @@ import org.springframework.test.context.junit4.SpringRunner;
 @SpringBootTest
 public class AppRolePermissionServiceTest {
 
+    @Autowired
     private AppRolePermissionService appRolePermissionService;
 
     @Autowired
-    public void setAppRolePermissionService(AppRolePermissionService appRolePermissionService) {
-        this.appRolePermissionService = appRolePermissionService;
-    }
+    private AppRoleService appRoleService;
+
+    @Autowired
+    private AppPermissionService appPermissionService;
 
     @Test
     public void list() {
@@ -37,7 +39,7 @@ public class AppRolePermissionServiceTest {
 
     @Test
     public void save() {
-        AppRolePermission newAppRolePermision = new AppRolePermission(5,1,2);
+        AppRolePermission newAppRolePermision = new AppRolePermission(5,appRoleService.getById(1),appPermissionService.getById(2));
         appRolePermissionService.save(newAppRolePermision);
 
         Assert.assertNotNull(appRolePermissionService.getById(5));
@@ -45,7 +47,7 @@ public class AppRolePermissionServiceTest {
 
     @Test
     public void delete() {
-        AppRolePermission newAppRolePermision = new AppRolePermission(5,1,2);
+        AppRolePermission newAppRolePermision = new AppRolePermission(5,appRoleService.getById(1),appPermissionService.getById(2));
         appRolePermissionService.save(newAppRolePermision);
 
         Assert.assertNotNull(appRolePermissionService.getById(5));
