@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 @Controller
 @RequestMapping("/tour")
 public class TourController {
+
     private final TourService tourService;
     private final TourCategoryService tourCategoryService;
 

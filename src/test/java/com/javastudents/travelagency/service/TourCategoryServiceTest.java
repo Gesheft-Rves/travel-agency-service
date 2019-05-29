@@ -12,10 +12,10 @@ import org.springframework.test.context.junit4.SpringRunner;
 @SpringBootTest
 public class TourCategoryServiceTest {
 
-    private TourCategoryService tourCategoryService;
+    private final TourCategoryService tourCategoryService;
 
     @Autowired
-    public void setTourCategoryService(TourCategoryService tourCategoryService) {
+    public TourCategoryServiceTest(TourCategoryService tourCategoryService) {
         this.tourCategoryService = tourCategoryService;
     }
 

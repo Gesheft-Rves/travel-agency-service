@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("/travelAgency")
 public class TravelAgencyController {
+
     private final TravelAgencyService travelAgencyService;
 
     @Autowired

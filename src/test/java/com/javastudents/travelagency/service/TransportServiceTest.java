@@ -12,10 +12,10 @@ import org.springframework.test.context.junit4.SpringRunner;
 @SpringBootTest
 public class TransportServiceTest {
 
-    private TransportService transportService;
+    private final TransportService transportService;
 
     @Autowired
-    public void setTransportService(TransportService transportService) {
+    public TransportServiceTest(TransportService transportService) {
         this.transportService = transportService;
     }
 

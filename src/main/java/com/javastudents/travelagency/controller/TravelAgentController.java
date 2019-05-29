@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 @Controller
 @RequestMapping("/travelAgent")
 public class TravelAgentController {
+
     private final TravelAgentService travelAgentService;
     private final TravelAgencyService travelAgencyService;
 

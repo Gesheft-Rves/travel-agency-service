@@ -16,6 +16,7 @@ import java.util.List;
 @Controller
 @RequestMapping("/approlepermissions")
 public class AppRolePermissionController {
+
     private final AppRolePermissionService appRolePermissionService;
     private final AppPermissionService appPermissionService;
     private final AppRoleService appRoleService;

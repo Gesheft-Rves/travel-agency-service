@@ -12,10 +12,10 @@ import org.springframework.test.context.junit4.SpringRunner;
 @SpringBootTest
 public class AppRoleServiceTest {
 
-    private AppRoleService appRoleService;
+    private final AppRoleService appRoleService;
 
     @Autowired
-    public void setAppRoleService(AppRoleService appRoleService) {
+    public AppRoleServiceTest(AppRoleService appRoleService) {
         this.appRoleService = appRoleService;
     }
 

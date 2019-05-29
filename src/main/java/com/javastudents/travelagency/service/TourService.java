@@ -9,10 +9,11 @@ import java.util.List;
 
 @Service
 public class TourService implements PojoService<Tour> {
-    private TourRepository repository;
+
+    private final TourRepository repository;
 
     @Autowired
-    public void setRepository(TourRepository repository) {
+    public TourService(TourRepository repository) {
         this.repository = repository;
     }
 

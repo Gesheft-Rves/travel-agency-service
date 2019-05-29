@@ -12,10 +12,10 @@ import org.springframework.test.context.junit4.SpringRunner;
 @SpringBootTest
 public class DocumentTypeServiceTest {
 
-    private DocumentTypeService documentTypeService;
+    private final DocumentTypeService documentTypeService;
 
     @Autowired
-    public void setDocumentTypeService(DocumentTypeService documentTypeService) {
+    public DocumentTypeServiceTest(DocumentTypeService documentTypeService) {
         this.documentTypeService = documentTypeService;
     }
 

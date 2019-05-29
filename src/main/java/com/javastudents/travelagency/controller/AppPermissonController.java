@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 @RequestMapping("/apppermission")
 public class AppPermissonController {
+
     private final AppPermissionService appPermissionService;
 
     @Autowired

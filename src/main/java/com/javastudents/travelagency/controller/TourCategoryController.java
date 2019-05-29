@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 @Controller
 @RequestMapping("/tourCategory")
 public class TourCategoryController {
+
     private final TourCategoryService tourCategoryService;
 
     @Autowired

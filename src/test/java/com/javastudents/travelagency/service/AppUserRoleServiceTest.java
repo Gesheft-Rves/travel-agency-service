@@ -12,25 +12,17 @@ import org.springframework.test.context.junit4.SpringRunner;
 @SpringBootTest
 public class AppUserRoleServiceTest {
 
-    private AppUserRoleService appUserRoleService;
-
-    private AppUserService appUserService;
-
-    private AppRoleService appRoleService;
+    private final AppUserRoleService appUserRoleService;
+    private final AppUserService appUserService;
+    private final AppRoleService appRoleService;
 
     @Autowired
-    public void setAppUserService(AppUserService appUserService) {
-        this.appUserService = appUserService;
-    }
-
-    @Autowired
-    public void setAppRoleService(AppRoleService appRoleService) {
-        this.appRoleService = appRoleService;
-    }
-
-    @Autowired
-    public void setAppUserRoleService(AppUserRoleService appUserRoleService) {
+    public AppUserRoleServiceTest(AppUserRoleService appUserRoleService,
+                                  AppUserService appUserService,
+                                  AppRoleService appRoleService) {
         this.appUserRoleService = appUserRoleService;
+        this.appUserService = appUserService;
+        this.appRoleService = appRoleService;
     }
 
     @Test
