@@ -24,7 +24,7 @@ public class TransportSeatController {
 
     @GetMapping("/list")
     public String list(Model model){
-        model.addAttribute("transportSeat", transportService.list());
+        model.addAttribute("transportSeats", transportSeatService.list());
         return "transportSeat/list";
     }
 
@@ -51,11 +51,7 @@ public class TransportSeatController {
 
     @PostMapping("/save")
     public String save(@ModelAttribute("transportSeat") TransportSeat transportSeat){
-        if(transportSeat.getId()== null){
-            transportSeatService.save(transportSeat);
-        } else {
-            transportSeatService.save(transportSeat);
-        }
+        transportSeatService.save(transportSeat);
         return "redirect:/transportSeat/list";
     }
 

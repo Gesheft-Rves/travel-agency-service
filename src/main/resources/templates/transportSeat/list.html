@@ -1,37 +1,34 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head lang="en">
-    <title th:text="Tour"></title>
+    <title th:text="'Посадочные места в транспорте'"></title>
     <!--/*/ <th:block th:include="fragments/header :: head"></th:block> /*/-->
 </head>
 <body>
 <div class="container">
     <!--/*/ <th:block th:include="fragments/header :: header"></th:block> /*/-->
     <a th:href="${'/tour/new'}"> Создать тур </a>
-    <div th:if="${not #lists.isEmpty(tours)}">
-        <h2> Список Tour </h2>
+    <div th:if="${not #lists.isEmpty(transportSeats)}">
+        <h2> Посадочные места в транспорте </h2>
         <table class="table table-striped">
             <tr>
 
-                <th th:text="Имя"></th>
-                <th th:text="Описание"></th>
-                <th th:text="Цена"></th>
-                <th th:text="'Категория тура'"></th>
-                <th th:text="'Действия'"></th>
+                <th th:text="'Транспорт к которому относится место'"></th>
+                <th th:text="Номер места"></th>
+                <th th:text="Комментарий"></th>
 
             </tr>
-            <tr th:each="tour : ${tours}">
+            <tr th:each="transportSeat : ${transportSeats}">
                 
-                <td th:text="${tour.name}"></td>
-                <td th:text="${tour.description}"></td>
-                <td th:text="${tour.price}"></td>
-                <td th:text="${tour.tourCategory.name}"></td>
+                <td th:text="${transportSeat.transport.name}"></td>
+                <td th:text="${transportSeat.seatNo}"></td>
+                <td th:text="${transportSeat.comment}"></td>
 
                 <td>
                     <ul class="list-inline">
-                        <li><a th:href="${'/tour/delete/' + tour.getId()}" th:text="Удалить"></a> </li>
-                        <li><a th:href="${'/tour/edit/' + tour.getId()}" th:text="Редактировать"></a> </li>
-                        <li><a th:href="${'/tour/details/' + tour.getId()}" th:text="Карточка"></a> </li>
+                        <li><a th:href="${'/transportSeat/delete/' + transportSeat.getId()}" th:text="Удалить"></a> </li>
+                        <li><a th:href="${'/transportSeat/edit/' + transportSeat.getId()}" th:text="Редактировать"></a> </li>
+                        <li><a th:href="${'/transportSeat/details/' + transportSeat.getId()}" th:text="Карточка"></a> </li>
                     </ul>
                 </td>
             </tr>
