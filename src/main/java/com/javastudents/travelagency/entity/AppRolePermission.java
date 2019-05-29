@@ -15,9 +15,11 @@ public class AppRolePermission {
     @Column
     private Integer appRolePermissionId;
 
-    @Column
-    private Integer appRoleId;
+    @OneToOne
+    @JoinColumn(name = "app_role_id")
+    private AppRole appRole;
 
-    @Column
-    private Integer appPermissionId;
+    @OneToOne
+    @JoinColumn(name = "app_permission_id")
+    private AppPermission appPermission;
 }

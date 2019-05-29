@@ -17,12 +17,12 @@
                 <div class="col-sm-10">
                     <div class="col-sm-10">
 
-                        <select th:field="*{appRoleId}"  size="1" class="form-control" th:required="required"  >
+                        <select th:field="*{appRole}"  size="1" class="form-control" th:required="required"  >
                             <div>
                                 <option th:each="role:${roles}"
                                         th:value="${role.appRoleId}"
                                         th:text="${role.name}"
-                                        th:with="temp=${approlepermission.appRoleId}"
+                                        th:with="temp=${approlepermission.appRole}"
                                         th:selected="${#strings.equals(temp, role.name)}">
                                 </option>
                             </div>
@@ -37,12 +37,12 @@
                 <div class="col-sm-10">
                     <div class="col-sm-10">
 
-                        <select th:field="*{appPermissionId}"  size="1" class="form-control" th:required="required"  >
+                        <select th:field="*{appPermission}"  size="1" class="form-control" th:required="required"  >
                             <div>
                                 <option th:each="permission:${permissions}"
                                         th:value="${permission.appPermissionId}"
                                         th:text="${permission.name}"
-                                        th:with="temp=${approlepermission.appPermissionId}"
+                                        th:with="temp=${approlepermission.appPermission}"
                                         th:selected="${#strings.equals(temp, permission.name)}">
                                 </option>
                             </div>
