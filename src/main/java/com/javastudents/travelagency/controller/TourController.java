@@ -13,11 +13,13 @@ import org.springframework.web.bind.annotation.*;
 @Controller
 @RequestMapping("/tour")
 public class TourController {
-    private TourService tourService;
-    private TourCategoryService tourCategoryService;
+
+    private final TourService tourService;
+    private final TourCategoryService tourCategoryService;
 
     @Autowired
-    public TourController(TourService tourService, TourCategoryService tourCategoryService) {
+    public TourController(TourService tourService,
+                          TourCategoryService tourCategoryService) {
         this.tourService = tourService;
         this.tourCategoryService = tourCategoryService;
     }

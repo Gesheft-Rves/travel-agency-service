@@ -11,16 +11,14 @@ import org.springframework.test.context.junit4.SpringRunner;
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class AppUserServiceTest {
-    private TravelAgentService travelAgentService;
-    private AppUserService appUserService;
+
+    private final TravelAgentService travelAgentService;
+    private final AppUserService appUserService;
 
     @Autowired
-    public void setTravelAgentService(TravelAgentService travelAgentService) {
+    public AppUserServiceTest(TravelAgentService travelAgentService,
+                              AppUserService appUserService) {
         this.travelAgentService = travelAgentService;
-    }
-
-    @Autowired
-    public void setAppUserService(AppUserService appUserService) {
         this.appUserService = appUserService;
     }
 

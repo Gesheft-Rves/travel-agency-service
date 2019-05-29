@@ -16,14 +16,17 @@ import java.util.Date;
 @SpringBootTest
 public class TravelAgentLedgerServiceTest {
 
-    @Autowired
-    private TravelAgentLedgerService travelAgentLedgerService;
+    private final TravelAgentLedgerService travelAgentLedgerService;
+    private final TravelAgentService travelAgentService;
+    private final PurchaseService purchaseService;
 
-    @Autowired
-    private TravelAgentService travelAgentService;
-
-    @Autowired
-    private PurchaseService purchaseService;
+    public TravelAgentLedgerServiceTest(TravelAgentLedgerService travelAgentLedgerService,
+                                        TravelAgentService travelAgentService,
+                                        PurchaseService purchaseService) {
+        this.travelAgentLedgerService = travelAgentLedgerService;
+        this.travelAgentService = travelAgentService;
+        this.purchaseService = purchaseService;
+    }
 
     @Test
     public void list() {

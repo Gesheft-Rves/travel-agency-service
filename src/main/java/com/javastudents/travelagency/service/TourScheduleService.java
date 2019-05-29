@@ -10,10 +10,10 @@ import java.util.List;
 @Service
 public class TourScheduleService implements PojoService<TourSchedule> {
 
-    private TourScheduleRepository repository;
+    private final TourScheduleRepository repository;
 
     @Autowired
-    public void setRepository(TourScheduleRepository repository) {
+    public TourScheduleService(TourScheduleRepository repository) {
         this.repository = repository;
     }
 

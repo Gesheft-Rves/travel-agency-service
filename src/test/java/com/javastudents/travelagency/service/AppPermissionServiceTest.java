@@ -12,10 +12,10 @@ import org.springframework.test.context.junit4.SpringRunner;
 @SpringBootTest
 public class AppPermissionServiceTest {
 
-    private AppPermissionService appPermissionService;
+    private final AppPermissionService appPermissionService;
 
     @Autowired
-    public void setAppPermissionService(AppPermissionService appPermissionService) {
+    public AppPermissionServiceTest(AppPermissionService appPermissionService) {
         this.appPermissionService = appPermissionService;
     }
 

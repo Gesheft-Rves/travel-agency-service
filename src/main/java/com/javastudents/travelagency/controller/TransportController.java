@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/transport")
 public class TransportController {
 
-    private TransportService transportService;
+    private final TransportService transportService;
 
     @Autowired
     public TransportController(TransportService transportService) {

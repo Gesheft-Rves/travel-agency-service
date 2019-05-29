@@ -12,14 +12,18 @@ import org.springframework.test.context.junit4.SpringRunner;
 @SpringBootTest
 public class AppRolePermissionServiceTest {
 
-    @Autowired
-    private AppRolePermissionService appRolePermissionService;
+    private final AppRolePermissionService appRolePermissionService;
+    private final AppRoleService appRoleService;
+    private final AppPermissionService appPermissionService;
 
     @Autowired
-    private AppRoleService appRoleService;
-
-    @Autowired
-    private AppPermissionService appPermissionService;
+    public AppRolePermissionServiceTest(AppRolePermissionService appRolePermissionService,
+                                        AppRoleService appRoleService,
+                                        AppPermissionService appPermissionService) {
+        this.appRolePermissionService = appRolePermissionService;
+        this.appRoleService = appRoleService;
+        this.appPermissionService = appPermissionService;
+    }
 
     @Test
     public void list() {

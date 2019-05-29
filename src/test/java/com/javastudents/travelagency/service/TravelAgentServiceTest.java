@@ -14,11 +14,15 @@ import java.math.BigDecimal;
 @SpringBootTest
 public class TravelAgentServiceTest {
 
-    @Autowired
-    private TravelAgentService travelAgentService;
+    private final TravelAgentService travelAgentService;
+    private final TravelAgencyService travelAgencyService;
 
     @Autowired
-    private TravelAgencyService travelAgencyService;
+    public TravelAgentServiceTest(TravelAgentService travelAgentService,
+                                  TravelAgencyService travelAgencyService) {
+        this.travelAgentService = travelAgentService;
+        this.travelAgencyService = travelAgencyService;
+    }
 
     @Test
     public void list() {

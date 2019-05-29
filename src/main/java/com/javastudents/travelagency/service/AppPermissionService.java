@@ -10,10 +10,10 @@ import java.util.List;
 @Service
 public class AppPermissionService implements PojoService<AppPermission> {
 
-    private  AppPermissionRepository repository;
+    private final AppPermissionRepository repository;
 
     @Autowired
-    public void setRepository(AppPermissionRepository repository) {
+    public AppPermissionService(AppPermissionRepository repository) {
         this.repository = repository;
     }
 

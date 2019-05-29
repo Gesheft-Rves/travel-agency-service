@@ -13,11 +13,12 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/travelAgent")
 public class TravelAgentController {
 
-    private TravelAgentService travelAgentService;
-    private TravelAgencyService travelAgencyService;
+    private final TravelAgentService travelAgentService;
+    private final TravelAgencyService travelAgencyService;
 
     @Autowired
-    public TravelAgentController(TravelAgentService travelAgentService, TravelAgencyService travelAgencyService) {
+    public TravelAgentController(TravelAgentService travelAgentService,
+                                 TravelAgencyService travelAgencyService) {
         this.travelAgentService = travelAgentService;
         this.travelAgencyService = travelAgencyService;
     }

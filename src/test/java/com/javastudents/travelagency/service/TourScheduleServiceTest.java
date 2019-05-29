@@ -15,14 +15,18 @@ import java.util.Date;
 @SpringBootTest
 public class TourScheduleServiceTest {
 
-    @Autowired
-    private TourScheduleService tourScheduleService;
+    private final TourScheduleService tourScheduleService;
+    private final TourService tourService;
+    private final TransportService transportService;
 
     @Autowired
-    private TourService tourService;
-
-    @Autowired
-    private TransportService transportService;
+    public TourScheduleServiceTest(TourScheduleService tourScheduleService,
+                                   TourService tourService,
+                                   TransportService transportService) {
+        this.tourScheduleService = tourScheduleService;
+        this.tourService = tourService;
+        this.transportService = transportService;
+    }
 
     @Test
     public void list() {

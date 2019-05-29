@@ -14,10 +14,10 @@ import java.util.List;
 @Service
 public class AppUserService implements PojoService<AppUser> {
 
-    private AppUserRepository repository;
+    private final AppUserRepository repository;
 
     @Autowired
-    public void setRepository(AppUserRepository repository) {
+    public AppUserService(AppUserRepository repository) {
         this.repository = repository;
     }
 

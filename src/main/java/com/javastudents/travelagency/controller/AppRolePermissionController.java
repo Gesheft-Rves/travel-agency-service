@@ -16,25 +16,21 @@ import java.util.List;
 @Controller
 @RequestMapping("/approlepermissions")
 public class AppRolePermissionController {
-    private AppRolePermissionService appRolePermissionService;
-    private AppPermissionService appPermissionService;
-    private AppRoleService appRoleService;
+
+    private final AppRolePermissionService appRolePermissionService;
+    private final AppPermissionService appPermissionService;
+    private final AppRoleService appRoleService;
 
 
     @Autowired
-    public void setAppRolePermissionService(AppRolePermissionService appRolePermissionService) {
+    public AppRolePermissionController(AppRolePermissionService appRolePermissionService,
+                                       AppRoleService appRoleService,
+                                       AppPermissionService appPermissionService) {
         this.appRolePermissionService = appRolePermissionService;
-    }
-
-    @Autowired
-    public void setAppRoleService(AppRoleService appRoleService) {
         this.appRoleService = appRoleService;
-    }
-
-    @Autowired
-    public void setAppPermissionService(AppPermissionService appPermissionService) {
         this.appPermissionService = appPermissionService;
     }
+
 
 
     @RequestMapping("/list")

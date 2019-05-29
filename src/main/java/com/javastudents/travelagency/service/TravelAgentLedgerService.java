@@ -9,10 +9,11 @@ import java.util.List;
 
 @Service
 public class TravelAgentLedgerService implements PojoService<TravelAgentLedger> {
-    private TravelAgentLedgerRepository repository;
+
+    private final TravelAgentLedgerRepository repository;
 
     @Autowired
-    public void setRepository(TravelAgentLedgerRepository repository) {
+    public TravelAgentLedgerService(TravelAgentLedgerRepository repository) {
         this.repository = repository;
     }
 

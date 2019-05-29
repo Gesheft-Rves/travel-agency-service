@@ -9,10 +9,10 @@ import java.util.List;
 @Service
 public class PurchaseService implements PojoService<Purchase>{
 
-    private PurchaseRepository repository;
+    private final PurchaseRepository repository;
 
     @Autowired
-    public void setRepository(PurchaseRepository repository) {
+    public PurchaseService(PurchaseRepository repository) {
         this.repository = repository;
     }
 

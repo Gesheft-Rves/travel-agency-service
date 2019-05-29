@@ -12,18 +12,14 @@ import org.springframework.test.context.junit4.SpringRunner;
 @SpringBootTest
 public class ClientServiceTest {
 
-    private ClientService clientService;
-
-    private DocumentTypeService documentTypeService;
-
-    @Autowired
-    public void setDocumentTypeService(DocumentTypeService documentTypeService) {
-        this.documentTypeService = documentTypeService;
-    }
+    private final ClientService clientService;
+    private final DocumentTypeService documentTypeService;
 
     @Autowired
-    public void setClientService(ClientService clientService) {
+    public ClientServiceTest(ClientService clientService,
+                             DocumentTypeService documentTypeService) {
         this.clientService = clientService;
+        this.documentTypeService = documentTypeService;
     }
 
     @Test
