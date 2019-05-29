@@ -7,14 +7,14 @@
 <body>
 <div class="container">
     <!--/*/ <th:block th:include="fragments/header :: header"></th:block> /*/-->
-    <a th:href="${'/tour/new'}"> Создать тур </a>
+    <a th:href="${'/transportSeat/new'}"> Создать место </a>
     <div th:if="${not #lists.isEmpty(transportSeats)}">
         <h2> Посадочные места в транспорте </h2>
         <table class="table table-striped">
             <tr>
 
                 <th th:text="'Транспорт к которому относится место'"></th>
-                <th th:text="Номер места"></th>
+                <th th:text="'Номер места'"></th>
                 <th th:text="Комментарий"></th>
 
             </tr>
