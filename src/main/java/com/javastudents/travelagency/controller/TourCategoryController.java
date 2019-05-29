@@ -37,18 +37,14 @@ public class TourCategoryController {
     }
 
     @GetMapping("/new")
-    public String newAppPermission(Model model){
+    public String newTourCategory(Model model){
         model.addAttribute("tourCategory", new TourCategory());
         return "tourCategory/form";
     }
 
     @PostMapping("/save")
     public String save(TourCategory tourCategory){
-        if(tourCategory.getId()== null){
-            tourCategoryService.save(tourCategory);
-        } else {
-            tourCategoryService.save(tourCategory);
-        }
+        tourCategoryService.save(tourCategory);
         return "redirect:/tourCategory/list";
     }
 

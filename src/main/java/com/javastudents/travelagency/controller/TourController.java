@@ -43,7 +43,7 @@ public class TourController {
 
     @GetMapping("/new")
     @ResponseStatus(HttpStatus.CREATED)
-    public String newAppPermission(Model model){
+    public String newTour(Model model){
         model.addAttribute("tour", new Tour());
         model.addAttribute("tourCategories", tourCategoryService.list());
         return "tour/form";
@@ -51,11 +51,7 @@ public class TourController {
 
     @PostMapping("/save")
     public String save(@ModelAttribute("tour") Tour tour){
-        if(tour.getId()== null){
-            tourService.save(tour);
-        } else {
-            tourService.save(tour);
-        }
+        tourService.save(tour);
         return "redirect:/tour/list";
     }
 

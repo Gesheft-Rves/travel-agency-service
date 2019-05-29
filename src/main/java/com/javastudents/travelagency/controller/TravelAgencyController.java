@@ -40,19 +40,14 @@ public class TravelAgencyController {
     }
 
     @GetMapping("/new")
-    public String newAppPermission(Model model){
+    public String newTravelAgency(Model model){
         model.addAttribute("travelAgency", new TravelAgency());
         return "travelAgency/form";
     }
 
     @PostMapping("/save")
     public String save(TravelAgency tourCategory){
-        System.out.println(tourCategory.toString());
-        if(tourCategory.getId()== null){
-            travelAgencyService.save(tourCategory);
-        } else {
-            travelAgencyService.save(tourCategory);
-        }
+        travelAgencyService.save(tourCategory);
         return "redirect:/travelAgency/list";
     }
 
