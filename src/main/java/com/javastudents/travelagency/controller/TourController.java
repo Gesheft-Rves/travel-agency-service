@@ -17,7 +17,8 @@ public class TourController {
     private final TourCategoryService tourCategoryService;
 
     @Autowired
-    public TourController(TourService tourService, TourCategoryService tourCategoryService) {
+    public TourController(TourService tourService,
+                          TourCategoryService tourCategoryService) {
         this.tourService = tourService;
         this.tourCategoryService = tourCategoryService;
     }

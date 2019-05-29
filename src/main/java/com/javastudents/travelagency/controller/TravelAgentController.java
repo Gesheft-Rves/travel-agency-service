@@ -16,7 +16,8 @@ public class TravelAgentController {
     private final TravelAgencyService travelAgencyService;
 
     @Autowired
-    public TravelAgentController(TravelAgentService travelAgentService, TravelAgencyService travelAgencyService) {
+    public TravelAgentController(TravelAgentService travelAgentService,
+                                 TravelAgencyService travelAgencyService) {
         this.travelAgentService = travelAgentService;
         this.travelAgencyService = travelAgencyService;
     }
