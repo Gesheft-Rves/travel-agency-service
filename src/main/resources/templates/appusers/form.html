@@ -67,7 +67,7 @@
                                 <option th:each="agent:${agents}"
                                         th:value="${agent.id}"
                                         th:text="${agent.name}"
-                                        th:with="temp=${appuser.travelAgent.name}"
+                                        th:with="temp=${appuser.travelAgent}"
                                         th:selected="${#strings.equals(temp, agent.name)}">
                                 </option>
                             </div>
