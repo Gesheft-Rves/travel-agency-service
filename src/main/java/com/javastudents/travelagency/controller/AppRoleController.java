@@ -15,7 +15,7 @@ public class AppRoleController {
     private AppRoleService appRoleService;
 
     @Autowired
-    public void setAppRoleService(AppRoleService appRoleService) {
+    public AppRoleController(AppRoleService appRoleService) {
         this.appRoleService = appRoleService;
     }
 

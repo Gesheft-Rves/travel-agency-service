@@ -12,9 +12,8 @@ import org.springframework.web.bind.annotation.*;
 @Controller
 @RequestMapping("/travelAgent")
 public class TravelAgentController {
-
-    private TravelAgentService travelAgentService;
-    private TravelAgencyService travelAgencyService;
+    private final TravelAgentService travelAgentService;
+    private final TravelAgencyService travelAgencyService;
 
     @Autowired
     public TravelAgentController(TravelAgentService travelAgentService, TravelAgencyService travelAgencyService) {
