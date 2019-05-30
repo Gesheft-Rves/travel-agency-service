@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+    <title th:text="'Посадочные места в транспорте'"></title>
+    <!--/*/ <th:block th:include="fragments/header :: head"></th:block> /*/-->
+</head>
+<body>
+<div class="container">
+    <!--/*/ <th:block th:include="fragments/header :: header"></th:block> /*/-->
+    <a th:href="${'/transportSeat/new'}"> Создать место </a>
+    <div th:if="${not #lists.isEmpty(transportSeats)}">
+        <h2> Посадочные места в транспорте </h2>
+        <table class="table table-striped">
+            <tr>
+
+                <th th:text="'Транспорт к которому относится место'"></th>
+                <th th:text="'Номер места'"></th>
+                <th th:text="Комментарий"></th>
+
+            </tr>
+            <tr th:each="transportSeat : ${transportSeats}">
+                
+                <td th:text="${transportSeat.transport.name}"></td>
+                <td th:text="${transportSeat.seatNo}"></td>
+                <td th:text="${transportSeat.comment}"></td>
+
+                <td>
+                    <ul class="list-inline">
+                        <li><a th:href="${'/transportSeat/delete/' + transportSeat.getId()}" th:text="Удалить"></a> </li>
+                        <li><a th:href="${'/transportSeat/edit/' + transportSeat.getId()}" th:text="Редактировать"></a> </li>
+                        <li><a th:href="${'/transportSeat/details/' + transportSeat.getId()}" th:text="Карточка"></a> </li>
+                    </ul>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+</body>
+</html>
