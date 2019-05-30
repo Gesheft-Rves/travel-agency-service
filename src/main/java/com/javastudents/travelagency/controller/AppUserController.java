@@ -6,9 +6,7 @@ import com.javastudents.travelagency.service.TravelAgentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -28,40 +26,40 @@ public class AppUserController {
         this.travelAgentService = travelAgentService;
     }
 
-    @RequestMapping("/list")
+    @GetMapping("/list")
     public String list(Model model){
         List<AppUser> users = appUserService.list();
         model.addAttribute("appusers", users);
         return "appusers/list";
     }
 
-    @RequestMapping("/delete/{id}")
+    @GetMapping("/delete/{id}")
     public String delete(@PathVariable Integer id, Model model){
         appUserService.delete(id);
         return "redirect:/appusers/list";
     }
 
-    @RequestMapping("/edit/{id}")
+    @GetMapping("/edit/{id}")
     public String edit(@PathVariable  Integer id, Model model){
         model.addAttribute("agents",travelAgentService.list());
         model.addAttribute("appuser", appUserService.getById(id));
         return "appusers/form";
     }
 
-    @RequestMapping("/new")
+    @GetMapping("/new")
     public String newAppPermission(Model model){
         model.addAttribute("agents",travelAgentService.list());
         model.addAttribute("appuser", new AppUser());
         return "appusers/form";
     }
 
-    @RequestMapping(value = "/save", method = RequestMethod.POST)
-    public String save(AppUser appUser){
+    @PostMapping("/save")
+    public String save(@ModelAttribute("appUser") AppUser appUser){
         appUserService.save(appUser);
         return "redirect:list";
     }
 
-    @RequestMapping("/details/{id}")
+    @GetMapping("/details/{id}")
     public String details(@PathVariable Integer id, Model model){
         model.addAttribute("appuser", appUserService.getById(id));
         return "appusers/card";
