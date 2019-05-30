@@ -5,9 +5,7 @@ import com.javastudents.travelagency.service.AppPermissionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 
 
 @Controller
@@ -21,37 +19,37 @@ public class AppPermissonController {
         this.appPermissionService = appPermissionService;
     }
 
-    @RequestMapping("/list")
+    @GetMapping("/list")
     public String list(Model model){
         model.addAttribute("apppermissions", appPermissionService.list());
         return "apppermission/list";
     }
 
-    @RequestMapping("/delete/{id}")
+    @GetMapping("/delete/{id}")
     public String delete(@PathVariable Integer id, Model model){
         appPermissionService.delete(id);
         return "redirect:/apppermission/list";
     }
 
-    @RequestMapping("/edit/{id}")
+    @GetMapping("/edit/{id}")
     public String edit(@PathVariable  Integer id, Model model){
         model.addAttribute("apppermission", appPermissionService.getById(id));
         return "apppermission/form";
     }
 
-    @RequestMapping("/new")
+    @GetMapping("/new")
     public String newAppPermission(Model model){
         model.addAttribute("apppermission", new AppPermission());
         return "apppermission/form";
     }
 
-    @RequestMapping(value = "/save", method = RequestMethod.POST)
-    public String save(AppPermission apppermission){
+    @PostMapping(value = "/save")
+    public String save(@ModelAttribute("apppermission") AppPermission apppermission){
             appPermissionService.save(apppermission);
         return "redirect:list";
     }
 
-    @RequestMapping("/details/{id}")
+    @GetMapping("/details/{id}")
     public String details(@PathVariable Integer id, Model model){
         model.addAttribute("apppermission", appPermissionService.getById(id));
         return "apppermission/card";
