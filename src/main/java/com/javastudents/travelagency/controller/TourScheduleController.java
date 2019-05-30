@@ -10,6 +10,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.sql.Timestamp;
+
 @Controller
 @RequestMapping("/tourSchedule")
 public class TourScheduleController {
@@ -46,7 +48,7 @@ public class TourScheduleController {
         model.addAttribute("tourSchedule", tourScheduleService.getById(id));
         model.addAttribute("tours", tourService.list());
         model.addAttribute("transports", transportService.list());
-        return "tour/form";
+        return "tourSchedule/form";
     }
 
     @GetMapping("/new")
@@ -60,13 +62,15 @@ public class TourScheduleController {
 
     @PostMapping("/save")
     public String save(@ModelAttribute("tourSchedule") TourSchedule tourSchedule){
+        tourSchedule.setStartingDateTime(Timestamp.valueOf(tourSchedule.getStartingDateTime().toString()));
+        tourSchedule.setEndingDateTime(Timestamp.valueOf(tourSchedule.getEndingDateTime().toString()));
         tourScheduleService.save(tourSchedule);
         return "redirect:/tourSchedule/list";
     }
 
     @GetMapping("/details/{id}")
     public String details(@PathVariable Integer id, Model model){
-        model.addAttribute("tour", tourService.getById(id));
-        return "tour/card";
+        model.addAttribute("tourSchedule", tourScheduleService.getById(id));
+        return "tourSchedule/card";
     }
 }

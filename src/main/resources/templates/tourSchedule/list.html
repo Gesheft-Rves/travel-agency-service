@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+    <title th:text="'Расписание туров'"></title>
+    <!--/*/ <th:block th:include="fragments/header :: head"></th:block> /*/-->
+</head>
+<body>
+<div class="container">
+    <!--/*/ <th:block th:include="fragments/header :: header"></th:block> /*/-->
+    <a th:href="${'/tourSchedule/new'}"> Создать </a>
+    <div th:if="${not #lists.isEmpty(tourSchedules)}">
+        <h2> Расписание туров </h2>
+        <table class="table table-striped">
+            <tr>
+                <th th:text="Тур"></th>
+                <th th:text="'Время начала тура'"></th>
+                <th th:text="'Время окончания тура'"></th>
+                <th th:text="Транспорт"></th>
+                <th th:text="'Действия'"></th>
+            </tr>
+            <tr th:each="tourSchedule : ${tourSchedules}">
+                <td th:text="${tourSchedule.tour.name}"></td>
+                <td th:text="${tourSchedule.startingDateTime}"></td>
+                <td th:text="${tourSchedule.endingDateTime}"></td>
+                <td th:text="${tourSchedule.transport.name}">
+                <td>
+                    <ul class="list-inline">
+                        <li><a th:href="${'/tourSchedule/delete/' + tourSchedule.getId()}" th:text="Удалить"></a> </li>
+                        <li><a th:href="${'/tourSchedule/edit/' + tourSchedule.getId()}" th:text="Редактировать"></a> </li>
+                        <li><a th:href="${'/tourSchedule/details/' + tourSchedule.getId()}" th:text="Карточка"></a> </li>
+                    </ul>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+</body>
+</html>
