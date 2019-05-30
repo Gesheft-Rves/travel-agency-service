@@ -43,7 +43,7 @@ public class AppPermissonController {
         return "apppermission/form";
     }
 
-    @PostMapping(value = "/save")
+    @PostMapping("/save")
     public String save(@ModelAttribute("apppermission") AppPermission apppermission){
             appPermissionService.save(apppermission);
         return "redirect:list";

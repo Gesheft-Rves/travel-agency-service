@@ -53,7 +53,7 @@ public class AppUserController {
         return "appusers/form";
     }
 
-    @PostMapping(value = "/save")
+    @PostMapping("/save")
     public String save(@ModelAttribute("appUser") AppUser appUser){
         appUserService.save(appUser);
         return "redirect:list";

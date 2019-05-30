@@ -42,7 +42,7 @@ public class AppRoleController {
         return "approle/form";
     }
 
-    @PostMapping(value = "/save")
+    @PostMapping("/save")
     public String save( @ModelAttribute("appRole") AppRole appRole){
         appRoleService.save(appRole);
         return "redirect:/approle/list";
