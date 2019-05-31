@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+    <title th:text="'Пользовательские роли'"></title>
+    <!--/*/ <th:block th:include="fragments/header :: head"></th:block> /*/-->
+</head>
+    <body>
+    <div class="container">
+        <!--/*/ <th:block th:include="fragments/header :: header"></th:block> /*/-->
+    </div>
+    <a th:href="${'/appuserrole/new'}"> Создать новую пользовательскую роль </a>
+        <div th:if="${not #lists.isEmpty(appuserroles)}">
+            <h2> Список пользовательских ролей </h2>
+            <table class="table table-striped">
+                <tr>
+
+                    <th th:text="Id"></th>
+                    <th th:text="'Пользователь'"></th>
+                    <th th:text="'Роль'"></th>
+                    <th th:text="Действия"></th>
+
+                </tr>
+                <tr th:each="appuserrole : ${appuserroles}">
+
+                    <td th:text="${appuserrole.appUserRoleId}"></td>
+                    <td th:text="${appuserrole.appUser.name}"></td>
+                    <td th:text="${appuserrole.appRole.name}"></td>
+
+                    <td>
+                        <ul class="list-inline">
+                            <li><a th:href="${'/appuserrole/delete/' + appuserrole.appUserRoleId}" th:text="Удалить"></a> </li>
+                            <li><a th:href="${'/appuserrole/edit/' + appuserrole.appUserRoleId}" th:text="Редактировать"></a> </li>
+                            <li><a th:href="${'/appuserrole/details/' + appuserrole.appUserRoleId}" th:text="Карточка"></a> </li>
+                        </ul>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </body>
+</html>
