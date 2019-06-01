@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head lang="en">
-    <title th:text="'Новое разрешение для роли приложения'"></title>
+    <title th:text="'Новое право доступа для роли приложения'"></title>
     <!--/*/ <th:block th:include="fragments/header:: head"></th:block> /*/-->
 </head>
 <body>
 <div class="container">
     <!--/*/ <th:block th:include="fragments/header :: header"></th:block> /*/-->
-    <h2  th:text="'Новое разрешение для роли приложения'"></h2>
+    <h2  th:text="'Новое право доступа для роли приложения'"></h2>
     <div>
         <form class="form-horizontal" th:object="${approlepermission}" th:action="@{/approlepermissions/save}" method="post">
             <input type="hidden" th:field="*{appRolePermissionId}"/>
@@ -33,7 +33,7 @@
             </div>
 
             <div class="form-group">
-                <label class="col-sm-2 control-label" th:text="'Разрешение приложения'"></label>
+                <label class="col-sm-2 control-label" th:text="'Право доступа приложения'"></label>
                 <div class="col-sm-10">
                     <div class="col-sm-10">
 
