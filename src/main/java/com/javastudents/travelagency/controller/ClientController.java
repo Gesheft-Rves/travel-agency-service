@@ -16,7 +16,8 @@ public class ClientController {
     private ClientService clientService;
 
     @Autowired
-    public ClientController(DocumentTypeService documentTypeService, ClientService clientService) {
+    public ClientController(DocumentTypeService documentTypeService,
+                            ClientService clientService) {
         this.documentTypeService = documentTypeService;
         this.clientService = clientService;
     }
