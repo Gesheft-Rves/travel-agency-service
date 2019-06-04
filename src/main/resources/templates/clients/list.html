@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+    <title th:text="'Cписок туристов'"></title>
+    <!--/*/ <th:block th:include="fragments/header :: head"></th:block> /*/-->
+</head>
+<body>
+<div class="container">
+    <!--/*/ <th:block th:include="fragments/header :: header"></th:block> /*/-->
+<a th:href="${'/clients/new'}"> Создать нового туриста </a>
+<div th:if="${not #lists.isEmpty(clients)}">
+    <h2>Cписок туристов</h2>
+    <table class="table table-striped">
+        <tr>
+
+            <th th:text="Id"></th>
+            <th th:text="'Тип документа'"></th>
+            <th th:text="'Серия и номер документа'"></th>
+            <th th:text="Имя"></th>
+            <th th:text="Фамилия"></th>
+            <th th:text="Отчество"></th>
+            <th th:text="Адрес"></th>
+            <th th:text="Телефон"></th>
+            <th th:text="Действия"></th>
+
+        </tr>
+        <tr th:each="client : ${clients}">
+
+            <td th:text="${client.clientId}"></td>
+            <td th:text="${client.documentTypeId.name}"></td>
+            <td th:text="${client.documentSeriesNumber}"></td>
+            <td th:text="${client.name}"></td>
+            <td th:text="${client.surname}"></td>
+            <td th:text="${client.patronymic}"></td>
+            <td th:text="${client.address}"></td>
+            <td th:text="${client.phoneNumber}"></td>
+
+            <td>
+                <ul class="list-inline">
+                    <li><a th:href="${'/clients/delete/' + client.clientId}" th:text="Удалить"></a> </li>
+                    <li><a th:href="${'/clients/edit/' + client.clientId}" th:text="Редактировать"></a> </li>
+                    <li><a th:href="${'/clients/details/' + client.clientId}" th:text="Карточка"></a> </li>
+                </ul>
+            </td>
+        </tr>
+    </table>
+</div>
+</div>
+</body>
+</html>
