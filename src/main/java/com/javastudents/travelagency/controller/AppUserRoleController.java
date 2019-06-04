@@ -19,7 +19,9 @@ public class AppUserRoleController {
     private AppRoleService appRoleService;
 
     @Autowired
-    public AppUserRoleController(AppUserRoleService appUserRoleService, AppUserService appUserService, AppRoleService appRoleService) {
+    public AppUserRoleController(AppUserRoleService appUserRoleService,
+                                 AppUserService appUserService,
+                                 AppRoleService appRoleService) {
         this.appUserRoleService = appUserRoleService;
         this.appUserService = appUserService;
         this.appRoleService = appRoleService;
