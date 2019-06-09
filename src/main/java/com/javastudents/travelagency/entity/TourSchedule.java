@@ -5,6 +5,7 @@ import lombok.*;
 import javax.persistence.*;
 import javax.persistence.Entity;
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -21,16 +22,16 @@ public class TourSchedule {
     private Tour tour;
 
     @Column
-    private Timestamp startingDateTime;
+    private LocalDateTime startingDateTime;
 
     @Column
-    private Timestamp endingDateTime;
+    private LocalDateTime endingDateTime;
 
     @OneToOne
     @JoinColumn(name = "transport_id")
     private Transport transport;
 
-    public TourSchedule(Tour tour, Timestamp startingDateTime, Timestamp endingDateTime, Transport transport) {
+    public TourSchedule(Tour tour, LocalDateTime startingDateTime, LocalDateTime endingDateTime, Transport transport) {
         this.tour = tour;
         this.startingDateTime = startingDateTime;
         this.endingDateTime = endingDateTime;
