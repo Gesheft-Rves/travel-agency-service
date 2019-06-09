@@ -7,7 +7,6 @@
 <body>
 <div class="container">
     <!--/*/ <th:block th:include="fragments/header :: header"></th:block> /*/-->
-</div>
 <a th:href="${'/appusers/new'}"> Создать нового пользователя </a>
 <div th:if="${not #lists.isEmpty(appusers)}">
     <h2>Cписок пользователей</h2>
@@ -43,6 +42,7 @@
             </td>
         </tr>
     </table>
+</div>
 </div>
 </body>
 </html>
