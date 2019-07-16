@@ -9,6 +9,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 @RunWith(SpringRunner.class)
@@ -47,7 +48,8 @@ public class TourScheduleServiceTest {
 
     @Test
     public void save() {
-        TourSchedule newTourSchedule = new TourSchedule(tourService.getById(1),new Timestamp(new Date().getTime()),new Timestamp(new Date().getTime()), transportService.getById(2));
+        LocalDateTime date = LocalDateTime.now();
+        TourSchedule newTourSchedule = new TourSchedule(tourService.getById(1),date,date, transportService.getById(2));
         tourScheduleService.save(newTourSchedule);
 
         Assert.assertNotNull(tourScheduleService.getById(2));
@@ -55,7 +57,8 @@ public class TourScheduleServiceTest {
 
     @Test
     public void delete() {
-        TourSchedule newTourSchedule = new TourSchedule(tourService.getById(1),new Timestamp(new Date().getTime()),new Timestamp(new Date().getTime()), transportService.getById(2));
+        LocalDateTime date = LocalDateTime.now();
+        TourSchedule newTourSchedule = new TourSchedule(tourService.getById(1),date,date, transportService.getById(2));
         tourScheduleService.save(newTourSchedule);
 
         Assert.assertNotNull(tourScheduleService.getById(2));

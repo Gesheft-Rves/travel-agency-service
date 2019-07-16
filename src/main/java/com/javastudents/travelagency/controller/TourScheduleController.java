@@ -1,16 +1,20 @@
 package com.javastudents.travelagency.controller;
 
 import com.javastudents.travelagency.entity.TourSchedule;
+import com.javastudents.travelagency.entity.dto.TourScheduleDTO;
 import com.javastudents.travelagency.service.TourScheduleService;
 import com.javastudents.travelagency.service.TourService;
 import com.javastudents.travelagency.service.TransportService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 @Controller
 @RequestMapping("/tourSchedule")
@@ -61,9 +65,8 @@ public class TourScheduleController {
     }
 
     @PostMapping("/save")
-    public String save(@ModelAttribute("tourSchedule") TourSchedule tourSchedule){
-        tourSchedule.setStartingDateTime(Timestamp.valueOf(tourSchedule.getStartingDateTime().toString()));
-        tourSchedule.setEndingDateTime(Timestamp.valueOf(tourSchedule.getEndingDateTime().toString()));
+    public String save(@ModelAttribute("tourSchedule") TourScheduleDTO tourScheduleDTO){
+        TourSchedule tourSchedule = tourScheduleDtoToTourSchedule(tourScheduleDTO);
         tourScheduleService.save(tourSchedule);
         return "redirect:/tourSchedule/list";
     }
@@ -72,5 +75,15 @@ public class TourScheduleController {
     public String details(@PathVariable Integer id, Model model){
         model.addAttribute("tourSchedule", tourScheduleService.getById(id));
         return "tourSchedule/card";
+    }
+
+    private TourSchedule tourScheduleDtoToTourSchedule(TourScheduleDTO tourScheduleDTO){
+        return TourSchedule.builder()
+                .id(tourScheduleDTO.getId())
+                .tour(tourScheduleDTO.getTour())
+                .startingDateTime(LocalDateTime.parse(tourScheduleDTO.getStartingDateTime(), DateTimeFormatter.ISO_DATE_TIME))
+                .endingDateTime(LocalDateTime.parse(tourScheduleDTO.getEndingDateTime(), DateTimeFormatter.ISO_DATE_TIME))
+                .transport(tourScheduleDTO.getTransport())
+                .build();
     }
 }

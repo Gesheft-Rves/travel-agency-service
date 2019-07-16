@@ -1,17 +1,21 @@
-package com.javastudents.travelagency.entity;
+package com.javastudents.travelagency.entity.dto;
 
-import lombok.*;
+import com.javastudents.travelagency.entity.Tour;
+import com.javastudents.travelagency.entity.Transport;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
-import javax.persistence.Entity;
 import java.time.LocalDateTime;
 
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter @Setter
-@Entity @Builder
-public class TourSchedule {
+@Entity
+public class TourScheduleDTO {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "tour_schedule_id")
@@ -22,18 +26,16 @@ public class TourSchedule {
     private Tour tour;
 
     @Column
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private LocalDateTime startingDateTime;
+    private String startingDateTime;
 
     @Column
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private LocalDateTime endingDateTime;
+    private String endingDateTime;
 
     @OneToOne
     @JoinColumn(name = "transport_id")
     private Transport transport;
 
-    public TourSchedule(Tour tour, LocalDateTime startingDateTime, LocalDateTime endingDateTime, Transport transport) {
+    public TourScheduleDTO(Tour tour, String startingDateTime, String endingDateTime, Transport transport) {
         this.tour = tour;
         this.startingDateTime = startingDateTime;
         this.endingDateTime = endingDateTime;
