@@ -1,15 +1,16 @@
 package com.javastudents.travelagency.entity;
 
 import lombok.*;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import javax.persistence.Entity;
-import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter @Setter
-@Entity
+@Entity @Builder
 public class TourSchedule {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,16 +22,18 @@ public class TourSchedule {
     private Tour tour;
 
     @Column
-    private Timestamp startingDateTime;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private LocalDateTime startingDateTime;
 
     @Column
-    private Timestamp endingDateTime;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private LocalDateTime endingDateTime;
 
     @OneToOne
     @JoinColumn(name = "transport_id")
     private Transport transport;
 
-    public TourSchedule(Tour tour, Timestamp startingDateTime, Timestamp endingDateTime, Transport transport) {
+    public TourSchedule(Tour tour, LocalDateTime startingDateTime, LocalDateTime endingDateTime, Transport transport) {
         this.tour = tour;
         this.startingDateTime = startingDateTime;
         this.endingDateTime = endingDateTime;
