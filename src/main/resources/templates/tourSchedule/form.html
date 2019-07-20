@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head lang="en">
-    <title th:text="'Новый тур-агент'"></title>
+    <title th:text="'Новое расписание'"></title>
     <!--/*/ <th:block th:include="fragments/header:: head"></th:block> /*/-->
 </head>
 <body>
 <div class="container">
     <!--/*/ <th:block th:include="fragments/header :: header"></th:block> /*/-->
-    <h2 th:text="'Новый тур-агент'"></h2>
+    <h2 th:text="'Новое расписание'"></h2>
     <div>
 
         <form class="form-horizontal" th:object="${tourSchedule}" th:action="@{/tourSchedule/save}" method="post">

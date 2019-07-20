@@ -81,8 +81,8 @@ public class TourScheduleController {
         return TourSchedule.builder()
                 .id(tourScheduleDTO.getId())
                 .tour(tourScheduleDTO.getTour())
-                .startingDateTime(LocalDateTime.parse(tourScheduleDTO.getStartingDateTime(), DateTimeFormatter.ISO_DATE_TIME))
-                .endingDateTime(LocalDateTime.parse(tourScheduleDTO.getEndingDateTime(), DateTimeFormatter.ISO_DATE_TIME))
+                .startingDateTime(LocalDateTime.parse(tourScheduleDTO.getStartingDateTime()))
+                .endingDateTime(LocalDateTime.parse(tourScheduleDTO.getEndingDateTime()))
                 .transport(tourScheduleDTO.getTransport())
                 .build();
     }
