@@ -4,12 +4,12 @@ import lombok.*;
 
 import javax.persistence.*;
 import javax.persistence.Entity;
-import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter @Setter
-@Entity
+@Entity @Builder
 public class Purchase {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -37,9 +37,9 @@ public class Purchase {
     private TransportSeat transportSeat;
 
     @Column
-    private Timestamp operationDate;
+    private LocalDateTime operationDate;
 
-    public Purchase(TourSchedule tourSchedule, TravelAgent travelAgent, Client client, Transport transport, TransportSeat transportSeat, Timestamp operationDate) {
+    public Purchase(TourSchedule tourSchedule, TravelAgent travelAgent, Client client, Transport transport, TransportSeat transportSeat, LocalDateTime operationDate) {
         this.tourSchedule = tourSchedule;
         this.travelAgent = travelAgent;
         this.client = client;

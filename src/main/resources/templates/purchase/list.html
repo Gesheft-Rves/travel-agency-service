@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+    <title th:text="Purchase"></title>
+    <!--/*/ <th:block th:include="fragments/header :: head"></th:block> /*/-->
+</head>
+<body>
+<div class="container">
+    <!--/*/ <th:block th:include="fragments/header :: header"></th:block> /*/-->
+    <a th:href="${'/purchase/new'}"> Создать тур </a>
+    <div th:if="${not #lists.isEmpty(purchases)}">
+        <h2> Список Tour </h2>
+        <table class="table table-striped">
+            <tr>
+
+                <th th:text="'Начала тура'"></th>
+                <th th:text="'Конец тура'"></th>
+                <th th:text="'Тур агент'"></th>
+                <th th:text="Клиент"></th>
+                <th th:text="Транспорт"></th>
+                <th th:text="Место"></th>
+                <th th:text="'Дата операции'"></th>
+                <th th:text="'Действия'"></th>
+
+            </tr>
+            <tr th:each="purchase : ${purchases}">
+                
+                <td th:text="${purchase.tourSchedule.startingDateTime}"></td>
+                <td th:text="${purchase.tourSchedule.endingDateTime}"></td>
+                <td th:text="${purchase.travelAgent.name}"></td>
+                <td th:text="${purchase.client.name}"></td>
+                <td th:text="${purchase.transport.name}"></td>
+                <td th:text="${purchase.transportSeat.seatNo}"></td>
+                <td th:text="${purchase.operationDate}"></td>
+
+                <td>
+                    <ul class="list-inline">
+                        <li><a th:href="${'/purchase/delete/' + purchase.getId()}" th:text="Удалить"></a> </li>
+                        <li><a th:href="${'/purchase/edit/' + purchase.getId()}" th:text="Редактировать"></a> </li>
+                        <li><a th:href="${'/purchase/details/' + purchase.getId()}" th:text="Карточка"></a> </li>
+                    </ul>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+</body>
+</html>
