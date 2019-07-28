@@ -57,7 +57,8 @@ public class PurchaseServiceTest {
 
     @Test
     public void save() {
-        Purchase newPurchase = new Purchase(tourScheduleService.getById(2),travelAgentService.getById(2),clientService.getById(2),transportService.getById(2),transportSeatService.getById(2),new Timestamp(new Date().getTime()));
+        LocalDateTime localDateTime = LocalDateTime.now();
+        Purchase newPurchase = new Purchase(tourScheduleService.getById(2),travelAgentService.getById(2),clientService.getById(2),transportService.getById(2),transportSeatService.getById(2), localDateTime);
         purchaseService.save(newPurchase);
 
         Assert.assertNotNull(purchaseService.getById(2));
@@ -65,7 +66,9 @@ public class PurchaseServiceTest {
 
     @Test
     public void delete() {
-        Purchase newPurchase = new Purchase(tourScheduleService.getById(2),travelAgentService.getById(2),clientService.getById(2),transportService.getById(2),transportSeatService.getById(2),new Timestamp(new Date().getTime()));
+        LocalDateTime localDateTime = LocalDateTime.now();
+
+        Purchase newPurchase = new Purchase(tourScheduleService.getById(2),travelAgentService.getById(2),clientService.getById(2),transportService.getById(2),transportSeatService.getById(2),localDateTime);
         purchaseService.save(newPurchase);
 
         Assert.assertNotNull(purchaseService.getById(2));
