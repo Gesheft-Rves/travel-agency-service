@@ -9,12 +9,12 @@ import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping("/doctype")
-public class DocunentTypeController {
+public class DocumentTypeController {
 
     private final DocumentTypeService documentTypeService;
 
     @Autowired
-    public DocunentTypeController(DocumentTypeService documentTypeService) {
+    public DocumentTypeController(DocumentTypeService documentTypeService) {
         this.documentTypeService = documentTypeService;
     }
 

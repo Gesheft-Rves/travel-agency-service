@@ -7,9 +7,9 @@
 <body>
 <div class="container">
     <!--/*/ <th:block th:include="fragments/header :: header"></th:block> /*/-->
-    <a th:href="${'/purchase/new'}"> Создать тур </a>
+    <a th:href="${'/purchase/new'}"> Новая покупка</a>
     <div th:if="${not #lists.isEmpty(purchases)}">
-        <h2> Список Tour </h2>
+        <h2> Список покупок </h2>
         <table class="table table-striped">
             <tr>
 
