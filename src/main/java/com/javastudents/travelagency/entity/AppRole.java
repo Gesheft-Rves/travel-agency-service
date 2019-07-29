@@ -1,20 +1,30 @@
 package com.javastudents.travelagency.entity;
 
-import lombok.*;
+import org.springframework.security.core.GrantedAuthority;
 
-import javax.persistence.*;
-import javax.persistence.Entity;
+public enum  AppRole implements GrantedAuthority {
 
-@AllArgsConstructor
-@NoArgsConstructor
-@Getter @Setter
-@Entity
-public class AppRole  {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column
-    private Integer appRoleId;
+    ROLE_SUPER,
+    ROLE_APP_ADMIN ,
+    ROLE_TRAVEL_AGENT ,
+    ROLE_USER ;
 
-    @Column
-    private String name;
+    @Override
+    public String getAuthority() {
+        return getAppRoleFromIndex();
+    }
+
+    public String getAppRoleFromIndex() {
+        switch (ordinal()){
+            case 0:
+                return String.valueOf(AppRole.ROLE_SUPER);
+            case 1:
+                return String.valueOf(AppRole.ROLE_APP_ADMIN);
+            case 2:
+                return String.valueOf(AppRole.ROLE_TRAVEL_AGENT);
+            case 3:
+                return String.valueOf(AppRole.ROLE_USER);
+        }
+        return null;
+    }
 }

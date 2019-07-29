@@ -4,15 +4,18 @@ import com.javastudents.travelagency.entity.AppUser;
 
 import com.javastudents.travelagency.repository.AppUserRepository;
 
-import com.javastudents.travelagency.service.PojoService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @Service
-public class AppUserService implements PojoService<AppUser> {
+public class AppUserService implements PojoService<AppUser>, UserDetailsService {
 
     private final AppUserRepository repository;
 
@@ -39,5 +42,14 @@ public class AppUserService implements PojoService<AppUser> {
     @Override
     public void delete(Integer id) {
         repository.delete(getById(id));
+    }
+
+    @Override
+    public UserDetails loadUserByUsername(@NotNull String str) throws UsernameNotFoundException {
+        for (AppUser appUser : list()){
+            if (appUser.getLogin().equals(str))
+                return appUser;
+        }
+        throw new UsernameNotFoundException(str + " not found!");
     }
 }

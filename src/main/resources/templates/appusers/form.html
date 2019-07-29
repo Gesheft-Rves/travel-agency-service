@@ -10,7 +10,7 @@
     <h2  th:text="'Новый пользователь приложения'"></h2>
     <div>
         <form class="form-horizontal" th:object="${appuser}" th:action="@{/appusers/save}" method="post">
-            <input type="hidden" th:field="*{appUserId}"/>
+            <input type="hidden" th:field="*{Id}"/>
 
             <div class="form-group">
                 <label class="col-sm-2 control-label" th:text="Имя"></label>
