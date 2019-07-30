@@ -9,7 +9,7 @@
     <!--/*/ <th:block th:include="fragments/header :: header"></th:block> /*/-->
     <h2  th:text="'Новый пользователь приложения'"></h2>
     <div>
-        <form class="form-horizontal" th:object="${appuser}" th:action="@{/appusers/save}" method="post">
+        <form class="form-horizontal" th:object="${user}" th:action="@{/users/save}" method="post">
             <input type="hidden" th:field="*{Id}"/>
 
             <div class="form-group">
@@ -25,7 +25,7 @@
                 <label class="col-sm-2 control-label" th:text="Фамилия"></label>
                 <div class="col-sm-10">
                     <div class="col-sm-10">
-                        <input type="text" placeholder="Введите имя пользователя" class="form-control" th:field="*{surname}" th:required="required"/>
+                        <input type="text" placeholder="Введите фамилию пользователя" class="form-control" th:field="*{surname}" th:required="required"/>
                     </div>
                 </div>
             </div>
@@ -34,7 +34,7 @@
                 <label class="col-sm-2 control-label" th:text="'Электронная почта'"></label>
                 <div class="col-sm-10">
                     <div class="col-sm-10">
-                        <input type="text" placeholder="Введите имя пользователя" class="form-control" th:field="*{email}" th:required="required"/>
+                        <input type="text" placeholder="Введите электронную почту пользователя" class="form-control" th:field="*{email}" th:required="required"/>
                     </div>
                 </div>
             </div>
@@ -43,7 +43,7 @@
                 <label class="col-sm-2 control-label" th:text="Логин"></label>
                 <div class="col-sm-10">
                     <div class="col-sm-10">
-                        <input type="text" placeholder="Введите имя пользователя" class="form-control" th:field="*{login}" th:required="required"/>
+                        <input type="text" placeholder="Введите логин пользователя" class="form-control" th:field="*{login}" th:required="required"/>
                     </div>
                 </div>
             </div>
@@ -52,7 +52,7 @@
                 <label class="col-sm-2 control-label" th:text="Пароль"></label>
                 <div class="col-sm-10">
                     <div class="col-sm-10">
-                        <input type="text" placeholder="Введите имя пользователя" class="form-control" th:field="*{password}" th:required="required"/>
+                        <input type="text" placeholder="Введите пароль пользователя" class="form-control" th:field="*{password}" th:required="required"/>
                     </div>
                 </div>
             </div>
@@ -67,7 +67,7 @@
                                 <option th:each="agent:${agents}"
                                         th:value="${agent.id}"
                                         th:text="${agent.name}"
-                                        th:with="temp=${appuser.travelAgent}"
+                                        th:with="temp=${user.travelAgent}"
                                         th:selected="${#strings.equals(temp, agent.name)}">
                                 </option>
                             </div>

@@ -9,12 +9,12 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import java.util.List;
 
-@Entity
+@Entity (name = "app_user")
 @ToString
 @Getter @Setter
 @AllArgsConstructor
 @NoArgsConstructor @Builder
-public class AppUser implements UserDetails {
+public class User implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column
@@ -51,27 +51,10 @@ public class AppUser implements UserDetails {
     @Column(name = "enabled")
     private boolean enabled;
 
-    @ElementCollection(targetClass = AppRole.class, fetch = FetchType.EAGER)
+    @ElementCollection(targetClass = Role.class, fetch = FetchType.EAGER)
     @CollectionTable(name = "user_authorities", joinColumns = @JoinColumn(name = "user_id"))
     @Enumerated(EnumType.ORDINAL)
-    private List<AppRole> authorities;
-
-    public AppUser(String name, String surname, String email, String login,
-                   String password, TravelAgent travelAgent, boolean accountNonExpired,
-                   boolean accountNonLocked, boolean credentialsNonExpired,
-                   boolean enabled, List<AppRole> authorities) {
-        this.name = name;
-        this.surname = surname;
-        this.email = email;
-        this.login = login;
-        this.password = password;
-        this.travelAgent = travelAgent;
-        this.accountNonExpired = accountNonExpired;
-        this.accountNonLocked = accountNonLocked;
-        this.credentialsNonExpired = credentialsNonExpired;
-        this.enabled = enabled;
-        this.authorities = authorities;
-    }
+    private List<Role> authorities;
 
     @Override
     public String getUsername() {

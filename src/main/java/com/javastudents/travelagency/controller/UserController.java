@@ -1,7 +1,7 @@
 package com.javastudents.travelagency.controller;
 
-import com.javastudents.travelagency.entity.AppUser;
-import com.javastudents.travelagency.service.AppUserService;
+import com.javastudents.travelagency.entity.User;
+import com.javastudents.travelagency.service.UserService;
 import com.javastudents.travelagency.service.TravelAgentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -11,14 +11,14 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @Controller
-@RequestMapping("/appusers")
-public class AppUserController {
-    private AppUserService appUserService;
+@RequestMapping("/users")
+public class UserController {
+    private UserService userService;
     private TravelAgentService travelAgentService;
 
     @Autowired
-    public void setAppUserService(AppUserService appUserService) {
-        this.appUserService = appUserService;
+    public void setUserService(UserService userService) {
+        this.userService = userService;
     }
 
     @Autowired
@@ -28,41 +28,41 @@ public class AppUserController {
 
     @GetMapping("/list")
     public String list(Model model){
-        List<AppUser> users = appUserService.list();
-        model.addAttribute("appusers", users);
-        return "appusers/list";
+        List<User> users = userService.list();
+        model.addAttribute("userslist", users);
+        return "users/list";
     }
 
     @GetMapping("/delete/{id}")
     public String delete(@PathVariable Integer id, Model model){
-        appUserService.delete(id);
-        return "redirect:/appusers/list";
+        userService.delete(id);
+        return "redirect:/users/list";
     }
 
     @GetMapping("/edit/{id}")
     public String edit(@PathVariable  Integer id, Model model){
         model.addAttribute("agents",travelAgentService.list());
-        model.addAttribute("appuser", appUserService.getById(id));
-        return "appusers/form";
+        model.addAttribute("user", userService.getById(id));
+        return "users/form";
     }
 
     @GetMapping("/new")
     public String newAppPermission(Model model){
         model.addAttribute("agents",travelAgentService.list());
-        model.addAttribute("appuser", new AppUser());
-        return "appusers/form";
+        model.addAttribute("user", new User());
+        return "users/form";
     }
 
     @PostMapping("/save")
-    public String save(@ModelAttribute("appUser") AppUser appUser){
-        appUserService.save(appUser);
+    public String save(@ModelAttribute("user") User user){
+        userService.save(user);
         return "redirect:list";
     }
 
     @GetMapping("/details/{id}")
     public String details(@PathVariable Integer id, Model model){
-        model.addAttribute("appuser", appUserService.getById(id));
-        return "appusers/card";
+        model.addAttribute("user", userService.getById(id));
+        return "users/card";
     }
 
 }

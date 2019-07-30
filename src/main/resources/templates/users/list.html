@@ -7,8 +7,8 @@
 <body>
 <div class="container">
     <!--/*/ <th:block th:include="fragments/header :: header"></th:block> /*/-->
-<a th:href="${'/appusers/new'}"> Создать нового пользователя </a>
-<div th:if="${not #lists.isEmpty(appusers)}">
+<a th:href="${'/users/new'}"> Создать нового пользователя </a>
+<div th:if="${not #lists.isEmpty(userslist)}">
     <h2>Cписок пользователей</h2>
     <table class="table table-striped">
         <tr>
@@ -22,20 +22,20 @@
             <th th:text="Действия"></th>
 
         </tr>
-        <tr th:each="appuser : ${appusers}">
+        <tr th:each="user : ${userslist}">
 
-            <td th:text="${appuser.Id}"></td>
-            <td th:text="${appuser.name}"></td>
-            <td th:text="${appuser.surname}"></td>
-            <td th:text="${appuser.email}"></td>
-            <td th:text="${appuser.login}"></td>
-            <td th:text="${appuser.travelAgent.name}"></td>
+            <td th:text="${user.Id}"></td>
+            <td th:text="${user.name}"></td>
+            <td th:text="${user.surname}"></td>
+            <td th:text="${user.email}"></td>
+            <td th:text="${user.login}"></td>
+            <td th:text="${user.travelAgent.name}"></td>
 
             <td>
                 <ul class="list-inline">
-                    <li><a th:href="${'/appusers/delete/' + appuser.Id}" th:text="Удалить"></a> </li>
-                    <li><a th:href="${'/appusers/edit/' + appuser.Id}" th:text="Редактировать"></a> </li>
-                    <li><a th:href="${'/appusers/details/' + appuser.Id}" th:text="Карточка"></a> </li>
+                    <li><a th:href="${'/users/delete/' + user.Id}" th:text="Удалить"></a> </li>
+                    <li><a th:href="${'/users/edit/' + user.Id}" th:text="Редактировать"></a> </li>
+                    <li><a th:href="${'/users/details/' + user.Id}" th:text="Карточка"></a> </li>
                 </ul>
             </td>
         </tr>

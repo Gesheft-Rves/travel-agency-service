@@ -1,6 +1,6 @@
 package com.javastudents.travelagency.security;
 
-import com.javastudents.travelagency.service.AppUserService;
+import com.javastudents.travelagency.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -15,10 +15,10 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 @Configuration @EnableWebSecurity
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
-    private final AppUserService userService;
+    private final UserService userService;
 
     @Autowired
-    public SecurityConfiguration(AppUserService userService) {
+    public SecurityConfiguration(UserService userService) {
         this.userService = userService;
     }
 
@@ -32,7 +32,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         http
                 .authorizeRequests()
                 .antMatchers("/resources/**", "/login/**").permitAll()
-                .antMatchers("/appusers/list").hasRole("SUPER")
+                .antMatchers("/users/**").hasRole("SUPER")
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()

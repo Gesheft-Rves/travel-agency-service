@@ -1,42 +1,40 @@
 package com.javastudents.travelagency.service;
 
-import com.javastudents.travelagency.entity.AppUser;
-
-import com.javastudents.travelagency.repository.AppUserRepository;
-
+import com.javastudents.travelagency.entity.User;
+import com.javastudents.travelagency.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
-
-
 import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @Service
-public class AppUserService implements PojoService<AppUser>, UserDetailsService {
+public class UserService implements PojoService<User>, UserDetailsService {
 
-    private final AppUserRepository repository;
+    private final UserRepository repository;
 
     @Autowired
-    public AppUserService(AppUserRepository repository) {
+    public UserService(UserRepository repository) {
         this.repository = repository;
     }
 
     @Override
-    public List<AppUser> list() {
+    public List<User> list() {
         return repository.findAll();
     }
 
     @Override
-    public AppUser getById(Integer id) {
+    public User getById(Integer id) {
         return repository.getOne(id);
     }
 
     @Override
-    public AppUser save(AppUser obj) {
-        return repository.save(obj);
+    public User save(User user) {
+        user.setPassword(new BCryptPasswordEncoder().encode(user.getPassword()));
+        return repository.save(user);
     }
 
     @Override
@@ -46,9 +44,9 @@ public class AppUserService implements PojoService<AppUser>, UserDetailsService 
 
     @Override
     public UserDetails loadUserByUsername(@NotNull String str) throws UsernameNotFoundException {
-        for (AppUser appUser : list()){
-            if (appUser.getLogin().equals(str))
-                return appUser;
+        for (User user : list()){
+            if (user.getLogin().equals(str))
+                return user;
         }
         throw new UsernameNotFoundException(str + " not found!");
     }
