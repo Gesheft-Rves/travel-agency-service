@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+    <title th:text="'Турагенства'"></title>
+    <!--/*/ <th:block th:include="fragments/header :: head"></th:block> /*/-->
+</head>
+<body>
+<div class="container">
+    <!--/*/ <th:block th:include="fragments/header :: header"></th:block> /*/-->
+    <a th:href="${'/travelAgency/new'}"> Создать турагенство </a>
+    <div th:if="${not #lists.isEmpty(travelAgencies)}">
+        <h2> Список турагенств </h2>
+        <table class="table table-striped">
+            <tr>
+                <th th:text="Имя"></th>
+                <th th:text="Адрес"></th>
+                <th th:text="'Номер телефона'"></th>
+                <th th:text="Сайт"></th>
+                <th th:text="'Электронный адрес'"></th>
+                <th th:text="'Действия'"></th>
+            </tr>
+            <tr th:each="travelAgency : ${travelAgencies}">
+                <td th:text="${travelAgency.abbreviatedName}"></td>
+                <td th:text="${travelAgency.address}"></td>
+                <td th:text="${travelAgency.phoneNumber}"></td>
+                <td th:text="${travelAgency.site}">
+                <td th:text="${travelAgency.emailAddress}"></td>
+                <td>
+                    <ul class="list-inline">
+                        <li><a th:href="${'/travelAgency/delete/' + travelAgency.getId()}" th:text="Удалить"></a> </li>
+                        <li><a th:href="${'/travelAgency/edit/' + travelAgency.getId()}" th:text="Редактировать"></a> </li>
+                        <li><a th:href="${'/travelAgency/details/' + travelAgency.getId()}" th:text="Карточка"></a> </li>
+                    </ul>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+</body>
+</html>

@@ -15,21 +15,7 @@ drop table if exists tour;
 drop table if exists tour_category;
 drop table if exists transport_seat;
 drop table if exists transport;
-drop table if exists customer;
-drop table if exists department;
 drop table if exists document_type;
-
-create table if not exists department (
-  department_id serial primary key ,
-  name varchar (45)
-);
-
-create table if not exists customer (
-  customer_id serial primary key,
-  department_id int,
-  name varchar (45),
-  foreign key (department_id) references department(department_id)
-);
 
 create table if not exists app_role (
   app_role_id serial not null primary key,
@@ -55,7 +41,7 @@ create table if not exists travel_agency(
   travel_agency_id serial not null primary key,
   abbreviated_name varchar(50) not null,
   address varchar(50) not null,
-  phone_number int not null,
+  phone_number varchar not null,
   site varchar(50),
   email_address varchar(50) not null
 );
@@ -67,7 +53,7 @@ create table if not exists travel_agent (
   surname varchar (50),
   patronymic varchar (50),
   enabled boolean,
-  phone_number int not null,
+  phone_number varchar not null,
   limit_amount DECIMAL,
   foreign key (travel_agency_id) references travel_agency(travel_agency_id)
 );
@@ -106,7 +92,7 @@ create table if not exists client (
   surname varchar(50) not null,
   patronymic varchar(50) not null,
   address  varchar(100) not null,
-  phone_number int not null,
+  phone_number varchar not null,
   foreign key (document_type_id) references document_type(document_type_id),
   UNIQUE (document_type_id, document_series_number)
 );
@@ -122,7 +108,6 @@ create table if not exists tour_category(
   tour_category_id serial not null primary key,
   name varchar(45) not null
 );
-
 
 create table if not exists tour(
   tour_id serial not null primary key,
@@ -170,7 +155,7 @@ create table if not exists purchase (
 );
 
 create table if not exists travel_agent_ledger (
-  traval_agent_ledger_id serial primary key ,
+  travel_agent_ledger_id serial primary key ,
   travel_agent_id int not null,
   operation_date TIMESTAMP NOT NULL ,
   purchase_id int,

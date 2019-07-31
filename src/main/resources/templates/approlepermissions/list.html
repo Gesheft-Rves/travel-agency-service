@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+    <title th:text="'Права ролей '"></title>
+    <!--/*/ <th:block th:include="fragments/header :: head"></th:block> /*/-->
+</head>
+<body>
+<div class="container">
+    <!--/*/ <th:block th:include="fragments/header :: header"></th:block> /*/-->
+<a th:href="${'/approlepermissions/new'}"> Создать новое право роли</a>
+    <div th:if="${not #lists.isEmpty(approlepermissions)}">
+        <h2> Список прав ролей</h2>
+        <table class="table table-striped">
+            <tr>
+
+                <th th:text="Id"></th>
+                <th th:text="'Роль'"></th>
+                <th th:text="'Право доступа'"></th>
+                <th th:text="Действия"></th>
+
+            </tr>
+            <tr th:each="approleperm : ${approlepermissions}">
+
+                <td th:text="${approleperm.appRolePermissionId}"></td>
+                <td th:text="${approleperm.appRole.name}"></td>
+                <td th:text="${approleperm.appPermission.name}"></td>
+
+                <td>
+                    <ul class="list-inline">
+                        <li><a th:href="${'/approlepermissions/delete/' + approleperm.appRolePermissionId}" th:text="Удалить"></a> </li>
+                        <li><a th:href="${'/approlepermissions/edit/' + approleperm.appRolePermissionId}" th:text="Редактировать"></a> </li>
+                        <li><a th:href="${'/approlepermissions/details/' + approleperm.appRolePermissionId}" th:text="Карточка"></a> </li>
+                    </ul>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+</body>
+</html>

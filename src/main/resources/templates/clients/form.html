@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+    <title th:text="'Новый турист'"></title>
+    <!--/*/ <th:block th:include="fragments/header:: head"></th:block> /*/-->
+</head>
+<body>
+<div class="container">
+    <!--/*/ <th:block th:include="fragments/header :: header"></th:block> /*/-->
+    <h2  th:text="'Новый турист'"></h2>
+    <div>
+        <form class="form-horizontal" th:object="${client}" th:action="@{/clients/save}" method="post">
+            <input type="hidden" th:field="*{clientId}"/>
+
+            <div class="form-group">
+                <label class="col-sm-2 control-label" th:text="'Тип документа'"></label>
+                <div class="col-sm-10">
+                    <div class="col-sm-10">
+
+                        <select th:field="*{documentTypeId}"  size="1" class="form-control" th:required="required"  >
+                            <div>
+                                <option th:each="doc:${doctypes}"
+                                        th:value="${doc.documentTypeId}"
+                                        th:text="${doc.name}"
+                                        th:with="temp=${client.documentTypeId}"
+                                        th:selected="${#strings.equals(temp, doc.name)}">
+                                </option>
+                            </div>
+                        </select>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-2 control-label" th:text="'Серия и номер документа'"></label>
+                <div class="col-sm-10">
+                    <div class="col-sm-10">
+                        <input type="text" placeholder="Введите cерию и номер документа" class="form-control" th:field="*{documentSeriesNumber}" th:required="required"/>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-2 control-label" th:text="Имя"></label>
+                <div class="col-sm-10">
+                    <div class="col-sm-10">
+                        <input type="text" placeholder="Введите имя туриста" class="form-control" th:field="*{name}" th:required="required"/>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-2 control-label" th:text="Фамилия"></label>
+                <div class="col-sm-10">
+                    <div class="col-sm-10">
+                        <input type="text" placeholder="Введите имя туриста" class="form-control" th:field="*{surname}" th:required="required"/>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-2 control-label" th:text="Отчество"></label>
+                <div class="col-sm-10">
+                    <div class="col-sm-10">
+                        <input type="text" placeholder="Введите отчество туриста" class="form-control" th:field="*{patronymic}" th:required="required"/>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-2 control-label" th:text="Адрес"></label>
+                <div class="col-sm-10">
+                    <div class="col-sm-10">
+                        <input type="text" placeholder="Введите адрес проживания" class="form-control" th:field="*{address}" th:required="required"/>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-2 control-label" th:text="Телефон"></label>
+                <div class="col-sm-10">
+                    <div class="col-sm-10">
+                        <input type="text" placeholder="Введите номер теолефона" class="form-control" th:field="*{phoneNumber}" th:required="required"/>
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <button type="submit" class="btn btn-default btn-block" th:text="'Сохранить'"></button>
+            </div>
+        </form>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+    <title th:text="'Роли'"></title>
+    <!--/*/ <th:block th:include="fragments/header :: head"></th:block> /*/-->
+</head>
+<body>
+<div class="container">
+    <!--/*/ <th:block th:include="fragments/header :: header"></th:block> /*/-->
+<a th:href="${'/approle/new'}"> Создать новую роль</a>
+    <div th:if="${not #lists.isEmpty(approles)}">
+        <h2> Список ролей </h2>
+        <table class="table table-striped">
+            <tr>
+
+                <th th:text="Id"></th>
+                <th th:text="Наименование"></th>
+                <th th:text="Действия"></th>
+
+            </tr>
+            <tr th:each="approle : ${approles}">
+
+                <td th:text="${approle.appRoleId}"></td>
+                <td th:text="${approle.name}"></td>
+
+                <td>
+                    <ul class="list-inline">
+                        <li><a th:href="${'/approle/delete/' + approle.appRoleId}" th:text="Удалить"></a> </li>
+                        <li><a th:href="${'/approle/edit/' + approle.appRoleId}" th:text="Редактировать"></a> </li>
+                        <li><a th:href="${'/approle/details/' + approle.appRoleId}" th:text="Карточка"></a> </li>
+                    </ul>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+</body>
+</html>
