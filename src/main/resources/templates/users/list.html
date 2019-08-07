@@ -16,6 +16,7 @@
             <th th:text="Id"></th>
             <th th:text="Имя"></th>
             <th th:text="Фамилия"></th>
+            <th th:text="Роль"></th>
             <th th:text="'Электронная почта'"></th>
             <th th:text="Логин"></th>
             <th th:text="'Наименование Агента'"></th>
@@ -24,18 +25,19 @@
         </tr>
         <tr th:each="user : ${userslist}">
 
-            <td th:text="${user.Id}"></td>
+            <td th:text="${user.id}"></td>
             <td th:text="${user.name}"></td>
             <td th:text="${user.surname}"></td>
+            <td th:text="${user.authorities}"></td>
             <td th:text="${user.email}"></td>
             <td th:text="${user.login}"></td>
             <td th:text="${user.travelAgent.name}"></td>
 
             <td>
                 <ul class="list-inline">
-                    <li><a th:href="${'/users/delete/' + user.Id}" th:text="Удалить"></a> </li>
-                    <li><a th:href="${'/users/edit/' + user.Id}" th:text="Редактировать"></a> </li>
-                    <li><a th:href="${'/users/details/' + user.Id}" th:text="Карточка"></a> </li>
+                    <li><a th:href="${'/users/delete/' + user.id}" th:text="Удалить"></a> </li>
+                    <li><a th:href="${'/users/edit/' + user.id}" th:text="Редактировать"></a> </li>
+                    <li><a th:href="${'/users/details/' + user.id}" th:text="Карточка"></a> </li>
                 </ul>
             </td>
         </tr>

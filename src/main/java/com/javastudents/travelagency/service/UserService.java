@@ -34,6 +34,10 @@ public class UserService implements PojoService<User>, UserDetailsService {
     @Override
     public User save(User user) {
         user.setPassword(new BCryptPasswordEncoder().encode(user.getPassword()));
+        user.setEnabled(true);
+        user.setAccountNonExpired(true);
+        user.setAccountNonLocked(true);
+        user.setCredentialsNonExpired(true);
         return repository.save(user);
     }
 
@@ -44,10 +48,6 @@ public class UserService implements PojoService<User>, UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(@NotNull String str) throws UsernameNotFoundException {
-        for (User user : list()){
-            if (user.getLogin().equals(str))
-                return user;
-        }
-        throw new UsernameNotFoundException(str + " not found!");
+        return repository.findByLogin(str);
     }
 }
