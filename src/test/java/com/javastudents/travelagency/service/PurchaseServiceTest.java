@@ -1,20 +1,3 @@
-package com.javastudents.travelagency.service;
-
-import com.javastudents.travelagency.entity.Purchase;
-import org.junit.Assert;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
-
-import java.sql.Timestamp;
-import java.time.LocalDateTime;
-import java.util.Date;
-
-@RunWith(SpringRunner.class)
-@SpringBootTest
-public class PurchaseServiceTest {
 
     private final PurchaseService purchaseService;
     private final TourScheduleService tourScheduleService;

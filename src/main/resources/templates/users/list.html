@@ -7,8 +7,8 @@
 <body>
 <div class="container">
     <!--/*/ <th:block th:include="fragments/header :: header"></th:block> /*/-->
-<a th:href="${'/appusers/new'}"> Создать нового пользователя </a>
-<div th:if="${not #lists.isEmpty(appusers)}">
+<a th:href="${'/users/new'}"> Создать нового пользователя </a>
+<div th:if="${not #lists.isEmpty(userslist)}">
     <h2>Cписок пользователей</h2>
     <table class="table table-striped">
         <tr>
@@ -16,28 +16,28 @@
             <th th:text="Id"></th>
             <th th:text="Имя"></th>
             <th th:text="Фамилия"></th>
+            <th th:text="Роль"></th>
             <th th:text="'Электронная почта'"></th>
             <th th:text="Логин"></th>
-            <th th:text="Пароль"></th>
             <th th:text="'Наименование Агента'"></th>
             <th th:text="Действия"></th>
 
         </tr>
-        <tr th:each="appuser : ${appusers}">
+        <tr th:each="user : ${userslist}">
 
-            <td th:text="${appuser.appUserId}"></td>
-            <td th:text="${appuser.name}"></td>
-            <td th:text="${appuser.surname}"></td>
-            <td th:text="${appuser.email}"></td>
-            <td th:text="${appuser.login}"></td>
-            <td th:text="${appuser.password}"></td>
-            <td th:text="${appuser.travelAgent.name}"></td>
+            <td th:text="${user.id}"></td>
+            <td th:text="${user.name}"></td>
+            <td th:text="${user.surname}"></td>
+            <td th:text="${user.authorities}"></td>
+            <td th:text="${user.email}"></td>
+            <td th:text="${user.login}"></td>
+            <td th:text="${user.travelAgent.name}"></td>
 
             <td>
                 <ul class="list-inline">
-                    <li><a th:href="${'/appusers/delete/' + appuser.appUserId}" th:text="Удалить"></a> </li>
-                    <li><a th:href="${'/appusers/edit/' + appuser.appUserId}" th:text="Редактировать"></a> </li>
-                    <li><a th:href="${'/appusers/details/' + appuser.appUserId}" th:text="Карточка"></a> </li>
+                    <li><a th:href="${'/users/delete/' + user.id}" th:text="Удалить"></a> </li>
+                    <li><a th:href="${'/users/edit/' + user.id}" th:text="Редактировать"></a> </li>
+                    <li><a th:href="${'/users/details/' + user.id}" th:text="Карточка"></a> </li>
                 </ul>
             </td>
         </tr>

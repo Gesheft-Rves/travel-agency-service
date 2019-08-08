@@ -1,7 +1,4 @@
-drop table if exists app_role_permission;
-drop table if exists app_user_role;
-drop table if exists app_role;
-drop table if exists app_permission;
+drop table if exists user_authorities;
 drop table if exists app_user;
 drop table if exists travel_agent_ledger;
 drop table if exists purchase;
@@ -16,26 +13,6 @@ drop table if exists tour_category;
 drop table if exists transport_seat;
 drop table if exists transport;
 drop table if exists document_type;
-
-create table if not exists app_role (
-  app_role_id serial not null primary key,
-  name varchar(50)
-);
-
-create table if not exists app_permission(
-  app_permission_id serial not null primary key,
-  name varchar(50)
-);
-
-create table if not exists app_role_permission(
-  app_role_permission_id serial not null primary key,
-  app_role_id int,
-  app_permission_id int,
-  foreign key (app_permission_id) references app_permission(app_permission_id),
-  foreign key (app_role_id) references app_role(app_role_id),
-  unique (app_role_id, app_permission_id )
-
-);
 
 create table if not exists travel_agency(
   travel_agency_id serial not null primary key,
@@ -59,24 +36,26 @@ create table if not exists travel_agent (
 );
 
 create table if not exists app_user (
-  app_user_id serial not null primary key,
+  id serial not null primary key,
   name varchar(50) not null,
   surname varchar(50) not null,
   email varchar(50),
   login varchar(50) not null,
-  password varchar(50) not null,
+  password varchar(100) not null,
   travel_agent_id int not null,
+  account_non_expired boolean default true,
+  account_non_locked boolean default true,
+  credentials_non_expired boolean default true,
+  enabled boolean default true,
   foreign key (travel_agent_id) references travel_agent(travel_agent_id),
-  unique (travel_agent_id)
+  unique (travel_agent_id),
+  unique (login)
 );
 
-create table if not exists app_user_role (
-  app_user_role_id serial not null primary key,
-  app_user_id int not null,
-  role_id int not null,
-  foreign key (app_user_id) references app_user(app_user_id),
-  foreign key (role_id) references app_role(app_role_id),
-  unique (app_user_id, role_id)
+create table if not exists user_authorities (
+  user_id int not null,
+  authorities varchar default null,
+  foreign key (user_id) references app_user (id)
 );
 
 create table if not exists document_type (

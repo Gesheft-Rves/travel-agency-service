@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+    <title th:text="'403'"></title>
+</head>
+<body>
+<div class="container">
+    <div class="starter-template">
+        <h1>403 - Доступ запрещен</h1>
+        <div th:inline="text">Здравствуй '[[${#httpServletRequest.remoteUser}]]',
+            у вас недостаточно прав для доступа к этой странице.</div>
+
+        <a th:href="${'/home' }" th:text="'Вернуться на главную страницу'"></a>
+    </div>
+</div>
+</body>
+</html>
