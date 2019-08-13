@@ -1,7 +1,7 @@
 package com.javastudents.travelagency.controller;
 
 import com.javastudents.travelagency.entity.DocumentType;
-import com.javastudents.travelagency.service.DocumentTypeService;
+import com.javastudents.travelagency.service.impl.DocumentTypeServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,28 +11,28 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/doctype")
 public class DocumentTypeController {
 
-    private final DocumentTypeService documentTypeService;
+    private final DocumentTypeServiceImpl documentTypeServiceImpl;
 
     @Autowired
-    public DocumentTypeController(DocumentTypeService documentTypeService) {
-        this.documentTypeService = documentTypeService;
+    public DocumentTypeController(DocumentTypeServiceImpl documentTypeServiceImpl) {
+        this.documentTypeServiceImpl = documentTypeServiceImpl;
     }
 
     @GetMapping("/list")
     public String list(Model model){
-        model.addAttribute("doctypes", documentTypeService.list());
+        model.addAttribute("doctypes", documentTypeServiceImpl.list());
         return "doctype/list";
     }
 
     @GetMapping("/delete/{id}")
     public String delete(@PathVariable Integer id, Model model){
-        documentTypeService.delete(id);
+        documentTypeServiceImpl.delete(id);
         return "redirect:/doctype/list";
     }
 
     @GetMapping("/edit/{id}")
     public String edit(@PathVariable  Integer id, Model model){
-        model.addAttribute("doctype", documentTypeService.getById(id));
+        model.addAttribute("doctype", documentTypeServiceImpl.getById(id));
         return "doctype/form";
     }
 
@@ -44,13 +44,13 @@ public class DocumentTypeController {
 
     @PostMapping("/save")
     public String save( @ModelAttribute("doctType") DocumentType doctType){
-        documentTypeService.save(doctType);
+        documentTypeServiceImpl.save(doctType);
         return "redirect:/doctype/list";
     }
 
     @GetMapping("/details/{id}")
     public String details(@PathVariable Integer id, Model model){
-        model.addAttribute("doctype", documentTypeService.getById(id));
+        model.addAttribute("doctype", documentTypeServiceImpl.getById(id));
         return "doctype/card";
     }
 

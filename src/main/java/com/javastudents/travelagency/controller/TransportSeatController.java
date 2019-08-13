@@ -1,8 +1,8 @@
 package com.javastudents.travelagency.controller;
 
 import com.javastudents.travelagency.entity.TransportSeat;
-import com.javastudents.travelagency.service.TransportSeatService;
-import com.javastudents.travelagency.service.TransportService;
+import com.javastudents.travelagency.service.impl.TransportSeatServiceImpl;
+import com.javastudents.travelagency.service.impl.TransportServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
@@ -13,31 +13,31 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/transportSeat")
 public class TransportSeatController {
 
-    private TransportSeatService transportSeatService;
-    private TransportService transportService;
+    private TransportSeatServiceImpl transportSeatServiceImpl;
+    private TransportServiceImpl transportServiceImpl;
 
     @Autowired
-    public TransportSeatController(TransportSeatService transportSeatService, TransportService transportService) {
-        this.transportSeatService = transportSeatService;
-        this.transportService = transportService;
+    public TransportSeatController(TransportSeatServiceImpl transportSeatServiceImpl, TransportServiceImpl transportServiceImpl) {
+        this.transportSeatServiceImpl = transportSeatServiceImpl;
+        this.transportServiceImpl = transportServiceImpl;
     }
 
     @GetMapping("/list")
     public String list(Model model){
-        model.addAttribute("transportSeats", transportSeatService.list());
+        model.addAttribute("transportSeats", transportSeatServiceImpl.list());
         return "transportSeat/list";
     }
 
     @GetMapping("/delete/{id}")
     public String delete(@PathVariable Integer id){
-        transportSeatService.delete(id);
+        transportSeatServiceImpl.delete(id);
         return "redirect:/transportSeat/list";
     }
 
     @GetMapping("/edit/{id}")
     public String edit(@PathVariable  Integer id, Model model){
-        model.addAttribute("transportSeat", transportSeatService.getById(id));
-        model.addAttribute("transports", transportService.list());
+        model.addAttribute("transportSeat", transportSeatServiceImpl.getById(id));
+        model.addAttribute("transports", transportServiceImpl.list());
         return "transportSeat/form";
     }
 
@@ -45,19 +45,19 @@ public class TransportSeatController {
     @ResponseStatus(HttpStatus.CREATED)
     public String newTransportSeat(Model model){
         model.addAttribute("transportSeat", new TransportSeat());
-        model.addAttribute("transports", transportService.list());
+        model.addAttribute("transports", transportServiceImpl.list());
         return "transportSeat/form";
     }
 
     @PostMapping("/save")
     public String save(@ModelAttribute("transportSeat") TransportSeat transportSeat){
-        transportSeatService.save(transportSeat);
+        transportSeatServiceImpl.save(transportSeat);
         return "redirect:/transportSeat/list";
     }
 
     @GetMapping("/details/{id}")
     public String details(@PathVariable Integer id, Model model){
-        model.addAttribute("transportSeat", transportSeatService.getById(id));
+        model.addAttribute("transportSeat", transportSeatServiceImpl.getById(id));
         return "transportSeat/card";
     }
 }

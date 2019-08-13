@@ -2,7 +2,7 @@ package com.javastudents.travelagency.controller;
 
 
 import com.javastudents.travelagency.entity.TourCategory;
-import com.javastudents.travelagency.service.TourCategoryService;
+import com.javastudents.travelagency.service.impl.TourCategoryServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,10 +12,10 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/tourCategory")
 public class TourCategoryController {
 
-    private final TourCategoryService tourCategoryService;
+    private final TourCategoryServiceImpl tourCategoryService;
 
     @Autowired
-    public TourCategoryController(TourCategoryService tourCategoryService) {
+    public TourCategoryController(TourCategoryServiceImpl tourCategoryService) {
         this.tourCategoryService = tourCategoryService;
     }
 

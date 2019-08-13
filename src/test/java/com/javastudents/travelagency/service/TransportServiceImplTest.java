@@ -1,6 +1,7 @@
 package com.javastudents.travelagency.service;
 
 import com.javastudents.travelagency.entity.Transport;
+import com.javastudents.travelagency.service.impl.TransportServiceImpl;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -10,26 +11,26 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class TransportServiceTest {
+public class TransportServiceImplTest {
 
-    private final TransportService transportService;
+    private final TransportServiceImpl transportServiceImpl;
 
     @Autowired
-    public TransportServiceTest(TransportService transportService) {
-        this.transportService = transportService;
+    public TransportServiceImplTest(TransportServiceImpl transportServiceImpl) {
+        this.transportServiceImpl = transportServiceImpl;
     }
 
     @Test
     public void list() {
         Integer expected = 4;
-        Integer actual = transportService.list().size();
+        Integer actual = transportServiceImpl.list().size();
 
         Assert.assertEquals(expected,actual);
     }
 
     @Test
     public void getById() {
-        Transport transport = transportService.getById(1);
+        Transport transport = transportServiceImpl.getById(1);
         Integer actual = transport.getId();
         Integer expected = 1;
 
@@ -40,19 +41,19 @@ public class TransportServiceTest {
     @Test
     public void save() {
         Transport newTransport = new Transport(5,"newTransport","newDescription",24);
-        transportService.save(newTransport);
+        transportServiceImpl.save(newTransport);
 
-        Assert.assertNotNull(transportService.getById(5));
+        Assert.assertNotNull(transportServiceImpl.getById(5));
     }
 
     @Test
     public void delete() {
         Transport newTransport = new Transport(5,"newTransport","newDescription",24);
-        transportService.save(newTransport);
+        transportServiceImpl.save(newTransport);
 
-        Assert.assertNotNull(transportService.getById(5));
+        Assert.assertNotNull(transportServiceImpl.getById(5));
 
-        transportService.delete(5);
-        Assert.assertEquals(4,transportService.list().size());
+        transportServiceImpl.delete(5);
+        Assert.assertEquals(4, transportServiceImpl.list().size());
     }
 }
