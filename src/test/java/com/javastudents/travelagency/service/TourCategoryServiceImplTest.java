@@ -1,6 +1,7 @@
 package com.javastudents.travelagency.service;
 
 import com.javastudents.travelagency.entity.TourCategory;
+import com.javastudents.travelagency.service.impl.TourCategoryServiceImpl;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -10,12 +11,12 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class TourCategoryServiceTest {
+public class TourCategoryServiceImplTest {
 
-    private final TourCategoryService tourCategoryService;
+    private final TourCategoryServiceImpl tourCategoryService;
 
     @Autowired
-    public TourCategoryServiceTest(TourCategoryService tourCategoryService) {
+    public TourCategoryServiceImplTest(TourCategoryServiceImpl tourCategoryService) {
         this.tourCategoryService = tourCategoryService;
     }
 
